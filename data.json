@@ -1,6 +1,6 @@
 {
   "bio": "A software engineer with experience in full-stack development, live events, virtual production, and game development. Skilled in various languages, frameworks, tools, and techniques. Passionate about AI, automation, and procedural generation.",
-  "headshot": "./headshot-t-u.png",
+  "headshot": "./Headshot-t-u.png",
   "headshotalt2": "./MorphWolf2-t.png",
   "headshotalt": "./Morphtransparent.GIF",
   "contact": {
@@ -540,3 +540,4 @@
   ],
   "roles": ["All", "Software Engineer", "Technical Artist", "AI Consultant", "VP Supervisor"]
 }
+
