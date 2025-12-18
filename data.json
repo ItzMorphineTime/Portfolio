@@ -3,6 +3,12 @@
   "headshot": "./headshot-t-u.png",
   "headshotalt2": "./MorphWolf2-t.png",
   "headshotalt": "./Morphtransparent.GIF",
+  "contact": {
+    "email": "jl@fivefoldstudios.co.uk",
+    "linkedin": "https://www.linkedin.com/in/josephloe/",
+    "website": "https://www.fivefoldstudios.co.uk/",
+    "github": "https://github.com/ItzMorphineTime"
+  },
   "skills": [
     {
       "name": "Microsoft suite",

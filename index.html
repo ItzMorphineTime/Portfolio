@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Portfolio</title>
+    <meta name="description" content="Professional portfolio showcasing software engineering, technical art, and virtual production work.">
+    <meta name="theme-color" content="#0a0a0f">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -230,6 +232,7 @@
         section:nth-child(4) { animation-delay: 0.4s; }
         section:nth-child(5) { animation-delay: 0.5s; }
         section:nth-child(6) { animation-delay: 0.6s; }
+        section:nth-child(7) { animation-delay: 0.7s; }
 
         @keyframes fadeInUp {
             to {
@@ -307,6 +310,46 @@
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 2rem;
+        }
+
+        /* Hero Contact Links */
+        .hero-contact {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .hero-contact-link:hover {
+            border-color: var(--border-accent);
+            color: var(--accent-primary);
+            background: var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        body.matrix-mode .hero-contact-link:hover {
+            border-color: rgba(0, 255, 65, 0.3);
+            color: #00ff41;
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        .hero-contact-link svg {
+            width: 18px;
+            height: 18px;
         }
 
         .hero-image {
@@ -930,6 +973,115 @@
             line-height: 1.7;
         }
 
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .contact-section:hover {
+            border-color: var(--border-accent);
+        }
+
+        body.matrix-mode .contact-section:hover {
+            border-color: rgba(0, 255, 65, 0.3);
+        }
+
+        .contact-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem 2.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition-smooth);
+            min-width: 180px;
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        body.matrix-mode .contact-card:hover {
+            border-color: rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+        }
+
+        .contact-card-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            color: var(--accent-primary);
+            transition: var(--transition-fast);
+        }
+
+        body.matrix-mode .contact-card-icon {
+            background: rgba(0, 255, 65, 0.15);
+            color: #00ff41;
+        }
+
+        .contact-card:hover .contact-card-icon {
+            background: var(--gradient-gold);
+            color: var(--bg-primary);
+        }
+
+        body.matrix-mode .contact-card:hover .contact-card-icon {
+            background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+            color: var(--bg-primary);
+        }
+
+        .contact-card-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .contact-card-label {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .contact-card-value {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
         /* Floating Footer Navigation */
         .footer-nav {
             position: fixed;
@@ -1140,6 +1292,10 @@
                 order: -1;
             }
 
+            .hero-contact {
+                justify-content: center;
+            }
+
             .headshot-container {
                 width: 280px;
                 height: 280px;
@@ -1147,6 +1303,10 @@
 
             .modal-nav.prev { left: 10px; }
             .modal-nav.next { right: 10px; }
+
+            .contact-section {
+                padding: 3rem 2rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1194,6 +1354,11 @@
                 font-size: 1rem;
             }
 
+            .hero-contact-link {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
             .skills-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
@@ -1227,6 +1392,11 @@
             .nav-btn svg {
                 width: 18px;
                 height: 18px;
+            }
+
+            .contact-card {
+                min-width: 140px;
+                padding: 1.5rem;
             }
         }
 
@@ -1300,6 +1470,12 @@
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
             </svg>
         </button>
+        <button class="nav-btn" data-section="contact" data-tooltip="Contact" onclick="scrollToSection('contact')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+            </svg>
+        </button>
     </nav>
 
     <!-- Image Modal -->
@@ -1353,7 +1529,6 @@
                 });
             }, options);
 
-            // We'll observe sections after they're rendered
             window.sectionObserver = observer;
         }
 
@@ -1421,23 +1596,19 @@
         function filterByRole(role) {
             currentRole = role;
             
-            // Update button states
             document.querySelectorAll('.role-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.role === role);
             });
             
-            // Filter all filterable elements
             document.querySelectorAll('.filterable').forEach(el => {
                 const roles = JSON.parse(el.dataset.roles || '[]');
                 const shouldShow = role === 'All' || roles.includes(role);
                 el.classList.toggle('hidden', !shouldShow);
             });
 
-            // Handle Matrix mode for Software Engineer
             const isMatrixMode = role === 'Software Engineer';
             document.body.classList.toggle('matrix-mode', isMatrixMode);
             
-            // Toggle Matrix background
             const canvas = document.getElementById('matrix-canvas');
             if (isMatrixMode) {
                 canvas.classList.add('active');
@@ -1447,11 +1618,9 @@
                 stopMatrixAnimation();
             }
 
-            // Switch headshots
             updateHeadshot(role);
         }
 
-        // Update headshot based on role
         function updateHeadshot(role) {
             const primaryHeadshot = document.getElementById('primaryHeadshot');
             const altHeadshot = document.getElementById('altHeadshot');
@@ -1472,17 +1641,14 @@
             const canvas = document.getElementById('matrix-canvas');
             const ctx = canvas.getContext('2d');
 
-            // Set canvas size
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
-            // Matrix characters - mix of katakana, numbers, and symbols
             const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*(){}[]|;:<>?'.split('');
             
             const fontSize = 16;
             const columns = Math.ceil(canvas.width / fontSize);
             
-            // Initialize drops at random positions
             const drops = [];
             const speeds = [];
             const brightness = [];
@@ -1494,42 +1660,32 @@
             }
 
             function draw() {
-                // Semi-transparent black to create trail effect
                 ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                 for (let i = 0; i < drops.length; i++) {
-                    // Random character
                     const char = chars[Math.floor(Math.random() * chars.length)];
                     
                     const x = i * fontSize;
                     const y = drops[i] * fontSize;
 
-                    // Draw the leading bright character
                     ctx.font = `${fontSize}px monospace`;
-                    
-                    // Leading character is brightest (white-green)
                     ctx.fillStyle = `rgba(180, 255, 180, ${brightness[i]})`;
                     ctx.fillText(char, x, y);
 
-                    // Draw a trail of fading characters
                     for (let j = 1; j < 20; j++) {
                         const trailY = y - j * fontSize;
                         if (trailY > 0) {
                             const trailChar = chars[Math.floor(Math.random() * chars.length)];
                             const alpha = (1 - j / 20) * brightness[i] * 0.8;
-                            
-                            // Mix of green shades
                             const green = Math.floor(150 + Math.random() * 105);
                             ctx.fillStyle = `rgba(0, ${green}, 65, ${alpha})`;
                             ctx.fillText(trailChar, x, trailY);
                         }
                     }
 
-                    // Move drop down
                     drops[i] += speeds[i];
 
-                    // Reset drop when it goes off screen
                     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                         drops[i] = Math.random() * -20;
                         speeds[i] = 0.5 + Math.random() * 1.5;
@@ -1538,7 +1694,6 @@
                 }
             }
 
-            // Handle resize
             function handleResize() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
@@ -1546,7 +1701,6 @@
 
             window.addEventListener('resize', handleResize);
 
-            // Start animation
             matrixAnimation = {
                 intervalId: setInterval(draw, 33),
                 resizeHandler: handleResize
@@ -1559,25 +1713,21 @@
                 window.removeEventListener('resize', matrixAnimation.resizeHandler);
                 matrixAnimation = null;
 
-                // Clear canvas
                 const canvas = document.getElementById('matrix-canvas');
                 const ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         }
 
-        // Extract domain from URL
         function extractDomain(url) {
             try {
                 const hostname = new URL(url).hostname;
-                // Remove 'www.' prefix if present
                 return hostname.replace(/^www\./, '');
             } catch (e) {
                 return 'Link';
             }
         }
 
-        // Check if item matches current role
         function matchesRole(roles) {
             return currentRole === 'All' || (roles && roles.includes(currentRole));
         }
@@ -1593,15 +1743,65 @@
                 ${renderEducation()}
                 ${renderProjects()}
                 ${renderInterests()}
+                ${renderContact()}
             `;
 
-            // Animate skill bars after render
             setTimeout(animateSkillBars, 500);
         }
 
         // Render hero section
         function renderHero() {
-            const { bio, headshot, headshotalt } = portfolioData;
+            const { bio, headshot, headshotalt, contact } = portfolioData;
+            
+            const contactLinks = [];
+            if (contact) {
+                if (contact.email) {
+                    contactLinks.push(`
+                        <a href="mailto:${contact.email}" class="hero-contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            Email
+                        </a>
+                    `);
+                }
+                if (contact.linkedin) {
+                    contactLinks.push(`
+                        <a href="${contact.linkedin}" target="_blank" rel="noopener" class="hero-contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                    `);
+                }
+                if (contact.github) {
+                    contactLinks.push(`
+                        <a href="${contact.github}" target="_blank" rel="noopener" class="hero-contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                            GitHub
+                        </a>
+                    `);
+                }
+                if (contact.website) {
+                    contactLinks.push(`
+                        <a href="${contact.website}" target="_blank" rel="noopener" class="hero-contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                            Website
+                        </a>
+                    `);
+                }
+            }
+
             return `
                 <section class="hero" id="hero">
                     <div class="container">
@@ -1609,6 +1809,11 @@
                             <div class="hero-text">
                                 <h1>Building <span>Digital</span> Experiences</h1>
                                 <p class="hero-bio">${bio || ''}</p>
+                                ${contactLinks.length > 0 ? `
+                                    <div class="hero-contact">
+                                        ${contactLinks.join('')}
+                                    </div>
+                                ` : ''}
                             </div>
                             <div class="hero-image">
                                 <div class="headshot-container">
@@ -1662,7 +1867,6 @@
             `;
         }
 
-        // Animate skill bars
         function animateSkillBars() {
             document.querySelectorAll('.skill-bar').forEach(bar => {
                 const proficiency = bar.dataset.proficiency;
@@ -1826,6 +2030,91 @@
             `;
         }
 
+        // Render contact section
+        function renderContact() {
+            const contact = portfolioData.contact;
+            if (!contact) return '';
+
+            const contactCards = [];
+            
+            if (contact.email) {
+                contactCards.push(`
+                    <a href="mailto:${contact.email}" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <span class="contact-card-label">Email</span>
+                        <span class="contact-card-value">${contact.email}</span>
+                    </a>
+                `);
+            }
+
+            if (contact.linkedin) {
+                contactCards.push(`
+                    <a href="${contact.linkedin}" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </div>
+                        <span class="contact-card-label">LinkedIn</span>
+                        <span class="contact-card-value">Connect</span>
+                    </a>
+                `);
+            }
+
+            if (contact.github) {
+                contactCards.push(`
+                    <a href="${contact.github}" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                        </div>
+                        <span class="contact-card-label">GitHub</span>
+                        <span class="contact-card-value">View Code</span>
+                    </a>
+                `);
+            }
+
+            if (contact.website) {
+                contactCards.push(`
+                    <a href="${contact.website}" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <span class="contact-card-label">Website</span>
+                        <span class="contact-card-value">Visit</span>
+                    </a>
+                `);
+            }
+
+            if (contactCards.length === 0) return '';
+
+            return `
+                <section id="contact">
+                    <div class="container">
+                        <div class="contact-section">
+                            <h2 class="contact-title">Let's Connect</h2>
+                            <p class="contact-subtitle">I'm always open to discussing new projects, opportunities, or just having a chat about technology and creativity.</p>
+                            <div class="contact-grid">
+                                ${contactCards.join('')}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
         // Modal functions
         function openModal(projectIndex) {
             const project = portfolioData.projects[projectIndex];
@@ -1855,12 +2144,10 @@
             counter.textContent = `${modalIndex + 1} / ${modalImages.length}`;
         }
 
-        // Close modal on overlay click
         document.getElementById('imageModal').addEventListener('click', (e) => {
             if (e.target.id === 'imageModal') closeModal();
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (!document.getElementById('imageModal').classList.contains('active')) return;
             if (e.key === 'Escape') closeModal();
