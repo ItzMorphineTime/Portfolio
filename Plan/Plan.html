@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A 3-Year Plan for Sara & Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            overflow: hidden;
+            color: #1e293b;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-container {
+            flex: 1;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* Header Styles */
+        .slide-header {
+            background: linear-gradient(135deg, #0B1320 0%, #1e3a5f 100%);
+            color: white;
+            padding: 1.5rem 3rem;
+            border-bottom: 4px solid #2DD4BF;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .slide-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .slide-content {
+            padding: 3rem;
+            height: calc(100% - 80px);
+            overflow: auto;
+            background: #f8fafc;
+        }
+
+        /* Hero Slide Styles */
+        .slide-full {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem;
+            min-height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 95, 0.88) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4) blur(2px);
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-with-image {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* KPI Cards */
+        .kpi-card {
+            background: linear-gradient(135deg, white 0%, #f8fafc 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(45, 212, 191, 0.15);
+            border-color: #2DD4BF;
+        }
+
+        .kpi-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0B1320;
+            letter-spacing: -0.025em;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        /* Accent Bars */
+        .accent-bar {
+            height: 6px;
+            margin-bottom: 1.5rem;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #2DD4BF 0%, #14B8A6 100%);
+        }
+
+        .accent-teal { background: linear-gradient(90deg, #2DD4BF 0%, #14B8A6 100%); }
+        .accent-gold { background: linear-gradient(90deg, #F4C95D 0%, #EAB308 100%); }
+        .accent-teal2 { background: linear-gradient(90deg, #14B8A6 0%, #0D9488 100%); }
+
+        /* Lists */
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        ul li:before {
+            content: "●";
+            color: #2DD4BF;
+            font-weight: bold;
+            position: absolute;
+            left: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f8fafc;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: #f1f5f9;
+        }
+
+        .checkbox {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin-right: 1.25rem;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .checkbox.checked {
+            background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);
+        }
+
+        .checkbox.unchecked {
+            background: white;
+            border: 3px solid #cbd5e1;
+        }
+
+        /* Chart */
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: auto;
+            margin: 2.5rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .chart-bar-group {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chart-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 160px;
+        }
+
+        .chart-bar {
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 0.75rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .chart-bar:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .bar-teal { background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%); }
+        .bar-gold { background: linear-gradient(135deg, #F4C95D 0%, #EAB308 100%); color: #0B1320; }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #0B1320 0%, #1e3a5f 100%);
+            color: white;
+        }
+
+        th, td {
+            padding: 1.25rem;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        tbody tr {
+            transition: background 0.2s;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tbody tr:nth-child(odd) {
+            background: white;
+        }
+
+        tbody tr:hover {
+            background: #f1f5f9;
+        }
+
+        td:first-child {
+            font-weight: 600;
+            color: #0B1320;
+        }
+
+        /* Note Box */
+        .note-box {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-left: 4px solid #2DD4BF;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            font-size: 0.925rem;
+            color: #475569;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #0B1320 0%, #1e3a5f 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 24px rgba(11, 19, 32, 0.2);
+        }
+
+        /* Footer Text */
+        .footer-text {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 2rem;
+            font-size: 0.925rem;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: rgba(45, 212, 191, 0.2);
+            border-color: #2DD4BF;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-weight: 500;
+        }
+
+        .home-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home-button:hover {
+            background: rgba(45, 212, 191, 0.2);
+            border-color: #2DD4BF;
+            transform: translateY(-2px);
+        }
+
+        /* Thumbnails */
+        .thumbnails-container {
+            background: #1f2937;
+            padding: 1rem 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .thumbnail-button {
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            margin-right: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .thumbnail-button.active {
+            background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
+            border-color: #2DD4BF;
+            box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);
+        }
+
+        .thumbnail-button:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Typography */
+        h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            margin-bottom: 1.5rem; 
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+        h2 { 
+            font-size: 2.25rem; 
+            font-weight: 700; 
+            margin-bottom: 1.25rem; 
+            letter-spacing: -0.025em;
+        }
+        h3 { 
+            font-size: 1.875rem; 
+            font-weight: 700; 
+            margin-bottom: 1.25rem; 
+            letter-spacing: -0.02em;
+            color: #0B1320;
+        }
+        h4 { 
+            font-size: 1.375rem; 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            letter-spacing: -0.015em;
+            color: #1e293b;
+        }
+
+        .text-white { color: white; }
+        .text-gray-200 { color: #e5e7eb; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-900 { color: #111827; }
+
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+
+        .divider {
+            width: 15rem;
+            height: 5px;
+            background: linear-gradient(90deg, #2DD4BF 0%, #14B8A6 100%);
+            margin: 1.5rem auto;
+            border-radius: 3px;
+        }
+
+        .gold-divider {
+            width: 20rem;
+            height: 5px;
+            background: linear-gradient(90deg, #F4C95D 0%, #EAB308 100%);
+            margin: 1.5rem auto;
+            border-radius: 3px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Image overlays for plan slides */
+        .plan-slide-bg {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.3);
+        }
+
+        .plan-slide-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Icon styles */
+        .icon-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .icon-teal {
+            background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
+            color: white;
+        }
+
+        .icon-gold {
+            background: linear-gradient(135deg, #F4C95D 0%, #EAB308 100%);
+            color: #0B1320;
+        }
+
+        @media print {
+            .nav-container, .thumbnails-container {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide Container -->
+        <div class="slide-container" id="slideContainer"></div>
+
+        <!-- Navigation -->
+        <div class="nav-container">
+            <button class="nav-button" id="prevBtn" onclick="previousSlide()">
+                <span>◀</span>
+                <span>Previous</span>
+            </button>
+
+            <div class="nav-info">
+                <span id="slideCounter">Slide 1 of 13</span>
+                <button class="home-button" onclick="goToSlide(0)" title="Go to first slide">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <button class="nav-button" id="nextBtn" onclick="nextSlide()">
+                <span>Next</span>
+                <span>▶</span>
+            </button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="thumbnails-container" id="thumbnails"></div>
+    </div>
+
+    <script>
+        const slides = [
+            // Slide 1: Title
+            {
+                type: 'title',
+                html: `
+                    <div class="slide-full">
+                        <div class="hero-bg"></div>
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h1 class="text-white">A 3-Year Plan for Sara & Me</h1>
+                            <div class="divider"></div>
+                            <p class="text-2xl text-gray-200" style="margin-bottom: 3rem; font-weight: 400;">Career • Home • Financial Stability • Family</p>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 2: Intent & values
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Why I'm Here</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="section-title">My Intention</div>
+                        <h3>To ask for your blessing to marry Sara</h3>
+                        <p class="text-xl text-gray-700" style="margin-bottom: 2.5rem; line-height: 1.7;">I want to show you the plan I'm building for a stable, respectful future together. This presentation outlines my commitment to Sara, our family, and our shared future.</p>
+                        
+                        <div class="grid-2">
+                            <div class="card">
+                                <div class="icon-circle icon-teal">💍</div>
+                                <h4>What I'm Committing To</h4>
+                                <ul>
+                                    <li>Putting Sara first in every major decision</li>
+                                    <li>Keeping family close and involved</li>
+                                    <li>Clear financial planning & transparency</li>
+                                    <li>Career growth without constant disruption</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <div class="icon-circle icon-gold">🎯</div>
+                                <h4>How I'll Measure Success</h4>
+                                <ul>
+                                    <li>A safe, comfortable home (2–3 bedrooms)</li>
+                                    <li>Strong career trajectory (UK or Riyadh)</li>
+                                    <li>Savings runway + contingency plans</li>
+                                    <li>Time + presence for family</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="footer-text">This is a practical plan — and I'm open to your guidance.</p>
+                    </div>
+                `
+            },
+
+            // Slide 3: Today snapshot
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Where I Am Today</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="grid-4" style="margin-bottom: 2rem;">
+                            <div class="kpi-card">
+                                <div class="kpi-icon">💼</div>
+                                <div class="kpi-label">Role</div>
+                                <div class="kpi-value">Head of Technology</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-icon">💰</div>
+                                <div class="kpi-label">Salary</div>
+                                <div class="kpi-value">£65k/year</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-icon">⏰</div>
+                                <div class="kpi-label">Commitment</div>
+                                <div class="kpi-value">Until Nov 2025<br><span style="font-size: 1rem; font-weight: 500;">(3-year complete)</span></div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-icon">📈</div>
+                                <div class="kpi-label">Equity (est.)</div>
+                                <div class="kpi-value">≈ £250k</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card card-with-image">
+                            <img src="https://static.wixstatic.com/media/3d099b_74b84c7e3187452795282bdeec55be97~mv2.jpg/v1/fill/w_1238,h_1125,al_c,q_85,enc_avif,quality_auto/3d099b_74b84c7e3187452795282bdeec55be97~mv2.jpg" alt="Film Production" class="card-image">
+                            <div class="card-content">
+                                <h4>What I'm Building at Fivefold Studios (Wales)</h4>
+                                <p style="margin-bottom: 1.5rem; color: #64748b; line-height: 1.7;">As Head of Technology at Fivefold Studios in Cardiff, I lead technical innovation for film and TV production.</p>
+                                <ul>
+                                    <li>Grow and expand the studio's technical capability</li>
+                                    <li>Attract talent to Wales and train high-performing teams</li>
+                                    <li>Innovate workflows for film/TV multimedia and virtual production</li>
+                                    <li>Build a reputation for quality, reliability, and delivery</li>
+                                </ul>
+                                <div class="note-box">
+                                    <strong>Company:</strong> <a href="https://www.fivefoldstudios.co.uk/about" target="_blank" style="color: #2DD4BF; text-decoration: none;">Fivefold Studios</a> – A growing film and TV production studio in Cardiff, Wales
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 4: 3-year roadmap
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>3-Year Roadmap (High Level)</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="section-title">The Vision</div>
+                        <p class="text-xl text-gray-700" style="margin-bottom: 0.5rem;">The next 36 months are built around one goal:</p>
+                        <h3 style="margin-bottom: 3rem;">A stable home + strong career path + financial resilience</h3>
+                        
+                        <div class="grid-3" style="margin-bottom: 1.5rem;">
+                            <div class="card" style="padding: 0; overflow: hidden;">
+                                <div class="accent-bar accent-teal"></div>
+                                <div style="padding: 2rem;">
+                                    <div class="icon-circle icon-teal" style="margin: 0 auto 1rem;">1️⃣</div>
+                                    <h4 style="text-align: center;">Year 1 (now → November)</h4>
+                                    <ul style="font-size: 0.95rem;">
+                                        <li>Complete 3-year Fivefold commitment by November</li>
+                                        <li>Decision on location after commitment fulfilled</li>
+                                        <li>Secure housing plan</li>
+                                        <li>Build savings + reduce uncertainty</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="card" style="padding: 0; overflow: hidden;">
+                                <div class="accent-bar accent-gold"></div>
+                                <div style="padding: 2rem;">
+                                    <div class="icon-circle icon-gold" style="margin: 0 auto 1rem;">2️⃣</div>
+                                    <h4 style="text-align: center;">Year 2</h4>
+                                    <ul style="font-size: 0.95rem;">
+                                        <li>Execute chosen location plan</li>
+                                        <li>Strengthen income stability</li>
+                                        <li>Grow side venture revenue (£5k target)</li>
+                                        <li>Support Sara's goals (work/study/wellbeing)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="card" style="padding: 0; overflow: hidden;">
+                                <div class="accent-bar accent-teal2"></div>
+                                <div style="padding: 2rem;">
+                                    <div class="icon-circle" style="background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); color: white; margin: 0 auto 1rem;">3️⃣</div>
+                                    <h4 style="text-align: center;">Year 3</h4>
+                                    <ul style="font-size: 0.95rem;">
+                                        <li>Complete my Fivefold commitment</li>
+                                        <li>Optional equity liquidity event</li>
+                                        <li>Scale side ventures to £10k/year</li>
+                                        <li>Step into next opportunity (UK or Riyadh)</li>
+                                        <li>Plan long-term investments & family milestones</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="footer-text">This roadmap stays steady even if the location changes.</p>
+                    </div>
+                `
+            },
+
+            // Slide 5: Two paths
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Two Paths (Same Destination)</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="section-title">Decision Gate: November 2025 (When 3-Year Commitment Completes)</div>
+                        <p class="text-xl text-gray-700" style="margin-bottom: 2.5rem;">Both paths lead to stability, security, and a strong foundation for our future together. The November decision timing is critical for completing my commitment and beginning visa processing if we choose the UK path.</p>
+                        
+                        <div class="grid-2" style="margin-bottom: 1.5rem;">
+                            <div class="card card-with-image">
+                                <img src="https://severnestuarypartnership.org.uk/wp-content/uploads/sites/5/2021/05/50600499101_925d3e2b8f_o-1024x600.jpg" alt="Cardiff Bay" class="card-image">
+                                <div class="card-content">
+                                    <h3>Plan A: UK (Cardiff)</h3>
+                                    <h4 style="font-size: 1.1rem; font-weight: 600; color: #64748b;">Why This Works</h4>
+                                    <ul>
+                                        <li>Finish my current commitment in Wales</li>
+                                        <li>Build a home base in/near Cardiff</li>
+                                        <li>Stay close to UK industry network</li>
+                                        <li>Use equity optionality for next step</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="card card-with-image">
+                                <img src="https://www.shutterstock.com/image-photo/saudi-man-wearing-traditional-white-260nw-2650824475.jpg" alt="Riyadh Skyline" class="card-image">
+                                <div class="card-content">
+                                    <h3>Plan B: Riyadh (Diriyah/Qiddiya)</h3>
+                                    <h4 style="font-size: 1.1rem; font-weight: 600; color: #64748b;">Why This Works</h4>
+                                    <ul>
+                                        <li>Invest in a fast-growing market for film & TV</li>
+                                        <li>Position myself near major new facilities</li>
+                                        <li>Keep a strong savings + contingency buffer</li>
+                                        <li>A clear plan for housing and family support</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <strong style="font-size: 1.1rem;">Decision Criteria:</strong> Opportunity • Stability • Family Proximity • Housing • Long-term Finances
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 6: November decision
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Decision by November: What I'll Lock In</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="card">
+                            <h3>By November, I will have clear answers on:</h3>
+                            <p style="color: #64748b; margin-bottom: 1rem; line-height: 1.7;">These are the concrete commitments I'll make before moving forward with our engagement.</p>
+                            <div class="note-box" style="margin-bottom: 2rem;">
+                                <strong>Why November?</strong> This is when my 3-year commitment to Fivefold Studios will be fulfilled, giving me full clarity on next steps and maximum flexibility for our future.
+                            </div>
+                            
+                            <div class="checklist-item">
+                                <div class="checkbox checked">✓</div>
+                                <div>
+                                    <p style="color: #1e293b; font-weight: 500; font-size: 1.05rem;">Best location (UK vs Riyadh) based on the strongest opportunity</p>
+                                </div>
+                            </div>
+                            
+                            <div class="checklist-item">
+                                <div class="checkbox checked">✓</div>
+                                <div>
+                                    <p style="color: #1e293b; font-weight: 500; font-size: 1.05rem;">Housing option shortlist (2–3 bed) + budget range</p>
+                                </div>
+                            </div>
+                            
+                            <div class="checklist-item">
+                                <div class="checkbox checked">✓</div>
+                                <div>
+                                    <p style="color: #1e293b; font-weight: 500; font-size: 1.05rem;">Financial plan for the next 12 months (savings & runway)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="checklist-item">
+                                <div class="checkbox checked">✓</div>
+                                <div>
+                                    <p style="color: #1e293b; font-weight: 500; font-size: 1.05rem;">How we'll stay close to family (visits, support, priorities)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="checklist-item">
+                                <div class="checkbox unchecked"></div>
+                                <div>
+                                    <p style="color: #1e293b; font-weight: 500; font-size: 1.05rem;">Timeline for engagement → marriage logistics</p>
+                                    <p style="color: #64748b; font-size: 0.925rem; margin-top: 0.5rem;">(to be planned with Sara + both families)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-box" style="margin-top: 2rem; margin-bottom: 2rem;">
+                                <h4 style="color: white; margin-bottom: 1rem; font-size: 1.15rem;">⏰ UK Marital Visa Processing Timeline</h4>
+                                <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem;">We plan to get married on paper as soon as possible (while waiting for the full ceremony) so we can begin processing UK marital visa requirements early. This is a lengthy process, and the more evidence of our commitment and time together we have, the stronger our visa application will be.</p>
+                                <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.9;"><strong>Important:</strong> We will not move in together until after the proper wedding ceremony out of respect for both families' values and traditions.</p>
+                            </div>
+                            
+                            <div class="info-box">
+                                <p style="font-size: 1.05rem; line-height: 1.7;">The purpose of the November decision is to reduce uncertainty — so Sara can feel secure and supported as we move forward together.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 7: Financial runway
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Financial Runway: Income & Expenses (£k)</h2>
+                    </div>
+                    <div class="slide-content">
+                        <p class="text-xl text-gray-700" style="margin-bottom: 2.5rem; line-height: 1.7;">Base salary is steady and reliable; equity provides optional upside (not guaranteed). My planning prioritizes predictable income with responsible expense management.</p>
+                        
+                        <div class="card">
+                            <h4 style="margin-bottom: 2.5rem;">Annual Income vs Expenses Breakdown</h4>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-bottom: 2rem;">
+                                <!-- Year 1 -->
+                                <div>
+                                    <p style="font-size: 1.3rem; font-weight: 700; color: #0B1320; margin-bottom: 2rem; text-align: center;">Year 1</p>
+                                    
+                                    <!-- Income Bar -->
+                                    <div style="margin-bottom: 2rem;">
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.75rem; font-weight: 600;">INCOME</p>
+                                        <div style="position: relative;">
+                                            <div style="background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%); height: 260px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);">
+                                                £65k
+                                            </div>
+                                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; text-align: center;">Base Salary</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Expenses Bar -->
+                                    <div>
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.75rem; font-weight: 600;">EXPENSES</p>
+                                        <div style="position: relative;">
+                                            <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                                <div style="background: #ef4444; height: 76px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">£19k<br><span style="font-size: 0.75rem; opacity: 0.9;">Rent</span></div>
+                                                <div style="background: #f97316; height: 24px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">£6k Utilities</div>
+                                                <div style="background: #eab308; height: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.85rem;">£4k Food</div>
+                                                <div style="background: #ef4444; height: 76px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">£20k<br><span style="font-size: 0.75rem; opacity: 0.9;">Taxes</span></div> 
+                                                <div style="background: #eab308; height: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.85rem;">£6k Family</div>                                               
+                                            </div>
+                                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; text-align: center;">Total: £55k</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Net -->
+                                    <div style="margin-top: 1.5rem; background: #f1f5f9; border-radius: 8px; padding: 1rem; text-align: center;">
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.25rem;">Savings/Buffer</p>
+                                        <p style="font-size: 1.5rem; font-weight: 700; color: #14B8A6;">£10k</p>
+                                    </div>
+                                </div>
+
+                                <!-- Year 2 -->
+                                <div>
+                                    <p style="font-size: 1.3rem; font-weight: 700; color: #0B1320; margin-bottom: 2rem; text-align: center;">Year 2</p>
+                                    
+                                    <!-- Income Bar -->
+                                    <div style="margin-bottom: 2rem;">
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.75rem; font-weight: 600;">INCOME</p>
+                                        <div style="position: relative;">
+                                            <div style="background: #f8fafc; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                                                <div style="background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%); height: 260px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;">£65k<br><span style="font-size: 0.85rem; opacity: 0.9;">Salary</span></div>
+                                                <div style="background: linear-gradient(135deg, #F4C95D 0%, #EAB308 100%); height: 20px; display: flex; align-items: center; justify-content: center; color: #0B1320; font-weight: 600; font-size: 0.9rem;">£5k Side Ventures</div>
+                                            </div>
+                                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; text-align: center;">Total: £70k</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Expenses Bar -->
+                                    <div>
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.75rem; font-weight: 600;">EXPENSES</p>
+                                        <div style="position: relative;">
+                                            <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                                <div style="background: #ef4444; height: 76px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">£19k<br><span style="font-size: 0.75rem; opacity: 0.9;">Rent</span></div>
+                                                <div style="background: #f97316; height: 24px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">£6k Utilities</div>
+                                                <div style="background: #eab308; height: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.85rem;">£4k Food</div>
+                                                <div style="background: #ef4444; height: 76px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">£20k<br><span style="font-size: 0.75rem; opacity: 0.9;">Taxes</span></div>                                                 
+                                                <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); height: 164px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; flex-direction: column;">
+                                                    <span style="font-size: 1.5rem;">💍</span>
+                                                    <span style="margin-top: 0.5rem;">£20k</span>
+                                                    <span style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.25rem;">Jewellery for Sara</span>
+                                                </div>
+                                            </div>
+                                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; text-align: center;">Total: £69k</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Net -->
+                                    <div style="margin-top: 1.5rem; background: #f1f5f9; border-radius: 8px; padding: 1rem; text-align: center;">
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.25rem;">Savings</p>
+                                        <p style="font-size: 1.5rem; font-weight: 700; color: #14B8A6;">+ £1k</p>
+                                    </div>
+                                </div>
+
+                                <!-- Year 3 -->
+                                <div>
+                                    <p style="font-size: 1.3rem; font-weight: 700; color: #0B1320; margin-bottom: 2rem; text-align: center;">Year 3</p>
+                                    
+                                    <!-- Income Bar -->
+                                    <div style="margin-bottom: 2rem;">
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.75rem; font-weight: 600;">INCOME</p>
+                                        <div style="position: relative;">
+                                            <div style="background: #f8fafc; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                                                <div style="background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%); height: 130px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">£65k<br><span style="font-size: 0.75rem; opacity: 0.9;">Salary</span></div>
+                                                <div style="background: linear-gradient(135deg, #F4C95D 0%, #EAB308 100%); height: 20px; display: flex; align-items: center; justify-content: center; color: #0B1320; font-weight: 600; font-size: 0.85rem;">£10k Ventures</div>
+                                                <div style="background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%); height: 500px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 2rem; flex-direction: column;">
+                                                    <span style="font-size: 2.5rem;">£200-350k</span>
+                                                    <span style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">Equity (Inshalah)</span>
+                                                </div>
+                                            </div>
+                                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; text-align: center;">Total: £325k</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Expenses Bar -->
+                                    <div>
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.75rem; font-weight: 600;">EXPENSES</p>
+                                        <div style="position: relative;">
+                                            <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                                <div style="background: #ef4444; height: 38px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">£19k Rent</div>
+                                                <div style="background: #f97316; height: 24px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">£6k Utilities</div>
+                                                <div style="background: #eab308; height: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.85rem;">£4k Food</div>
+                                                <div style="background: #ef4444; height: 76px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">£20k<br><span style="font-size: 0.75rem; opacity: 0.9;">Taxes</span></div> 
+                                                <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); height: 592px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem; flex-direction: column;">
+                                                    <span style="font-size: 3rem;">💍</span>
+                                                    <span style="margin-top: 1rem; font-size: 2.5rem;">£100k</span>
+                                                    <span style="font-size: 1rem; opacity: 0.9; margin-top: 0.5rem;">Jewellery for Sara</span>
+                                                </div>
+                                            </div>
+                                            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; text-align: center;">Total: ~£325k</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Net -->
+                                    <div style="margin-top: 1.5rem; background: #f1f5f9; border-radius: 8px; padding: 1rem; text-align: center;">
+                                        <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.25rem;">Savings</p>
+                                        <p style="font-size: 1.5rem; font-weight: 700; color: #14B8A6;">+ £176k</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="note-box" style="margin-top: 2rem;">
+                                <strong>Important Notes:</strong>
+                                <ul style="margin-top: 0.75rem; margin-left: 1rem;">
+                                    <li style="margin-bottom: 0.5rem;">Equity value and liquidity depend on company performance and transaction terms - treated as optional upside only</li>
+                                    <li style="margin-bottom: 0.5rem;">Side ventures income: £5k in Year 2, scaling to £10k in Year 3 as projects mature</li>
+                                    <li style="margin-bottom: 0.5rem;">Year 1 focuses on building savings buffer for security</li>
+                                    <li>The "Jewellery for Sara" represents discretionary spending and additional savings after essential expenses 😊</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 8: Plan A detail
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Plan A (UK): Complete My Fivefold Commitment (November 2025)</h2>
+                    </div>
+                    <div class="slide-content" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);">
+                        <div class="grid-2">
+                            <div class="card">
+                                <div class="icon-circle icon-teal">🏢</div>
+                                <h3>What I'll Do</h3>
+                                <ul>
+                                    <li>Complete the 3-year commitment by November 2025</li>
+                                    <li>Keep increasing responsibility and impact until then</li>
+                                    <li>Build an even stronger network in UK film/TV</li>
+                                    <li>Maintain side-venture income (£5-10k/year) as a buffer</li>
+                                </ul>
+                                <div class="note-box">
+                                    Staying in Wales until November allows me to honor my full commitment while building stability for our future.
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="icon-circle icon-gold">✓</div>
+                                <h3>Why It's Responsible</h3>
+                                <ul>
+                                    <li>It honors commitments (reputation matters)</li>
+                                    <li>It keeps income predictable and stable</li>
+                                    <li>It gives time to choose the best long-term path</li>
+                                    <li>It reduces big life changes happening at once</li>
+                                </ul>
+                                <div class="note-box">
+                                    This approach minimizes risk while maximizing our options for the future.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 9: Plan B detail
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Plan B (Riyadh): Invest in a Growing Market</h2>
+                    </div>
+                    <div class="slide-content" style="background: linear-gradient(135deg, #581c87 0%, #7c3aed 100%);">
+                        <div class="grid-2">
+                            <div class="card">
+                                <div class="icon-circle icon-teal">🌍</div>
+                                <h3>What the Plan Looks Like</h3>
+                                <ul>
+                                    <li>Move to Riyadh if the opportunity is clearly stronger</li>
+                                    <li>Focus on film/TV technology & production workflows</li>
+                                    <li>Choose housing near the right work ecosystem</li>
+                                    <li>Keep a UK back-up option open if conditions change</li>
+                                </ul>
+                                <div class="note-box">
+                                    This would only happen if it offers significantly better stability and opportunity than staying in the UK.
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="icon-circle icon-gold">📊</div>
+                                <h3>Why It Can Be Smart</h3>
+                                <ul>
+                                    <li>Major new studio infrastructure is being built</li>
+                                    <li>Competitive production incentives exist (e.g., cash rebates)</li>
+                                    <li>Strong demand for experienced leadership + tech skills</li>
+                                </ul>
+                                <div class="note-box">
+                                    <p style="margin-bottom: 0.75rem;"><strong>Example: PlayMaker Studios (Qiddiya City)</strong></p>
+                                    <p style="margin-bottom: 0.5rem;">• Purpose-built film facilities</p>
+                                    <p>• 40% cash rebate on production costs</p>
+                                </div>
+                                <p style="font-size: 0.925rem; font-style: italic; color: #475569; margin-top: 1.25rem; font-weight: 500;">I will only choose this route if it improves stability — not just excitement.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 10: Housing plan
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Housing Plan (Comfort + Flexibility)</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="section-title">The Target</div>
+                        <p class="text-xl text-gray-700" style="margin-bottom: 0.5rem;">The target in either location:</p>
+                        <h3 style="margin-bottom: 3rem;">A 2–3 bedroom home that feels safe, calm, and future-proof</h3>
+                        
+                        <div class="grid-2">
+                            <div class="card card-with-image">
+                                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80" alt="Modern Home" class="card-image">
+                                <div class="card-content">
+                                    <h4>Cardiff (Rent First)</h4>
+                                    <ul>
+                                        <li>Rent a 2–3 bed house in/around Cardiff</li>
+                                        <li>Prioritize: safety, commute, quiet, space for guests</li>
+                                        <li>Reassess buying once the long-term location is clear</li>
+                                    </ul>
+                                    <div class="note-box">
+                                        Renting first gives us flexibility while we confirm our long-term plans.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card card-with-image">
+                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Modern Property" class="card-image">
+                                <div class="card-content">
+                                    <h4>Riyadh (Property Search)</h4>
+                                    <ul>
+                                        <li>Shortlist neighborhoods aligned to work & quality of life</li>
+                                        <li>Prioritize: safety, accessibility, family-friendly community</li>
+                                        <li>Start with a flexible lease; buy only when settled</li>
+                                    </ul>
+                                    <div class="note-box">
+                                        Location will be decided by November — housing follows immediately after.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 11: Side ventures
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Side Ventures (Optional Upside, Not a Gamble)</h2>
+                    </div>
+                    <div class="slide-content">
+                        <h3 style="margin-bottom: 2.5rem;">Software engineering ventures that add resilience:</h3>
+                        
+                        <div class="grid-3" style="margin-bottom: 1.5rem;">
+                            <div class="card" style="padding: 0; overflow: hidden;">
+                                <div class="accent-bar accent-teal"></div>
+                                <div style="padding: 2rem;">
+                                    <div class="icon-circle icon-teal" style="margin: 0 auto 1rem;">💻</div>
+                                    <h4 style="text-align: center;">Projection Mapping<br>Platforms</h4>
+                                    <ul style="font-size: 0.95rem;">
+                                        <li>Build & maintain open tools</li>
+                                        <li>Practical niche expertise</li>
+                                        <li>Portfolio quality + credibility</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="card" style="padding: 0; overflow: hidden;">
+                                <div class="accent-bar accent-gold"></div>
+                                <div style="padding: 2rem;">
+                                    <div class="icon-circle icon-gold" style="margin: 0 auto 1rem;">💳</div>
+                                    <h4 style="text-align: center;">Paying Members<br>(Sustainable)</h4>
+                                    <ul style="font-size: 0.95rem;">
+                                        <li>Recurring support exists today</li>
+                                        <li>Focus on stability over hype</li>
+                                        <li>Roadmap-driven delivery</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="card" style="padding: 0; overflow: hidden;">
+                                <div class="accent-bar accent-teal2"></div>
+                                <div style="padding: 2rem;">
+                                    <div class="icon-circle" style="background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); color: white; margin: 0 auto 1rem;">🚀</div>
+                                    <h4 style="text-align: center;">Future Options</h4>
+                                    <ul style="font-size: 0.95rem;">
+                                        <li>Consulting / productized tools</li>
+                                        <li>Community + reputation</li>
+                                        <li>Extra runway if needed</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="note-box">
+                            <p style="margin-bottom: 0.75rem;"><strong>Portfolio:</strong> <a href="https://github.com/ItzMorphineTime" target="_blank" style="color: #2DD4BF; text-decoration: none;">github.com/ItzMorphineTime</a> – Open-source projection mapping tools and platforms</p>
+                            <p><strong>Projected Income:</strong> Conservative estimate of £5k in Year 2, scaling to £10k in Year 3 as projects mature and membership grows. This provides a reliable secondary income stream without risk to primary employment.</p>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 12: Risks
+            {
+                type: 'content',
+                html: `
+                    <div class="slide-header">
+                        <h2>Risk Management (How I Keep This Stable)</h2>
+                    </div>
+                    <div class="slide-content">
+                        <div class="card">
+                            <h3>I'm planning for what could go wrong — and what I'll do about it</h3>
+                            <p style="color: #64748b; margin-bottom: 2rem; line-height: 1.7;">Anticipating challenges and having contingency plans is crucial for long-term stability.</p>
+                            
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="width: 35%;">Risk</th>
+                                        <th>Mitigation Strategy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Location uncertainty</td>
+                                        <td>Decision by November + start with flexible housing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Equity not liquid / lower value</td>
+                                        <td>Treat as upside only; rely on salary + savings</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Job opportunity shifts</td>
+                                        <td>Keep UK network active; maintain portfolio + side income</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cost of living surprises</td>
+                                        <td>Budget buffers + periodic review every quarter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Too much change at once</td>
+                                        <td>Stagger changes: home → marriage logistics → career move</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="info-box">
+                                <p style="font-size: 1.1rem; line-height: 1.7;"><strong>My Promise:</strong> I will not let ambition outrun responsibility. Every decision will prioritize Sara's wellbeing and our family's stability.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            // Slide 13: The ask
+            {
+                type: 'title',
+                html: `
+                    <div class="slide-full">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=1600&q=80'); background-size: cover; background-position: center; filter: brightness(0.3);"></div>
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <p class="text-3xl text-gray-300" style="margin-bottom: 2.5rem; font-weight: 400;">With your blessing…</p>
+                            <h1 class="text-white" style="line-height: 1.2; margin-bottom: 2rem;">I would like to ask<br>for Sara's hand in marriage</h1>
+                            <div class="gold-divider"></div>
+                            <p class="text-xl text-gray-300" style="margin-bottom: 4rem; font-weight: 400; line-height: 1.7;">Thank you for listening — and for trusting me with what matters most.</p>
+                            <p class="text-gray-400" style="font-weight: 500;">[Your Name]  •  [Your Phone/Email]</p>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        let currentSlide = 0;
+
+        function renderSlides() {
+            const container = document.getElementById('slideContainer');
+            const thumbnailsContainer = document.getElementById('thumbnails');
+            
+            container.innerHTML = '';
+            thumbnailsContainer.innerHTML = '';
+            
+            slides.forEach((slide, index) => {
+                // Create slide
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide' + (index === 0 ? ' active' : '');
+                slideDiv.innerHTML = slide.html;
+                container.appendChild(slideDiv);
+                
+                // Create thumbnail
+                const thumbnail = document.createElement('button');
+                thumbnail.className = 'thumbnail-button' + (index === 0 ? ' active' : '');
+                thumbnail.textContent = index + 1;
+                thumbnail.onclick = () => goToSlide(index);
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+
+        function updateSlide() {
+            const allSlides = document.querySelectorAll('.slide');
+            const allThumbnails = document.querySelectorAll('.thumbnail-button');
+            
+            allSlides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            
+            allThumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentSlide);
+            });
+            
+            document.getElementById('slideCounter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === slides.length - 1;
+            
+            // Smooth scroll to top of slide
+            document.getElementById('slideContainer').scrollTop = 0;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                goToSlide(0);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                goToSlide(slides.length - 1);
+            }
+        });
+
+        // Initialize
+        renderSlides();
+        updateSlide();
+    </script>
+</body>
+</html>
