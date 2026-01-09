@@ -14,506 +14,982 @@
       "name": "Microsoft suite",
       "description": "Proficient in using the entire Microsoft Suite for software development, project management, and tool creation.",
       "proficiency": 95,
-      "roles": ["Software Engineer", "Technical Artist"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ]
     },
     {
       "name": "JetBrains suite",
       "description": "Experienced in using the JetBrains suite of tools for software development.",
       "proficiency": 80,
-      "roles": ["Software Engineer", "Technical Artist"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ]
     },
     {
       "name": "Adobe tools",
       "description": "Skilled in using Adobe tools for design and development, including their Firefly AI.",
       "proficiency": 75,
-      "roles": ["Software Engineer", "Technical Artist", "AI Consultant"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "AI Consultant"
+      ]
     },
     {
       "name": "AWS",
       "description": "Experienced in using Amazon Web Services for cloud computing.",
       "proficiency": 45,
-      "roles": ["Software Engineer", "AI Consultant"]
+      "roles": [
+        "Software Engineer",
+        "AI Consultant"
+      ]
     },
     {
       "name": "Azure DevOps",
       "description": "Experienced in using Azure DevOps Services for cloud computing.",
       "proficiency": 60,
-      "roles": ["Software Engineer", "AI Consultant"]
+      "roles": [
+        "Software Engineer",
+        "AI Consultant"
+      ]
     },
     {
       "name": ".Net",
       "description": "Proficient in .Net for software development.",
       "proficiency": 85,
-      "roles": ["Software Engineer"]
+      "roles": [
+        "Software Engineer"
+      ]
     },
     {
       "name": "Blazor",
       "description": "Experienced in using Blazor for web development.",
       "proficiency": 70,
-      "roles": ["Software Engineer"]
+      "roles": [
+        "Software Engineer"
+      ]
     },
     {
       "name": "Unity",
       "description": "Skilled in using Unity for game development.",
       "proficiency": 90,
-      "roles": ["Software Engineer", "Technical Artist"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ]
     },
     {
       "name": "Wireshark",
       "description": "Experienced in using Wireshark for network protocol analysis.",
       "proficiency": 100,
-      "roles": ["Software Engineer"]
+      "roles": [
+        "Software Engineer"
+      ]
     },
     {
       "name": "Project Management",
       "description": "Experienced in using efficient team communication.",
       "proficiency": 70,
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor", "AI Consultant"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor",
+        "AI Consultant"
+      ]
     },
     {
       "name": "Unreal Engine",
       "description": "Proficient in using Unreal Engine for game development, nDispay operation, and Virtual Production.",
       "proficiency": 90,
-      "roles": ["Software Engineer", "Technical Artist", "nDisplay Operator", "VP Supervisor"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "nDisplay Operator",
+        "VP Supervisor"
+      ]
     },
     {
       "name": "C#",
       "description": "Experienced in C# for software development.",
       "proficiency": 85,
-      "roles": ["Software Engineer", "Technical Artist"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ]
     },
     {
       "name": "Python",
       "description": "Skilled in Python for software development and AI.",
       "proficiency": 90,
-      "roles": ["Software Engineer", "AI Consultant"]
+      "roles": [
+        "Software Engineer",
+        "AI Consultant"
+      ]
     },
     {
       "name": "Java",
       "description": "Proficient in Java for software development (legacy).",
       "proficiency": 40,
-      "roles": ["Software Engineer"]
+      "roles": [
+        "Software Engineer"
+      ]
     },
     {
       "name": "HTML5/JS",
       "description": "Experienced in HTML5 and JavaScript for web development.",
       "proficiency": 85,
-      "roles": ["Software Engineer"]
+      "roles": [
+        "Software Engineer"
+      ]
     },
     {
       "name": "SQL",
       "description": "Skilled in SQL for database management.",
       "proficiency": 80,
-      "roles": ["Software Engineer"]
+      "roles": [
+        "Software Engineer"
+      ]
     },
     {
       "name": "C/C++",
       "description": "Basic knowledge of C and C++ for software development.",
       "proficiency": 50,
-      "roles": ["Software Engineer"]
+      "roles": [
+        "Software Engineer"
+      ]
     },
     {
       "name": "Git",
       "description": "Proficient in using Git for version control.",
       "proficiency": 100,
-      "roles": ["Software Engineer", "Technical Artist"]
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ]
     },
     {
       "name": "GPT-4",
       "description": "Experienced in using GPT-4 for AI and automation.",
       "proficiency": 95,
-      "roles": ["AI Consultant"]
+      "roles": [
+        "AI Consultant"
+      ]
     },
     {
       "name": "AI/GA/NN",
       "description": "Skilled in AI, Genetic Algorithms, and Neural Networks.",
       "proficiency": 85,
-      "roles": ["AI Consultant"]
+      "roles": [
+        "AI Consultant"
+      ]
     },
     {
       "name": "Stable Diffusion",
       "description": "Knowledgeable in Stable Diffusion for AI.",
       "proficiency": 80,
-      "roles": ["AI Consultant"]
+      "roles": [
+        "AI Consultant"
+      ]
     },
     {
       "name": "AI tools",
       "description": "Experienced in various AI tools for AI and automation.",
       "proficiency": 85,
-      "roles": ["AI Consultant"]
+      "roles": [
+        "AI Consultant"
+      ]
     }
   ],
   "experience": [
     {
-        "company": "Creative Technology",
-        "logo": "./CT-Logo.svg",
-        "links": ["https://ct-group.com/uk/"],
-        "title": "Senior Technical Artist, Full-time",
-        "duration": "Jul 2021 - Current",
-        "description": "Most recently I was promoted to a Senior technical position as I drove innovation and functionality to the ARRI – CT Virtual Production stage, expanding my knowledge of film/virtual production techniques and debugging/optimising Unreal engine projects. Worked on over 25+ VP shoots, and lead R&D efforts in reducing stage downtime, LED colour workflows, DMX integrations, Network upgrades, Remote operation/control, Tracking systems, and other projects to demo to YOU.",
-        "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
+      "company": "fivefold studios",
+      "logo": "./FiveFold.png",
+      "links": [
+        "https://www.fivefoldstudios.co.uk/"
+      ],
+      "title": "Head of Technology, Full-time",
+      "duration": "Sep 2024 - Present",
+      "description": "Leading technology direction and hands-on delivery across fivefold studios. Cardiff, Wales, United Kingdom (Hybrid).",
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
     },
     {
-        "company": "Creative Technology",
-        "logo": "./CT-Logo.svg",
-        "links": ["https://ct-group.com/uk/"],
-        "title": "Software Engineer, Full-time",
-        "duration": "Aug 2018 - Nov 2021",
-        "description": "Live events company, dealing with big names from sports to film to corporate. Fast paced work environment with very strict and unyielding deadlines, the show must go on. Started as one of two full-stack developers, key responsibilities include Requirement analysis from clients, design and implementation of both hardware and software architectures. Most projects involve AWS with Lambda/EC2/S3/CloudFront/SES/SNS integrations using SQL/NOSQL databases with a HTML/JS frontend which I used to solely maintain, mostly for legacy reasons. However, decided to transition to using Azure and Microsoft services, .Net and Blazor framework to create a multi-platform fully integrated streaming service to accommodate the shifting climate in live events.",
-        "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
+      "company": "Virtually Integrated Productions",
+      "logo": "",
+      "links": [],
+      "title": "Managing Director, Freelance",
+      "duration": "Sep 2023 - Aug 2024",
+      "description": "Freelance leadership role spanning technical art, Unreal Engine, and software delivery. Brighton, England, United Kingdom (Hybrid).",
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
     },
     {
-        "company": "Applications Solutions Limited",
-        "logo": "./ASL-logo.webp",
-        "links": ["https://asl-control.co.uk/"],
-        "title": "Software Engineer",
-        "duration": "Feb 2016 – May 2017",
-        "description": "Lead development of a system known as the ‘System Design Tool’, which creates a fully functional PAVA system whilst minimizing user input and still being compliant to British standards and electrical limitations such as power consumption. The calculator is written purely in Python, with an excel and VBA frontend, SQL backend for catalogued equipment and pricing, with a fully automated unit test framework using meta-heuristics and Jenkins for continuous integration tests.",
-        "roles": ["Software Engineer"]
+      "company": "Creative Technology",
+      "logo": "./CT-Logo.svg",
+      "links": [
+        "https://ct-group.com/uk/"
+      ],
+      "title": "Senior Technical Artist, Full-time",
+      "duration": "Jul 2021 - Jul 2023",
+      "description": "I was promoted to a Senior technical position as I drove innovation and functionality to the ARRI – CT Virtual Production stage, expanding my knowledge of film/virtual production techniques and debugging/optimising Unreal engine projects. Worked on over 25+ VP shoots, and lead R&D efforts in reducing stage downtime, LED colour workflows, DMX integrations, Network upgrades, Remote operation/control, Tracking systems, and other projects to demo.",
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
     },
     {
-        "company": "GreedyGull Studios",
-        "logo": "./GreedyGull-Logo2.png",
-        "links": ["https://twitter.com/greedygull?lang=en"],
-        "title": "Project manager, Developer, and Programmer",
-        "duration": "Jan 2013 - current",
-        "description": "Greedy Gull Studios is a collaboration of 4 students and friends, we created the indie game studio for our placement year.",
-        "roles": ["Software Engineer", "VP Supervisor"]
+      "company": "Creative Technology",
+      "logo": "./CT-Logo.svg",
+      "links": [
+        "https://ct-group.com/uk/"
+      ],
+      "title": "Software Engineer, Full-time",
+      "duration": "Apr 2018 - Nov 2021",
+      "description": "Live events company, dealing with big names from sports to film to corporate. Fast paced work environment with very strict and unyielding deadlines, the show must go on. Started as one of two full-stack developers, key responsibilities include Requirement analysis from clients, design and implementation of both hardware and software architectures. Most projects involve AWS with Lambda/EC2/S3/CloudFront/SES/SNS integrations using SQL/NOSQL databases with a HTML/JS frontend which I used to solely maintain, mostly for legacy reasons. However, decided to transition to using Azure and Microsoft services, .Net and Blazor framework to create a multi-platform fully integrated streaming service to accommodate the shifting climate in live events.",
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
     },
     {
-        "company": "Ideal Networks",
-        "logo": "./Ideal-Logo.svg",
-        "links": ["https://www.ideal.co.uk/"],
-        "title": "Service Desk Analyst",
-        "duration": "Aug 2013 – Aug 2015",
-        "description": "Out of hours network and telephony support for local businesses, as well as P&O ferries and Ikea.",
-        "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
+      "company": "Applications Solutions Limited",
+      "logo": "./ASL-logo.webp",
+      "links": [
+        "https://asl-control.co.uk/"
+      ],
+      "title": "Software Engineer",
+      "duration": "Feb 2016 – May 2017",
+      "description": "Lead development of a system known as the ‘System Design Tool’, which creates a fully functional PAVA system whilst minimizing user input and still being compliant to British standards and electrical limitations such as power consumption. The calculator is written purely in Python, with an excel and VBA frontend, SQL backend for catalogued equipment and pricing, with a fully automated unit test framework using meta-heuristics and Jenkins for continuous integration tests.",
+      "roles": [
+        "Software Engineer"
+      ]
+    },
+    {
+      "company": "Ideal Networks",
+      "logo": "./Ideal-Logo.svg",
+      "links": [
+        "https://www.ideal.co.uk/"
+      ],
+      "title": "Service Desk Analyst",
+      "duration": "Aug 2013 – Aug 2015",
+      "description": "Out of hours network and telephony support for local businesses, as well as P&O ferries and Ikea.",
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "company": "GreedyGull Studios",
+      "logo": "./GreedyGull-Logo2.png",
+      "links": [
+        "https://twitter.com/greedygull?lang=en"
+      ],
+      "title": "Project manager, Developer, and Programmer",
+      "duration": "Jan 2013 - Present",
+      "description": "Greedy Gull Studios is a collaboration of 4 students and friends, we created the indie game studio for our placement year.",
+      "roles": [
+        "Software Engineer",
+        "VP Supervisor"
+      ]
     }
   ],
   "education": [
-  {
-    "institution": "Brighton University",
-    "course": "BSc (Hons) Computer Science (Games)",
-    "grade": "2:1",
-    "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-    "modules": [
-      {
-        "name": "Intelligent systems",
-        "grade": "A"
-      },
-      {
-        "name": "Internet Gaming",
-        "grade": "A+"
-      },
-      {
-        "name": "3D graphics and animation",
-        "grade": "B+"
-      },
-      {
-        "name": "Games Development",
-        "grade": "A-"
-      },
-      {
-        "name": "Logic and Formal Specification",
-        "grade": "A"
-      },
-      {
-        "name": "Computer systems architecture",
-        "grade": "A"
-      },
-      {
-        "name": "Embedded Architecture and Programming",
-        "grade": "B"
-      }
-    ],
-    "images": ["./Reference/Poster43.png", "./BtonUni_02.png"],
-    "description": "For my final year project at university I analysed genetic algorithms in Java, and using python to visualise fitness landscapes in real time. To study how GA's can be used to optimise Neural Networks and other Meta-Heuristics."
-  },
-  {
-    "institution": "Northbrook College",
-    "course": "Games Development – BTEC National Diploma",
-    "grade": "Distinction Distinction Distinction",
-    "images": ["./Northbrook_01.png"],
-    "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-  }
+    {
+      "institution": "Brighton University",
+      "course": "BSc (Hons) Computer Science (Games)",
+      "grade": "2:1",
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "modules": [
+        {
+          "name": "Intelligent systems",
+          "grade": "A"
+        },
+        {
+          "name": "Internet Gaming",
+          "grade": "A+"
+        },
+        {
+          "name": "3D graphics and animation",
+          "grade": "B+"
+        },
+        {
+          "name": "Games Development",
+          "grade": "A-"
+        },
+        {
+          "name": "Logic and Formal Specification",
+          "grade": "A"
+        },
+        {
+          "name": "Computer systems architecture",
+          "grade": "A"
+        },
+        {
+          "name": "Embedded Architecture and Programming",
+          "grade": "B"
+        }
+      ],
+      "images": [
+        "./Reference/Poster43.png",
+        "./BtonUni_02.png"
+      ],
+      "description": "For my final year project at university I analysed genetic algorithms in Java, and using python to visualise fitness landscapes in real time. To study how GA's can be used to optimise Neural Networks and other Meta-Heuristics."
+    },
+    {
+      "institution": "Northbrook College",
+      "course": "Games Development – BTEC National Diploma",
+      "grade": "Distinction Distinction Distinction",
+      "images": [
+        "./Northbrook_01.png"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    }
   ],
   "projects": [
     {
-      "name": "World Athletics",
-      "description": "Working very closely with the IAAF show producers on Championships, Indoor/outdoor, Cross country,Olympics, to create content control system for local on-site score boards with real time data to control broadcast tier graphics programs. Delivered over 10 different live athletics events around the globe, implemented solely by myself with feedback from operators, using WPF to parse ODF data",
-      "technologies": ["C#", ".Net", "HTML", "JS", "Python", "Characterworks"],
-      "images": ["./WA/WA (1).jpg",
-      "./WA/WA (2).jpg",
-      "./WA/WA (3).jpg",
-      "./WA/WA (4).jpg",
-      "./WA/WA (5).jpg",
-      "./WA/WA (6).jpg",
-      "./WA/WA (7).jpg",
-      "./WA/WA (8).jpg",
-      "./WA/WA (9).jpg",
-      "./WA/WA (10).jpg",
-      "./WA/WA (11).jpg",
-      "./WA/WA (12).jpg",
-      "./WA/WA (13).jpg",
-      "./WA/WA (14).jpg",
-      "./WA/WA (15).jpg",
-      "./WA/WA (16).jpg",
-      "./WA/WA (17).jpg",
-      "./WA/WA (18).jpg",
-      "./WA/WA (19).jpg",
-      "./WA/WA (20).jpg"],
-      "links": [ "https://worldathletics.org/Competitions/world-athletics-championships/iaaf-world-athletics-championships-doha-2019-7125365", "https://worldathletics.org/"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "Ryder Cup Golf & ATP Tennis",
-      "description": "On-Course golf/tennis scoreboards and Media tent LED display graphics with live data and a centralised content control application written in C# .net and HTML/JS frontend. Delivered in person/on-site.",
-      "technologies": ["C#", ".Net", "HTML", "JS"],
-      "images": ["./RyderCup/Ryder (1).jpg", "./RyderCup/Ryder (2).jpg", "./RyderCup/Ryder (3).jpg", "./RyderCup/Ryder (4).jpg", "./RyderCup/Ryder (5).jpg",
-      "./ATP/ATP (1).jpg", "./ATP/ATP (2).jpg", "./ATP/ATP (3).jpg", "./ATP/ATP (4).jpg","./ATP/ATP (5).jpg"
-    ],
-      "links": ["https://www.rydercup.com/news-media/ryder-cup-2018-when-it-is-where-it-is-and-everything-else-you-need-to-know"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "August 2018",
-      "endDate": "Septmeber 2018"
-    },
-    {
-      "name": "Gartner",
-      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. The software platform used was Mercury.",
-      "technologies": ["Digital Signage", "LAN Presentation Syncing", "Twitter API", "Instagram API", "Mercury"],
-      "images": ["./Gartner/Gartner (1).jpg", "./Gartner/Gartner (2).jpg" ,"./Gartner/Gartner (3).jpg"],
-      "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "Cisco Live",
-      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. The software platform used was Mercury.",
-      "technologies": ["Digital Signage", "LAN Presentation Syncing", "Twitter API", "Instagram API", "Mercury"],
-      "images": ["./Cisco/cisco (1).jpg"],
-      "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "VMWare",
-      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. The software platform used was Mercury.",
-      "technologies": ["Digital Signage", "LAN Presentation Syncing", "Twitter API", "Instagram API", "Mercury"],
-      "images": [],
-      "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "McDonald's AGM",
-      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. Multiple software platforms and Azure services were used for this project.",
-      "technologies": ["Digital Signage", "LAN Presentation Syncing", "Twitter API", "Instagram API", "Azure Services"],
-      "images": [],
-      "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "G7 Summit",
-      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. Multiple software platforms and Azure services were used for this project.",
-      "technologies": ["Digital Signage", "LAN Presentation Syncing", "Twitter API", "Instagram API", "Azure Services"],
-      "images": ["./Reference/ref (1).jpg", "./Reference/ref (2).jpg"],
-      "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "Media Freedom Coalition",
-      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. Multiple software platforms and Azure services were used for this project.",
-      "technologies": ["Digital Signage", "LAN Presentation Syncing", "Twitter API", "Instagram API", "Azure Services"],
-      "images": [],
-      "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "Doha VR",
-      "description": "Modelled Khalifa stadium in VR to scale in HDR to preview/sell as a pre-visualisation tool, with pyrotechnics, projection blends, ray tracing, stadium lighting, simulated athletes and crowds. Huge project which I programmed all the backend system for and deployed various AAA games techniques to optimise for hardware considerations. Ended up securing multi-million pound contract, aired live September 2019.",
-      "technologies": ["VR", "HDR", "Ray Tracing", "Backend Programming", "Unity"],
-      "images": ["./Doha/Doha (1).jpg", "./Doha/Doha (2).jpg", "./Doha/Doha (3).jpg", "./Doha/Doha (4).jpg", "./Doha/Doha (5).jpg"],
-      "links": ["https://www.svgeurope.org/blog/headlines/creative-technology-creates-broadcast-spectacular-with-track-projection-at-iaaf-world-athletics-championships-2019/"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"]
-    },
-    {
-      "name": "Google Home MWC Exhibit",
-      "description": "Implemented a show exhibit for google home using 20 google phones, tablets, TVs and nests. Using Photon and Pixilabs to sync different shows from a tablet control device.",
-      "technologies": ["Photon", "Pixilabs"],
-      "images": ["./GoogleHome/ghome (1).jpg"],
-      "links": ["https://www.mwcbarcelona.com/"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "February 2020",
-      "endDate": "February 2020"
-    },
-    {
-      "name": "Epic Game Directors Week",
-      "description": "Operated and curated a demo using Unreal Engine, nDisplay, Spyder Christie X80 and Photon to showcase Virtual production to directors in the film industry.",
-      "technologies": ["Unreal Engine", "nDisplay", "Spyder Christie X80", "Photon"],
-      "images": ["./EpicDirectors/epic (1).jpg", "./EpicDirectors/epic (2).jpg"],
-      "links": ["https://www.nepgroup.com/post/arri-x-ct-open-mixed-reality-studio-in-the-uk"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "",
-      "endDate": ""
-    },
-    {
       "name": "ARRI & Friends",
       "description": "Hosted Unreal sessions and demos using nDisplay and ARRI Camera technologies and workflows, showcasing industry R&D and future technologies.",
-      "technologies": ["Unreal", "nDisplay", "ARRI Camera technologies"],
-      "images": ["./ArriFriends/arri (1).jpg", "./ArriFriends/arri (2).jpg"],
-      "links": ["https://www.youtube.com/watch?v=DLcR18sOBiY", "https://www.linkedin.com/posts/thomas-murphy-32a383162_arri-friends-event-at-arri-stage-london-activity-6872911850791542784-dZTE/?trk=posts_directory"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "December 2021",
-      "endDate": "December 2021"
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "ARRI Camera technologies"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "August 2023",
+      "endDate": "August 2023"
     },
     {
-      "name": "Scottish Whiskey Exhibit VR",
-      "description": "Helped create and optimise the VR previs for Scotish Whiskey immersive installation.",
-      "technologies": ["VR"],
+      "name": "Chemical Brothers Live Again",
+      "description": "",
+      "technologies": [],
+      "images": [
+        "./ChemBros/chembro (1).jpg",
+        "./ChemBros/chembro (2).jpg",
+        "./ChemBros/chembro (3).jpg",
+        "./ChemBros/chembro (4).jpg",
+        "./ChemBros/chembro (5).jpg",
+        "./ChemBros/chembro (6).jpg"
+      ],
+      "links": [
+        "https://www.youtube.com/watch?v=pqU4g5iJk2Y"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "July 2023",
+      "endDate": "July 2023"
+    },
+    {
+      "name": "Coldplay DUBAI EXPO",
+      "description": "",
+      "technologies": [],
+      "images": [
+        "./Coldplay/coldplay (1).jpg",
+        "./Coldplay/coldplay (2).jpg",
+        "./Coldplay/coldplay (3).jpg",
+        "./Coldplay/coldplay (4).jpg",
+        "./Coldplay/coldplay (5).jpg",
+        "./Coldplay/coldplay (6).jpg",
+        "./Coldplay/coldplay (7).jpg",
+        "./Coldplay/coldplay (8).jpg",
+        "./Coldplay/coldplay (9).jpg",
+        "./Coldplay/coldplay (10).jpeg",
+        "./Coldplay/coldplay (11).jpg",
+        "./Coldplay/coldplay (12).jpg"
+      ],
+      "links": [
+        "https://northhousecreative.com/videos/coldplay-dubai-expo-teaser-film/",
+        "https://ct-group.com/uk/projects/al-wasl-inauguration-expo-2020/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "February 2022",
+      "endDate": "February 2022"
+    },
+    {
+      "name": "Amazon Studio VP Advert",
+      "description": "Operated Unreal, nDisplay, and optimised assets for realtime sequencer playback.",
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "Asset Optimization"
+      ],
       "images": [],
-      "links": ["https://www.scotchwhiskyexperience.co.uk/tours/"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
       "startDate": "June 2023",
       "endDate": "June 2023"
     },
     {
-      "name": "Dark X Light Demo",
-      "description": "Operated and curated Unreal levels using nDisplay and ARRI digitial doubles with DMX in realtime for showcase of VP Honda NSX in the Volume LED, Innovation & Technology film. Harniman as Photographer in conjunction with Arri Stage London, CT Creative Technology and Lux Machina.",
-      "technologies": ["Unreal", "nDisplay", "ARRI digital doubles", "DMX"],
-      "images": ["./DarkXLight/dl (1).jpg"],
-      "links": ["https://vimeo.com/798322928"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
+      "name": "Ghostframe VP Shoot NDA title",
+      "description": "Implemented nDisplay cluster configuration using ghsotframe technology to allow simultanous alternate camera frustums.",
+      "technologies": [
+        "nDisplay",
+        "Ghostframe Technology"
+      ],
+      "images": [],
+      "links": [
+        "https://www.ghostframe.com/news/ghostframe-explained"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "February 2023",
+      "endDate": "February 2023"
+    },
+    {
+      "name": "Framestore Flight VP shoot",
+      "description": "Operated Unreal, nDisplay, Photon, and monitored perforce and performance during shoot, for Framestores feature showcase of VP shortfilm.",
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "Photon",
+        "Perforce",
+        "Performance Monitoring"
+      ],
+      "images": [],
+      "links": [
+        "https://www.framestore.com/work/flite?language=en",
+        "https://www.youtube.com/watch?v=Pm88PvECp7Y"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
       "startDate": "",
       "endDate": ""
     },
     {
-      "name": "Volvo AR Safety Demo",
-      "description": "Optimised, operated and curated various Virutal Production technologies syncing particle effect sims, camera tracking, AR compositing, and 6 node cluster syncing in realtime to create some amazing mixed VP/AR shoot.",
-      "technologies": ["Virtual Production", "Particle Effect Sims", "Camera Tracking", "AR Compositing", "Cluster Syncing"],
+      "name": "Framestore Polestar VP shoot",
+      "description": "Operated Unreal, nDisplay, Photon, and monitored perforce and performance during shoot for a Polestar car advert.",
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "Photon",
+        "Perforce",
+        "Performance Monitoring"
+      ],
       "images": [],
-      "links": ["https://dandelion-burdock.com/projects/volvo-safety-in-mind"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "September 2022",
-      "endDate": "September 2022"
-    },
-    {
-      "name": "Deloitte Keynote Presentation",
-      "description": "Operated nDisplay, Photon, Audio and syncing, also implemented AR composited interactive graphics with Remote Web App control on tablet.",
-      "technologies": ["nDisplay", "Photon", "Audio and Syncing", "AR Composited Interactive Graphics", "Remote Web App Control"],
-      "images": [],
-      "links": ["https://www2.deloitte.com/us/en/pages/technology-media-and-telecommunications/topics/telecommunications-media-entertainment.html?icid=top_media-entertainment"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "",
-      "endDate": ""
-    },
-    {
-      "name": "COP27 Presentation",
-      "description": "Operated nDisplay, Photon, Audio and syncing for COP27 the official account of Egypt Presidency of the UN Conference on Climate Change COP27 in #SharmElSheikh.",
-      "technologies": ["nDisplay", "Photon", "Audio and Syncing"],
-      "images": ["./Cop27/cop (1).jpg", "./Cop27/cop (2).jpg", "./Cop27/cop (3).jpg"],
-      "links": ["https://www.anthonynealedesign.com/portfolio/cop-27-the-unlucky-traveler"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "November 2022",
-      "endDate": "November 2022"
-    },
-    {
-      "name": "APA Show",
-      "description": "Operated nDisplay, Photon, Audio and syncing for APA’s (Advertising Producers Association) 'Future of Advertising' event - an annual conference that brings together industry leaders, creative professionals, and production experts.",
-      "technologies": ["nDisplay", "Photon", "Audio and Syncing"],
-      "images": ["./APA/APA (1).jpg", "./APA/APA (2).jpg", "./APA/APA (3).jpg" ,"./APA/APA (4).jpg" ,"./APA/APA (5).jpg" ,"./APA/APA (6).jpg" ,"./APA/APA (7).jpg" ,"./APA/APA (8).jpg"],
-      "links": ["https://www.anthonynealedesign.com/", "https://www.linkedin.com/posts/arrirental_tfoa-thefutureofadvertising-ideasawards-activity-7051909939883077632-h4sm"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
+      "links": [
+        "https://www.framestore.com/?language=en"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
       "startDate": "",
       "endDate": ""
     },
     {
       "name": "SKY VP Demo",
       "description": "Operated nDisplay, Photon, and optimsing assets and server configurations to create a Demo piece for SKY VP in collaboration with DNEG and Dimension studios.",
-      "technologies": ["nDisplay", "Photon", "Asset Optimization", "Server Configuration"],
-      "images": ["./SkyVP/SkyVP (1).jpeg", "./SkyVP/SkyVP (2).jpeg", "./SkyVP/SkyVP (3).jpeg", "./SkyVP/SkyVP (4).jpeg", "./SkyVP/SkyVP (5).jpeg", "./SkyVP/SkyVP (6).jpeg", "./SkyVP/SkyVP (7).jpeg", "./SkyVP/SkyVP (8).jpeg", "./SkyVP/SkyVP (9).jpeg", "./SkyVP/SkyVP (10).jpeg", "./SkyVP/SkyVP (11).jpeg", "./SkyVP/SkyVP (12).jpeg", "./SkyVP/SkyVP (13).jpeg", "./SkyVP/SkyVP (14).jpeg", "./SkyVP/SkyVP (15).jpeg", "./SkyVP/SkyVP (16).jpeg", "./SkyVP/SkyVP (17).jpeg", "./SkyVP/SkyVP (18).jpeg", "./SkyVP/SkyVP (19).jpeg", "./SkyVP/SkyVP (20).jpeg", "./SkyVP/SkyVP (21).jpeg", "./SkyVP/SkyVP (22).jpeg", "./SkyVP/SkyVP (23).jpeg"],
-      "links": ["https://www.facebook.com/TeamARRI/videos/sky-studios-virtual-production-innovation-project-trailer/650050316173050/", "https://www.dimensionstudio.co/work/virtual-production-innovation-series"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
+      "technologies": [
+        "nDisplay",
+        "Photon",
+        "Asset Optimization",
+        "Server Configuration"
+      ],
+      "images": [
+        "./SkyVP/SkyVP (1).jpeg",
+        "./SkyVP/SkyVP (2).jpeg",
+        "./SkyVP/SkyVP (3).jpeg",
+        "./SkyVP/SkyVP (4).jpeg",
+        "./SkyVP/SkyVP (5).jpeg",
+        "./SkyVP/SkyVP (6).jpeg",
+        "./SkyVP/SkyVP (7).jpeg",
+        "./SkyVP/SkyVP (8).jpeg",
+        "./SkyVP/SkyVP (9).jpeg",
+        "./SkyVP/SkyVP (10).jpeg",
+        "./SkyVP/SkyVP (11).jpeg",
+        "./SkyVP/SkyVP (12).jpeg",
+        "./SkyVP/SkyVP (13).jpeg",
+        "./SkyVP/SkyVP (14).jpeg",
+        "./SkyVP/SkyVP (15).jpeg",
+        "./SkyVP/SkyVP (16).jpeg",
+        "./SkyVP/SkyVP (17).jpeg",
+        "./SkyVP/SkyVP (18).jpeg",
+        "./SkyVP/SkyVP (19).jpeg",
+        "./SkyVP/SkyVP (20).jpeg",
+        "./SkyVP/SkyVP (21).jpeg",
+        "./SkyVP/SkyVP (22).jpeg",
+        "./SkyVP/SkyVP (23).jpeg"
+      ],
+      "links": [
+        "https://www.facebook.com/TeamARRI/videos/sky-studios-virtual-production-innovation-project-trailer/650050316173050/",
+        "https://www.dimensionstudio.co/work/virtual-production-innovation-series"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
       "startDate": "November 2021",
       "endDate": "November 2021"
     },
     {
-      "name": "Framestore Polestar VP shoot",
-      "description": "Operated Unreal, nDisplay, Photon, and monitored perforce and performance during shoot for a Polestar car advert.",
-      "technologies": ["Unreal", "nDisplay", "Photon", "Perforce", "Performance Monitoring"],
-      "images": [],
-      "links": ["https://www.framestore.com/?language=en"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
+      "name": "APA Show",
+      "description": "Operated nDisplay, Photon, Audio and syncing for APA’s (Advertising Producers Association) 'Future of Advertising' event - an annual conference that brings together industry leaders, creative professionals, and production experts.",
+      "technologies": [
+        "nDisplay",
+        "Photon",
+        "Audio and Syncing"
+      ],
+      "images": [
+        "./APA/APA (1).jpg",
+        "./APA/APA (2).jpg",
+        "./APA/APA (3).jpg",
+        "./APA/APA (4).jpg",
+        "./APA/APA (5).jpg",
+        "./APA/APA (6).jpg",
+        "./APA/APA (7).jpg",
+        "./APA/APA (8).jpg"
+      ],
+      "links": [
+        "https://www.anthonynealedesign.com/",
+        "https://www.linkedin.com/posts/arrirental_tfoa-thefutureofadvertising-ideasawards-activity-7051909939883077632-h4sm"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
       "startDate": "",
       "endDate": ""
     },
     {
-      "name": "Framestore Flight VP shoot",
-      "description": "Operated Unreal, nDisplay, Photon, and monitored perforce and performance during shoot, for Framestores feature showcase of VP shortfilm.",
-      "technologies": ["Unreal", "nDisplay", "Photon", "Perforce", "Performance Monitoring"],
+      "name": "COP27 Presentation",
+      "description": "Operated nDisplay, Photon, Audio and syncing for COP27 the official account of Egypt Presidency of the UN Conference on Climate Change COP27 in #SharmElSheikh.",
+      "technologies": [
+        "nDisplay",
+        "Photon",
+        "Audio and Syncing"
+      ],
+      "images": [
+        "./Cop27/cop (1).jpg",
+        "./Cop27/cop (2).jpg",
+        "./Cop27/cop (3).jpg"
+      ],
+      "links": [
+        "https://www.anthonynealedesign.com/portfolio/cop-27-the-unlucky-traveler"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "November 2022",
+      "endDate": "November 2022"
+    },
+    {
+      "name": "Deloitte Keynote Presentation",
+      "description": "Operated nDisplay, Photon, Audio and syncing, also implemented AR composited interactive graphics with Remote Web App control on tablet.",
+      "technologies": [
+        "nDisplay",
+        "Photon",
+        "Audio and Syncing",
+        "AR Composited Interactive Graphics",
+        "Remote Web App Control"
+      ],
       "images": [],
-      "links": ["https://www.framestore.com/work/flite?language=en", "https://www.youtube.com/watch?v=Pm88PvECp7Y"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
+      "links": [
+        "https://www2.deloitte.com/us/en/pages/technology-media-and-telecommunications/topics/telecommunications-media-entertainment.html?icid=top_media-entertainment"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
       "startDate": "",
       "endDate": ""
     },
     {
-      "name": "Ghostframe VP Shoot NDA title",
-      "description": "Implemented nDisplay cluster configuration using ghsotframe technology to allow simultanous alternate camera frustums.",
-      "technologies": ["nDisplay", "Ghostframe Technology"],
+      "name": "Volvo AR Safety Demo",
+      "description": "Optimised, operated and curated various Virutal Production technologies syncing particle effect sims, camera tracking, AR compositing, and 6 node cluster syncing in realtime to create some amazing mixed VP/AR shoot.",
+      "technologies": [
+        "Virtual Production",
+        "Particle Effect Sims",
+        "Camera Tracking",
+        "AR Compositing",
+        "Cluster Syncing"
+      ],
       "images": [],
-      "links": ["https://www.ghostframe.com/news/ghostframe-explained"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "February 2023",
-      "endDate": "February 2023"
+      "links": [
+        "https://dandelion-burdock.com/projects/volvo-safety-in-mind"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "September 2022",
+      "endDate": "September 2022"
     },
     {
-      "name": "Amazon Studio VP Advert",
-      "description": "Operated Unreal, nDisplay, and optimised assets for realtime sequencer playback.",
-      "technologies": ["Unreal", "nDisplay", "Asset Optimization"],
+      "name": "Dark X Light Demo",
+      "description": "Operated and curated Unreal levels using nDisplay and ARRI digitial doubles with DMX in realtime for showcase of VP Honda NSX in the Volume LED, Innovation & Technology film. Harniman as Photographer in conjunction with Arri Stage London, CT Creative Technology and Lux Machina.",
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "ARRI digital doubles",
+        "DMX"
+      ],
+      "images": [
+        "./DarkXLight/dl (1).jpg"
+      ],
+      "links": [
+        "https://vimeo.com/798322928"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "",
+      "endDate": ""
+    },
+    {
+      "name": "Scottish Whiskey Exhibit VR",
+      "description": "Helped create and optimise the VR previs for Scotish Whiskey immersive installation.",
+      "technologies": [
+        "VR"
+      ],
       "images": [],
-      "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
+      "links": [
+        "https://www.scotchwhiskyexperience.co.uk/tours/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
       "startDate": "June 2023",
       "endDate": "June 2023"
     },
     {
-      "name": "Coldplay DUBAI EXPO",
-      "description": "",
-      "technologies": [],
-      "images": ["./Coldplay/coldplay (1).jpg",
-      "./Coldplay/coldplay (2).jpg",
-      "./Coldplay/coldplay (3).jpg",
-      "./Coldplay/coldplay (4).jpg",
-      "./Coldplay/coldplay (5).jpg",
-      "./Coldplay/coldplay (6).jpg",
-      "./Coldplay/coldplay (7).jpg",
-      "./Coldplay/coldplay (8).jpg",
-      "./Coldplay/coldplay (9).jpg",
-      "./Coldplay/coldplay (10).jpeg",
-      "./Coldplay/coldplay (11).jpg",
-      "./Coldplay/coldplay (12).jpg"],
-      "links": ["https://northhousecreative.com/videos/coldplay-dubai-expo-teaser-film/", "https://ct-group.com/uk/projects/al-wasl-inauguration-expo-2020/"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "February 2022",
-      "endDate": "February 2022"
-    },
-    {
-      "name": "Chemical Brothers Live Again",
-      "description": "",
-      "technologies": [],
-      "images": ["./ChemBros/chembro (1).jpg", "./ChemBros/chembro (2).jpg", "./ChemBros/chembro (3).jpg",
-      "./ChemBros/chembro (4).jpg", "./ChemBros/chembro (5).jpg", "./ChemBros/chembro (6).jpg"],
-      "links": ["https://www.youtube.com/watch?v=pqU4g5iJk2Y"],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "July 2023",
-      "endDate": "July 2023"
-    },
-    {
       "name": "ARRI & Friends",
       "description": "Hosted Unreal sessions and demos using nDisplay and ARRI Camera technologies and workflows, showcasing industry R&D and future technologies.",
-      "technologies": ["Unreal", "nDisplay", "ARRI Camera technologies"],
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "ARRI Camera technologies"
+      ],
+      "images": [
+        "./ArriFriends/arri (1).jpg",
+        "./ArriFriends/arri (2).jpg"
+      ],
+      "links": [
+        "https://www.youtube.com/watch?v=DLcR18sOBiY",
+        "https://www.linkedin.com/posts/thomas-murphy-32a383162_arri-friends-event-at-arri-stage-london-activity-6872911850791542784-dZTE/?trk=posts_directory"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "December 2021",
+      "endDate": "December 2021"
+    },
+    {
+      "name": "Epic Game Directors Week",
+      "description": "Operated and curated a demo using Unreal Engine, nDisplay, Spyder Christie X80 and Photon to showcase Virtual production to directors in the film industry.",
+      "technologies": [
+        "Unreal Engine",
+        "nDisplay",
+        "Spyder Christie X80",
+        "Photon"
+      ],
+      "images": [
+        "./EpicDirectors/epic (1).jpg",
+        "./EpicDirectors/epic (2).jpg"
+      ],
+      "links": [
+        "https://www.nepgroup.com/post/arri-x-ct-open-mixed-reality-studio-in-the-uk"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "",
+      "endDate": ""
+    },
+    {
+      "name": "Google Home MWC Exhibit",
+      "description": "Implemented a show exhibit for google home using 20 google phones, tablets, TVs and nests. Using Photon and Pixilabs to sync different shows from a tablet control device.",
+      "technologies": [
+        "Photon",
+        "Pixilabs"
+      ],
+      "images": [
+        "./GoogleHome/ghome (1).jpg"
+      ],
+      "links": [
+        "https://www.mwcbarcelona.com/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "February 2020",
+      "endDate": "February 2020"
+    },
+    {
+      "name": "Doha VR",
+      "description": "Modelled Khalifa stadium in VR to scale in HDR to preview/sell as a pre-visualisation tool, with pyrotechnics, projection blends, ray tracing, stadium lighting, simulated athletes and crowds. Huge project which I programmed all the backend system for and deployed various AAA games techniques to optimise for hardware considerations. Ended up securing multi-million pound contract, aired live September 2019.",
+      "technologies": [
+        "VR",
+        "HDR",
+        "Ray Tracing",
+        "Backend Programming",
+        "Unity"
+      ],
+      "images": [
+        "./Doha/Doha (1).jpg",
+        "./Doha/Doha (2).jpg",
+        "./Doha/Doha (3).jpg",
+        "./Doha/Doha (4).jpg",
+        "./Doha/Doha (5).jpg"
+      ],
+      "links": [
+        "https://www.svgeurope.org/blog/headlines/creative-technology-creates-broadcast-spectacular-with-track-projection-at-iaaf-world-athletics-championships-2019/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "name": "Media Freedom Coalition",
+      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. Multiple software platforms and Azure services were used for this project.",
+      "technologies": [
+        "Digital Signage",
+        "LAN Presentation Syncing",
+        "Twitter API",
+        "Instagram API",
+        "Azure Services"
+      ],
       "images": [],
       "links": [],
-      "roles": ["Software Engineer", "Technical Artist", "VP Supervisor"],
-      "startDate": "August 2023",
-      "endDate": "August 2023"
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "name": "G7 Summit",
+      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. Multiple software platforms and Azure services were used for this project.",
+      "technologies": [
+        "Digital Signage",
+        "LAN Presentation Syncing",
+        "Twitter API",
+        "Instagram API",
+        "Azure Services"
+      ],
+      "images": [
+        "./Reference/ref (1).jpg",
+        "./Reference/ref (2).jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "name": "McDonald's AGM",
+      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. Multiple software platforms and Azure services were used for this project.",
+      "technologies": [
+        "Digital Signage",
+        "LAN Presentation Syncing",
+        "Twitter API",
+        "Instagram API",
+        "Azure Services"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "name": "VMWare",
+      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. The software platform used was Mercury.",
+      "technologies": [
+        "Digital Signage",
+        "LAN Presentation Syncing",
+        "Twitter API",
+        "Instagram API",
+        "Mercury"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "name": "Cisco Live",
+      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. The software platform used was Mercury.",
+      "technologies": [
+        "Digital Signage",
+        "LAN Presentation Syncing",
+        "Twitter API",
+        "Instagram API",
+        "Mercury"
+      ],
+      "images": [
+        "./Cisco/cisco (1).jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "name": "Gartner",
+      "description": "Corporate breakout digital signage front and backend. With LAN based presentation syncing/storing to all rooms. Including custom integrations with Twitter/Instagram posts/moderation, bus shuttle boards, weather, and bespoke API’s. The software platform used was Mercury.",
+      "technologies": [
+        "Digital Signage",
+        "LAN Presentation Syncing",
+        "Twitter API",
+        "Instagram API",
+        "Mercury"
+      ],
+      "images": [
+        "./Gartner/Gartner (1).jpg",
+        "./Gartner/Gartner (2).jpg",
+        "./Gartner/Gartner (3).jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
+    },
+    {
+      "name": "Ryder Cup Golf & ATP Tennis",
+      "description": "On-Course golf/tennis scoreboards and Media tent LED display graphics with live data and a centralised content control application written in C# .net and HTML/JS frontend. Delivered in person/on-site.",
+      "technologies": [
+        "C#",
+        ".Net",
+        "HTML",
+        "JS"
+      ],
+      "images": [
+        "./RyderCup/Ryder (1).jpg",
+        "./RyderCup/Ryder (2).jpg",
+        "./RyderCup/Ryder (3).jpg",
+        "./RyderCup/Ryder (4).jpg",
+        "./RyderCup/Ryder (5).jpg",
+        "./ATP/ATP (1).jpg",
+        "./ATP/ATP (2).jpg",
+        "./ATP/ATP (3).jpg",
+        "./ATP/ATP (4).jpg",
+        "./ATP/ATP (5).jpg"
+      ],
+      "links": [
+        "https://www.rydercup.com/news-media/ryder-cup-2018-when-it-is-where-it-is-and-everything-else-you-need-to-know"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "August 2018",
+      "endDate": "Septmeber 2018"
+    },
+    {
+      "name": "World Athletics",
+      "description": "Working very closely with the IAAF show producers on Championships, Indoor/outdoor, Cross country,Olympics, to create content control system for local on-site score boards with real time data to control broadcast tier graphics programs. Delivered over 10 different live athletics events around the globe, implemented solely by myself with feedback from operators, using WPF to parse ODF data",
+      "technologies": [
+        "C#",
+        ".Net",
+        "HTML",
+        "JS",
+        "Python",
+        "Characterworks"
+      ],
+      "images": [
+        "./WA/WA (1).jpg",
+        "./WA/WA (2).jpg",
+        "./WA/WA (3).jpg",
+        "./WA/WA (4).jpg",
+        "./WA/WA (5).jpg",
+        "./WA/WA (6).jpg",
+        "./WA/WA (7).jpg",
+        "./WA/WA (8).jpg",
+        "./WA/WA (9).jpg",
+        "./WA/WA (10).jpg",
+        "./WA/WA (11).jpg",
+        "./WA/WA (12).jpg",
+        "./WA/WA (13).jpg",
+        "./WA/WA (14).jpg",
+        "./WA/WA (15).jpg",
+        "./WA/WA (16).jpg",
+        "./WA/WA (17).jpg",
+        "./WA/WA (18).jpg",
+        "./WA/WA (19).jpg",
+        "./WA/WA (20).jpg"
+      ],
+      "links": [
+        "https://worldathletics.org/Competitions/world-athletics-championships/iaaf-world-athletics-championships-doha-2019-7125365",
+        "https://worldathletics.org/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ]
     }
   ],
   "interests": [
@@ -536,8 +1012,17 @@
     {
       "title": "NeRF",
       "description": "I'm interested in NeRF (Neural Radiance Fields)."
+    },
+    {
+      "title": "Gaussian Splats",
+      "description": "Exploring 3D Gaussian Splatting (Gaussian Splats) for fast scene capture and real-time rendering—especially where it overlaps with NeRFs and virtual production workflows."
     }
   ],
-  "roles": ["All", "Software Engineer", "Technical Artist", "AI Consultant", "VP Supervisor"]
+  "roles": [
+    "All",
+    "Software Engineer",
+    "Technical Artist",
+    "AI Consultant",
+    "VP Supervisor"
+  ]
 }
-
