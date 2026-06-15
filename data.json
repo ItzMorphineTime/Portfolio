@@ -1,7 +1,15 @@
 {
+  "name": "Joseph Loe",
+  "headline": "Software Engineer, Technical Artist & Virtual Production",
+  "siteUrl": "https://joeloe.co.uk/",
+  "jobTitle": "Head of Technology",
+  "organization": { "name": "Fivefold Studios", "url": "https://www.fivefoldstudios.co.uk/" },
+  "matrixRole": "Software Engineer",
+  "heroHeading": "Building {Digital} Experiences",
+  "contactTitle": "Let's Connect",
+  "contactSubtitle": "I'm always open to discussing new projects, opportunities, or just having a chat about technology and creativity.",
   "bio": "A software engineer with experience in full-stack development, live events, virtual production, and game development. Skilled in various languages, frameworks, tools, and techniques. Passionate about AI, automation, and procedural generation.",
   "headshot": "./Headshot-t-u.png",
-  "headshotalt2": "./MorphWolf2-t.png",
   "headshotalt": "./Morphtransparent.GIF",
   "contact": {
     "email": "jl@fivefoldstudios.co.uk",
@@ -102,12 +110,11 @@
     },
     {
       "name": "Unreal Engine",
-      "description": "Proficient in using Unreal Engine for game development, nDispay operation, and Virtual Production.",
+      "description": "Proficient in using Unreal Engine for game development, nDisplay operation, and Virtual Production.",
       "proficiency": 90,
       "roles": [
         "Software Engineer",
         "Technical Artist",
-        "nDisplay Operator",
         "VP Supervisor"
       ]
     },
@@ -171,8 +178,8 @@
       ]
     },
     {
-      "name": "GPT-4",
-      "description": "Experienced in using GPT-4 for AI and automation.",
+      "name": "GPT-5",
+      "description": "Experienced in using GPT-5 for AI and automation.",
       "proficiency": 95,
       "roles": [
         "AI Consultant"
@@ -445,7 +452,9 @@
         "nDisplay",
         "Asset Optimization"
       ],
-      "images": [],
+      "images": [
+        "./Amazon/amazon (1).jpg"
+      ],
       "links": [],
       "roles": [
         "Software Engineer",
@@ -456,8 +465,106 @@
       "endDate": "June 2023"
     },
     {
+      "name": "Spies in Disguise - VP Shoot",
+      "description": "Operated Unreal, nDisplay, and Photon across a multi-node LED volume cluster at the ARRI x CT virtual production stage, monitoring camera frustums via the ARRI/CT MultiViewer during the shoot.",
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "Photon",
+        "Cluster Syncing"
+      ],
+      "images": [
+        "./Spies/Spies (1).jpg",
+        "./Spies/Spies (2).jpg",
+        "./Spies/Spies (3).jpg",
+        "./Spies/Spies (4).jpg",
+        "./Spies/Spies (5).jpg",
+        "./Spies/Spies (6).jpg",
+        "./Spies/Spies (7).jpg",
+        "./Spies/Spies (8).jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "",
+      "endDate": ""
+    },
+    {
+      "name": "Queen Mary Horror Movie",
+      "description": "Modelled and lit a grand boat event venue in Unreal Engine to scale for real-time pre-visualisation, helping plan staging, lighting, and table layouts ahead of the live event.",
+      "technologies": [
+        "Unreal",
+        "Real-time Previs",
+        "Lighting"
+      ],
+      "images": [
+        "./QueenMary/QM (1).jpeg",
+        "./QueenMary/QM (2).jpeg",
+        "./QueenMary/QM (3).jpeg",
+        "./QueenMary/QM (4).jpeg",
+        "./QueenMary/QM (5).jpeg",
+        "./QueenMary/QM (6).jpeg",
+        "./QueenMary/QM (7).jpeg",
+        "./QueenMary/QM (8).jpeg",
+        "./QueenMary/QM (9).jpeg"
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "",
+      "endDate": ""
+    },
+    {
+      "name": "Dear Evan Hansen",
+      "description": "Supported a live event with LED screen content and show operation, running graphics to the stage screens.",
+      "technologies": [
+        "LED Screens",
+        "Show Operation"
+      ],
+      "images": [
+        "./EvanHansen/Dear (1).jpg",
+        "./EvanHansen/Dear (2).jpg",
+        "./EvanHansen/Dear (3).jpg",
+        "./EvanHansen/Dear (4).jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "",
+      "endDate": ""
+    },
+    {
+      "name": "Workday Rising",
+      "description": "Corporate digital signage front and back end for the Workday Rising / Financial Analyst Day event, driving welcome and wayfinding screens.",
+      "technologies": [
+        "Digital Signage",
+        "LAN Presentation Syncing"
+      ],
+      "images": [
+        "./Workday/WD (1).jpg",
+        "./Workday/WD (2).jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "",
+      "endDate": ""
+    },
+    {
       "name": "Ghostframe VP Shoot NDA title",
-      "description": "Implemented nDisplay cluster configuration using ghsotframe technology to allow simultanous alternate camera frustums.",
+      "description": "Implemented nDisplay cluster configuration using ghostframe technology to allow simultaneous alternate camera frustums.",
       "technologies": [
         "nDisplay",
         "Ghostframe Technology"
@@ -521,7 +628,7 @@
     },
     {
       "name": "SKY VP Demo",
-      "description": "Operated nDisplay, Photon, and optimsing assets and server configurations to create a Demo piece for SKY VP in collaboration with DNEG and Dimension studios.",
+      "description": "Operated nDisplay, Photon, and optimising assets and server configurations to create a Demo piece for SKY VP in collaboration with DNEG and Dimension studios.",
       "technologies": [
         "nDisplay",
         "Photon",
@@ -643,7 +750,7 @@
     },
     {
       "name": "Volvo AR Safety Demo",
-      "description": "Optimised, operated and curated various Virutal Production technologies syncing particle effect sims, camera tracking, AR compositing, and 6 node cluster syncing in realtime to create some amazing mixed VP/AR shoot.",
+      "description": "Optimised, operated and curated various Virtual Production technologies syncing particle effect sims, camera tracking, AR compositing, and 6 node cluster syncing in realtime to create some amazing mixed VP/AR shoot.",
       "technologies": [
         "Virtual Production",
         "Particle Effect Sims",
@@ -688,7 +795,7 @@
     },
     {
       "name": "Scottish Whiskey Exhibit VR",
-      "description": "Helped create and optimise the VR previs for Scotish Whiskey immersive installation.",
+      "description": "Helped create and optimise the VR previs for Scottish Whiskey immersive installation.",
       "technologies": [
         "VR"
       ],
@@ -738,8 +845,8 @@
         "Photon"
       ],
       "images": [
-        "./EpicDirectors/epic (1).jpg",
-        "./EpicDirectors/epic (2).jpg"
+        "./EpicDirectors/Epic (1).jpg",
+        "./EpicDirectors/Epic (2).jpg"
       ],
       "links": [
         "https://www.nepgroup.com/post/arri-x-ct-open-mixed-reality-studio-in-the-uk"
@@ -946,7 +1053,7 @@
         "VP Supervisor"
       ],
       "startDate": "August 2018",
-      "endDate": "Septmeber 2018"
+      "endDate": "September 2018"
     },
     {
       "name": "World Athletics",
@@ -975,11 +1082,7 @@
         "./WA/WA (13).jpg",
         "./WA/WA (14).jpg",
         "./WA/WA (15).jpg",
-        "./WA/WA (16).jpg",
-        "./WA/WA (17).jpg",
-        "./WA/WA (18).jpg",
-        "./WA/WA (19).jpg",
-        "./WA/WA (20).jpg"
+        "./WA/WA (16).jpg"
       ],
       "links": [
         "https://worldathletics.org/Competitions/world-athletics-championships/iaaf-world-athletics-championships-doha-2019-7125365",

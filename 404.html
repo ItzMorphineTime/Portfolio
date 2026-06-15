@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #f5f5f7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background-image:
+                radial-gradient(ellipse at 20% 20%, rgba(212, 168, 83, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(212, 168, 83, 0.03) 0%, transparent 50%);
+        }
+        .code {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(5rem, 20vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #d4a853 0%, #f0d78c 50%, #d4a853 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.5rem, 5vw, 2.25rem);
+            font-weight: 700;
+            margin: 1rem 0 0.75rem;
+        }
+        p { color: #a0a0b0; font-size: 1.05rem; margin-bottom: 2rem; }
+        a.home {
+            display: inline-block;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            color: #0a0a0f;
+            background: linear-gradient(135deg, #d4a853 0%, #f0d78c 50%, #d4a853 100%);
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        a.home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(212, 168, 83, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="code">404</div>
+        <h1>Page not found</h1>
+        <p>The page you're looking for doesn't exist or has moved.</p>
+        <a class="home" href="/">← Back to portfolio</a>
+    </main>
+</body>
+</html>

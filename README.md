@@ -25,15 +25,26 @@ A sleek, modern portfolio website built with vanilla HTML, CSS, and JavaScript. 
 ## 📁 Project Structure
 
 ```
-portfolio/
-├── index.html          # Main portfolio page
-├── data.json           # Portfolio content (edit this!)
-├── README.md           # Documentation
-└── assets/             # Your images (create this folder)
-    ├── headshot.png
-    ├── company-logos/
-    └── projects/
+Portfolio/
+├── index.html              # Page shell (HTML + meta/SEO/structured data)
+├── styles.css              # All styles (theme variables, layout, responsive)
+├── app.js                  # App logic — fetches data.json and renders the DOM
+├── data.json               # Portfolio content (edit this!)
+├── README.md               # Documentation
+├── CNAME                   # Custom domain for GitHub Pages (joeloe.co.uk)
+├── Headshot-t-u.png        # Headshot — referenced by data.json (lives at repo root)
+├── Morphtransparent.GIF    # Alternate headshot (shown in "Software Engineer" / Matrix mode)
+├── CT-Logo.svg             # Company logos also live at the repo root
+├── FiveFold.png
+├── ...
+└── <ProjectName>/          # One folder per project, holding that project's images
+    ├── ChemBros/
+    ├── Coldplay/
+    ├── SkyVP/
+    └── ...
 ```
+
+> **There is no `assets/` folder.** Images are referenced from `data.json` by relative path — headshots and logos sit at the repo root (e.g. `./Headshot-t-u.png`, `./CT-Logo.svg`) and project screenshots live in per-project folders (e.g. `./ChemBros/chembro (1).jpg`). Paths are **case-sensitive** on GitHub Pages (Linux), so match the on-disk capitalisation exactly.
 
 ---
 
@@ -42,8 +53,8 @@ portfolio/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
+git clone https://github.com/ItzMorphineTime/Portfolio.git
+cd Portfolio
 ```
 
 ### 2. Customize Your Content
@@ -80,7 +91,9 @@ Open `http://localhost:8000` in your browser.
 4. Select **Branch**: `main` (or `master`) and `/ (root)`
 5. Click **Save**
 
-Your portfolio will be live at `https://yourusername.github.io/portfolio/`
+Your portfolio will be live at `https://<your-username>.github.io/Portfolio/`.
+
+> **Custom domain:** this repo includes a `CNAME` file pointing GitHub Pages at **[joeloe.co.uk](https://joeloe.co.uk)**. If you fork it, update or delete `CNAME` (and configure your own domain under **Settings → Pages → Custom domain**), or the deploy will try to serve from a domain you don't control.
 
 ---
 
@@ -90,17 +103,37 @@ All portfolio content is managed through `data.json`. Here's the complete struct
 
 ### Basic Information
 
+> Everything in the page `<head>` — title, description, canonical, Open Graph / Twitter Card tags, the JSON-LD `Person` block, and the favicon — is **generated at runtime by `app.js` from these fields**, so the template carries no baked-in identity and works as-is with anyone's `data.json`.
+
 ```json
 {
+  "name": "Joseph Loe",
+  "headline": "Software Engineer, Technical Artist & Virtual Production",
+  "siteUrl": "https://joeloe.co.uk/",
+  "jobTitle": "Head of Technology",
+  "organization": { "name": "Fivefold Studios", "url": "https://www.fivefoldstudios.co.uk/" },
+  "matrixRole": "Software Engineer",
+  "heroHeading": "Building {Digital} Experiences",
+  "contactTitle": "Let's Connect",
+  "contactSubtitle": "I'm always open to discussing new projects...",
   "bio": "Your professional summary...",
-  "headshot": "./assets/headshot.png",
-  "headshotalt": "./assets/headshot-animated.gif",
-  "roles": ["All", "Software Engineer", "Designer", "Consultant"]
+  "headshot": "./Headshot-t-u.png",
+  "headshotalt": "./Morphtransparent.GIF",
+  "roles": ["All", "Software Engineer", "Technical Artist", "AI Consultant", "VP Supervisor"]
 }
 ```
 
 | Field | Description |
 |-------|-------------|
+| `name` | Your name — header logo, page title, author, and JSON-LD/SEO |
+| `headline` | Short professional headline — appended to the page/OG title (`Name — Headline`) |
+| `siteUrl` | Canonical URL — used for canonical/OG/Twitter/JSON-LD and to absolutise the OG image |
+| `jobTitle` | Current job title — JSON-LD `Person.jobTitle` |
+| `organization` | `{ "name", "url" }` of your employer — JSON-LD `worksFor` |
+| `matrixRole` | Role that triggers Matrix mode + the alternate headshot (default: `"Software Engineer"`) |
+| `heroHeading` | Hero headline; wrap a word in `{ }` to render it in the gold accent (e.g. `Building {Digital} Experiences`) |
+| `contactTitle` | Heading for the contact section (defaults to "Let's Connect") |
+| `contactSubtitle` | Sub-text for the contact section |
 | `bio` | Your professional summary displayed in the hero section |
 | `headshot` | Primary profile photo (displayed by default) |
 | `headshotalt` | Alternate photo shown when "Software Engineer" is selected (supports GIFs!) |
@@ -150,7 +183,7 @@ All fields are optional. Only provided fields will be displayed.
   "experience": [
     {
       "company": "Company Name",
-      "logo": "./assets/logos/company.svg",
+      "logo": "./CT-Logo.svg",
       "title": "Senior Developer",
       "duration": "Jan 2020 - Present",
       "description": "Led development of...",
@@ -201,8 +234,8 @@ All fields are optional. Only provided fields will be displayed.
       "description": "Built a full-stack application...",
       "technologies": ["React", "Node.js", "PostgreSQL"],
       "images": [
-        "./assets/projects/project1-1.jpg",
-        "./assets/projects/project1-2.jpg"
+        "./MyProject/screenshot-1.jpg",
+        "./MyProject/screenshot-2.jpg"
       ],
       "links": ["https://project-demo.com", "https://github.com/user/project"],
       "roles": ["Software Engineer"],
@@ -242,7 +275,7 @@ All fields are optional. Only provided fields will be displayed.
 
 ### Changing the Color Scheme
 
-Edit the CSS variables in `index.html`:
+Edit the CSS variables at the top of `styles.css`:
 
 ```css
 :root {
@@ -256,13 +289,11 @@ Edit the CSS variables in `index.html`:
 
 ### Changing the Matrix Mode Trigger
 
-By default, Matrix mode activates for "Software Engineer". To change this, find this line in the JavaScript:
+Matrix mode (and the alternate headshot) activate for the role named by `matrixRole` in `data.json` (default: `"Software Engineer"`). Set it to any role from your `roles` list — no code changes needed.
 
-```javascript
-const isMatrixMode = role === 'Software Engineer';
+```json
+{ "matrixRole": "Software Engineer" }
 ```
-
-Change `'Software Engineer'` to your preferred role.
 
 ### Adding New Sections
 
@@ -316,11 +347,11 @@ Contributions are welcome! Feel free to:
 
 ## 💡 Tips
 
-- **Images**: Use optimized images (WebP format recommended) for faster loading
-- **SEO**: Update the `<title>` and `<meta name="description">` tags in `index.html`
-- **Favicon**: Add a favicon by placing `favicon.ico` in the root directory
-- **Analytics**: Add Google Analytics or other tracking in the `<head>` section
-- **Custom Domain**: Configure a custom domain in GitHub Pages settings
+- **Images**: Use optimized images (WebP recommended) and small thumbnails for cards for faster loading
+- **SEO**: title, description, Open Graph + Twitter cards, JSON-LD `Person`, and the favicon are **generated at runtime by `app.js` from `data.json`** — just edit `data.json`. (`robots.txt`, `sitemap.xml`, and `CNAME` are deployment config — update the domain in those when you deploy.) Note: because meta is JS-injected, non-rendering social scrapers won't see it; add a build step if you need guaranteed link-preview cards.
+- **Favicon**: `favicon.svg` (a gold "JL" monogram) ships in the repo root — swap in your own
+- **Analytics**: Add privacy-friendly analytics (e.g. Plausible) in the `<head>` if you want visitor insight
+- **Custom Domain**: Configured via the `CNAME` file (see the Deploy step above)
 
 ---
 
