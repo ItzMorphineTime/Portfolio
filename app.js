@@ -252,16 +252,23 @@ function updateSectionVisibility() {
 function updateHeadshot(role) {
     const primaryHeadshot = document.getElementById('primaryHeadshot');
     const altHeadshot = document.getElementById('altHeadshot');
-    
-    if (!primaryHeadshot || !altHeadshot) return;
+    const taHeadshot = document.getElementById('taHeadshot');
 
-    if (role === (portfolioData.matrixRole || 'Software Engineer')) {
-        primaryHeadshot.classList.add('hidden');
-        altHeadshot.classList.remove('hidden');
-    } else {
-        primaryHeadshot.classList.remove('hidden');
-        altHeadshot.classList.add('hidden');
+    if (!primaryHeadshot) return;
+
+    const matrixRole = portfolioData.matrixRole || 'Software Engineer';
+
+    // Pick the headshot for the active role: matrix role → alt; Technical Artist → headshot2; else primary.
+    let active = primaryHeadshot;
+    if (role === matrixRole && altHeadshot) {
+        active = altHeadshot;
+    } else if (role === 'Technical Artist' && taHeadshot) {
+        active = taHeadshot;
     }
+
+    [primaryHeadshot, taHeadshot, altHeadshot].forEach((el) => {
+        if (el) el.classList.toggle('hidden', el !== active);
+    });
 }
 
 // Matrix Animation
@@ -402,7 +409,7 @@ function renderContent() {
 
 // Render hero section
 function renderHero() {
-    const { bio, headshot, headshotalt, contact, name } = portfolioData;
+    const { bio, headshot, headshot2, headshotalt, contact, name } = portfolioData;
     const who = name || 'Profile';
     const heroHeading = portfolioData.heroHeading || 'Building {Digital} Experiences';
     // Render {highlighted} words as gold spans; escape all other text
@@ -486,6 +493,10 @@ function renderHero() {
                             ${headshot ? 
                                 `<img id="primaryHeadshot" src="${esc(headshot)}" alt="${esc(who)} headshot" class="headshot" width="350" height="350" fetchpriority="high" onerror="this.style.display='none'">` :
                                 `<div id="primaryHeadshot" class="headshot" style="background: var(--bg-secondary);"></div>`
+                            }
+                            ${headshot2 ?
+                                `<img id="taHeadshot" src="${esc(headshot2)}" alt="${esc(who)} headshot" class="headshot hidden" width="350" height="350" loading="lazy" decoding="async" onerror="this.style.display='none'">` :
+                                ''
                             }
                             ${headshotalt ?
                                 `<img id="altHeadshot" src="${esc(headshotalt)}" alt="${esc(who)} alternate headshot" class="headshot hidden" width="350" height="350" loading="lazy" decoding="async" onerror="this.style.display='none'">` :
