@@ -457,6 +457,16 @@ function renderHero() {
                                 ${contactLinks.join('')}
                             </div>
                         ` : ''}
+                        <div class="cv-actions">
+                            <button type="button" class="cv-btn cv-btn-primary" onclick="downloadCv('designed', this)" aria-label="Download a designed CV as a Word document">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download CV
+                            </button>
+                            <button type="button" class="cv-btn" onclick="downloadCv('ats', this)" aria-label="Download an ATS-friendly CV as a Word document">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                ATS CV
+                            </button>
+                        </div>
                     </div>
                     <div class="hero-image">
                         <div class="headshot-container">
@@ -787,20 +797,82 @@ function closeModal() {
 }
 
 function navigateModal(direction) {
+    if (modalImages.length < 2) return;
     modalIndex = (modalIndex + direction + modalImages.length) % modalImages.length;
     updateModalImage();
+}
+
+// Keep decoded copies of adjacent images warm so navigation is instant.
+function preloadAdjacent() {
+    if (modalImages.length < 2) return;
+    const next = (modalIndex + 1) % modalImages.length;
+    const prev = (modalIndex - 1 + modalImages.length) % modalImages.length;
+    [next, prev].forEach((i) => { const im = new Image(); im.src = modalImages[i]; });
 }
 
 function updateModalImage() {
     const img = document.getElementById('modalImage');
     const counter = document.getElementById('modalCounter');
-    img.src = modalImages[modalIndex];
+    const spinner = document.getElementById('modalSpinner');
+    const src = modalImages[modalIndex];
+
+    // Show spinner until the new image is ready (skip if already cached/decoded).
+    img.classList.remove('is-loaded');
+    if (spinner) spinner.classList.add('active');
+    img.onload = () => {
+        img.classList.add('is-loaded');
+        if (spinner) spinner.classList.remove('active');
+        preloadAdjacent();
+    };
+    img.onerror = () => {
+        if (spinner) spinner.classList.remove('active');
+    };
+    img.src = src;
+    // Cached images may not fire onload reliably; settle synchronously.
+    if (img.complete && img.naturalWidth) img.onload();
+
     counter.textContent = `${modalIndex + 1} / ${modalImages.length}`;
+
+    // Hide nav controls and counter when there's only a single image.
+    const modal = document.getElementById('imageModal');
+    const single = modalImages.length < 2;
+    modal.querySelectorAll('.modal-nav').forEach((b) => { b.hidden = single; });
+    counter.hidden = single;
 }
 
-document.getElementById('imageModal').addEventListener('click', (e) => {
+const imageModalEl = document.getElementById('imageModal');
+
+imageModalEl.addEventListener('click', (e) => {
     if (e.target.id === 'imageModal') closeModal();
 });
+
+// Touch swipe navigation (mobile).
+let touchStartX = 0;
+let touchStartY = 0;
+let touchActive = false;
+const SWIPE_THRESHOLD = 50;   // px horizontal travel to count as a swipe
+const SWIPE_SLOP = 40;        // px vertical tolerance to ignore scroll gestures
+
+const modalStageEl = document.getElementById('modalStage');
+if (modalStageEl) {
+    modalStageEl.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) { touchActive = false; return; }
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchActive = true;
+    }, { passive: true });
+
+    modalStageEl.addEventListener('touchend', (e) => {
+        if (!touchActive) return;
+        touchActive = false;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - touchStartX;
+        const dy = t.clientY - touchStartY;
+        if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_SLOP) {
+            navigateModal(dx < 0 ? 1 : -1);
+        }
+    }, { passive: true });
+}
 
 document.addEventListener('keydown', (e) => {
     const modal = document.getElementById('imageModal');
@@ -809,8 +881,8 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') navigateModal(-1);
     if (e.key === 'ArrowRight') navigateModal(1);
     if (e.key === 'Tab') {
-        // Trap focus within the dialog
-        const focusable = [...modal.querySelectorAll('button')];
+        // Trap focus within the dialog (skip hidden controls).
+        const focusable = [...modal.querySelectorAll('button')].filter((b) => !b.hidden);
         if (!focusable.length) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
@@ -821,4 +893,3 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
-    

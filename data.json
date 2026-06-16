@@ -1,10 +1,12 @@
 {
   "name": "Joseph Loe",
-  "headline": "Software Engineer, Technical Artist & Virtual Production",
+  "headline": "Team Leader, Software Engineer, Technical Artist & Virtual Production Supervisor",
   "siteUrl": "https://joeloe.co.uk/",
   "jobTitle": "Head of Technology",
+  "location": "Brighton, United Kingdom",
   "organization": { "name": "Fivefold Studios", "url": "https://www.fivefoldstudios.co.uk/" },
   "matrixRole": "Software Engineer",
+  "cvAccent": "#d4a853",
   "heroHeading": "Building {Digital} Experiences",
   "contactTitle": "Let's Connect",
   "contactSubtitle": "I'm always open to discussing new projects, opportunities, or just having a chat about technology and creativity.",

@@ -98,12 +98,16 @@
         <div class="modal-content" role="dialog" aria-modal="true" aria-label="Project image gallery">
             <button class="modal-close" onclick="closeModal()" aria-label="Close gallery">&times;</button>
             <button class="modal-nav prev" onclick="navigateModal(-1)" aria-label="Previous image">&#8249;</button>
-            <img class="modal-image" id="modalImage" src="" alt="Project image">
+            <div class="modal-stage" id="modalStage">
+                <div class="modal-spinner" id="modalSpinner" aria-hidden="true"></div>
+                <img class="modal-image" id="modalImage" src="" alt="Project image">
+            </div>
             <button class="modal-nav next" onclick="navigateModal(1)" aria-label="Next image">&#8250;</button>
-            <div class="modal-counter" id="modalCounter"></div>
+            <div class="modal-counter" id="modalCounter" aria-live="polite"></div>
         </div>
     </div>
 
     <script src="./app.js" defer></script>
+    <script src="./cv.js" defer></script>
 </body>
 </html>

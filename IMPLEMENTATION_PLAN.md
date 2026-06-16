@@ -25,8 +25,15 @@ Living plan for acting on [IMPROVEMENTS.md](IMPROVEMENTS.md). Update the checkbo
 | 3 | Quick wins (cleanup, typos, SEO basics) | #6, #11, #12 | ☑ |
 | 4 | Hardening & polish | #5, #7, #8, #9, #10 | ◐ (only 4.6 career-data + thumbnails remain — your call) |
 | 5 | Refactor | #13 | ☑ (icon dedupe + template abstraction optional) |
-| 6 | Feature: ATS-friendly CV download | #14 | ⊘ Deferred (you chose "Not yet") |
+| 6 | Feature: CV `.docx` export (ATS + Designed) | #14 | ☑ Done & verified |
 | 7 | Backlog / future | Low list | ☐ |
+
+---
+
+## Recent fixes (post-Phase 6)
+- [x] **CV designed-variant date overflow** — line-item dates wrapped their last token onto a new line. Fixed by putting each date in a fixed-width (1.8"), right-aligned **borderless table cell** (per-row helper table, not the old full-page layout table) with abbreviated months, so dates can't wrap. (`cv.js`) — confirmed by you.
+- [x] **Footer-nav hover tooltips clipped** — `.footer-nav { overflow-x: auto }` makes the browser compute `overflow-y: auto` too, clipping the `::before` tooltip (positioned above the bar) inside the nav. Fixed: base nav → `overflow: visible` (tooltips escape on desktop), horizontal scroll moved to the ≤768px breakpoint (touch = no hover), tooltip `z-index: 10`. (`styles.css`) — verified in-browser: nav `overflow-y` is now `visible`, tooltip no longer clipped.
+- [x] **Image-modal niceties** — added (1) **adjacent-image preloading**: on open/navigate the next & previous images are warmed via `new Image()` so paging is instant; (2) **touch swipe** on the image stage (≥50px horizontal, <40px vertical slop → next/prev; ignores vertical scroll & multi-touch); (3) **loading UX**: a CSS spinner shows while a new image decodes and the image fades in (`.is-loaded`), with cached images settled synchronously so the spinner doesn't flash; (4) **single-image polish**: nav arrows + counter auto-hide and the focus trap skips hidden controls when a project has one image. New `#modalStage`/`#modalSpinner` markup; `aria-live` on the counter. (`index.html`, `app.js`, `styles.css`) — verified: cross-file wiring + nav/swipe logic assertions all pass, `node --check app.js` clean.
 
 ---
 
@@ -139,28 +146,68 @@ Living plan for acting on [IMPROVEMENTS.md](IMPROVEMENTS.md). Update the checkbo
 
 ---
 
-## Phase 6 — Feature: ATS-Friendly CV download 🟢  `Ref: #14`  ⊘ DEFERRED
+## Phase 6 — Feature: CV export to `.docx` (ATS + Designed) 🟢  `Ref: #14`  ✅ DONE
 
-> **Deferred at your request ("Not yet").** Plan kept below, ready to pick up. Note: `name`/`heroHeading`/`contactTitle`/`contactSubtitle` were already added to `data.json` in Phase 5, so the data groundwork is partly done — a CV would still want `title`/headline and `location` (derivable: Head of Technology; Cardiff, Wales) and optionally `phone`.
+> **Built & verified.** Decisions taken: **D1** vendor `docx@9.7.1` (`vendor/docx.iife.js`, lazy-loaded on first click — confirmed not loaded on page load); **D2** always full CV (role filter ignored); **D3** added optional fields. New files/edits: `cv.js` (lazy loader + `buildCvModel` + `renderAtsDocx` + `renderDesignedDocx` + download), two buttons in the hero (`app.js`), button styles + matrix parity (`styles.css`), `cv.js` script tag (`index.html`), and `location` + `cvAccent` in `data.json`.
+>
+> **Both CVs now list all projects** (title + date only). **Designed variant reworked to single-column** (not the old full-page sidebar table): accent name header, full-width accent rules under headings, accent-coloured company/course. Dates are right-aligned inside **small borderless per-row tables with a fixed-width date column** so they can't wrap (an earlier tab-stop approach wrapped the last token, per your screenshot — fixed). Months are abbreviated in the designed dates so even the longest range fits.
+>
+> **Verification (in-browser):** both variants produce valid OOXML (`PK` zip magic, correct `.docx` MIME); unzipped `word/document.xml` contains the real data + all headings, including **SELECTED PROJECTS** with titles + dates; the designed variant uses fixed-width (2600 twip) right-aligned date cells (8 borderless 2-col helper tables) with abbreviated dates (e.g. `Aug 2018 – Sep 2018`) + accent `d4a853`; **reusability proven** — "Ada Lovelace" data produced an Ada CV with no "Joseph Loe"; no console errors.
+>
+> **Optional follow-ups (not done):** add `contact.phone` (unknown — left out); add per-item `highlights: []` to turn the long prose descriptions into punchy bullets (renderer already supports it, falls back to `description`). Manual check worth doing: open both in Word once to eyeball layout.
 
-**Goal:** a "Download ATS-Friendly CV" button that generates a sleek, parseable `.docx` from `data.json`.
+**Goal:** two buttons that each generate and download a real Word `.docx` built **purely from `data.json`** (no hardcoded content, reusable with anyone's data, consistent with the now fully data-driven head):
+1. **ATS** — plain, single-column, maximally parseable for applicant-tracking systems.
+2. **Designed** — single-column, typographic, accent-coloured (table-free), for sending to humans / general use.
 
-- [ ] **Data:** add `name`, `title`/headline, `location`, optional `phone` to `data.json` (shared with Phase 5's JSON-driven copy).
-- [ ] **Library:** vendor or CDN-load the [`docx`](https://docx.js.org/) browser build; wire a Blob download (`FileSaver` or an `<a download>`).
-- [ ] **Generator:** build `generateCv(data, role)` that maps `data.json` → a single-column document: header (name, title, contact), Summary (bio), Experience, Education, Skills.
-- [ ] **ATS constraints:** single column; real text only (no images/text boxes/multi-column tables); standard headings; standard font (Calibri/Arial); nothing critical in headers/footers; `.docx` output.
-- [ ] **Styling:** polish via spacing, weight, a subtle accent on name/headings, and rules — keep it parser-safe.
-- [ ] **Role-aware:** generate from the active role filter (tailored CV) with a sensible "All" default.
-- [ ] **Button:** add to the hero contact row (and/or sticky); accessible label; matrix-mode styling parity.
-- [ ] **Verify:** opens cleanly in Word/Google Docs; text is selectable; a plain-text paste (ATS sniff test) preserves all sections/content in order.
-- **Files:** `index.html` (or `app.js` after Phase 5), `data.json`, vendored `docx` lib
-- **Done when:** clicking the button downloads a correct, good-looking, ATS-parseable `.docx` reflecting the selected role.
+### Decisions (resolved)
+- **D1 — Library delivery:** ✅ vendored `docx@9.7.1` to `vendor/docx.iife.js` (IIFE build, exposes the `docx` global), **lazy-loaded on first click** — confirmed not loaded on initial page load. `DOCX_SRC` in `cv.js` is a single constant if you ever want to swap to a CDN.
+- **D2 — Role scope:** ✅ **always full CV** (your choice) — the on-screen role filter is ignored; every CV includes all experience / skills / projects.
+- **D3 — Optional data enrichment:** ✅ added `location` + `cvAccent`; `contact.phone` and per-item `highlights: []` are also supported by the renderer (optional, graceful fallback) — just not populated in `data.json` yet.
+
+### Data model additions (`data.json`)
+- [x] `location` (e.g. "Brighton, United Kingdom") — CV header. *(added)*
+- [x] `cvAccent` — accent colour for the Designed variant (default site gold `#d4a853`). *(added)*
+- [ ] `contact.phone` — renderer supports it; not added (unknown / kept off the site).
+- [ ] `highlights: []` on experience items — renderer supports it (bullets, falls back to `description`); not yet populated.
+- *(Reuses existing: `name`, `headline`, `jobTitle`, `organization`, `bio`, `skills`, `experience`, `projects`, `education`, `interests`, `contact`.)*
+
+### Architecture
+- [x] New module **`cv.js`** (loaded `defer`) exposing `downloadCv(variant, btn)` + `generateCvBlob(variant)` where `variant ∈ {"ats","designed"}`.
+- [x] **Lazy loader** injects `vendor/docx.iife.js` on first use, caches the promise, shows a "Generating…" button state.
+- [x] **`buildCvModel(data)`** — single source of truth (always full; no role filter): normalises into `{ name, headline, contacts[], summary, skills[], skillDetails[], experience[], projects[], education[], interests[] }`. Both renderers consume it (no duplicated mapping).
+- [x] **`renderAtsDocx(model)`** and **`renderDesignedDocx(model, accent)`** → `docx.Document`.
+- [x] Download via `Packer.toBlob(doc)` → `<a download>` + `URL.createObjectURL`; filename `‹name›-CV.docx` / `‹name›-CV-ATS.docx` (slugified).
+- [x] No HTML escaping needed (the `docx` lib XML-escapes `TextRun` content); raw strings passed.
+
+### Variant A — ATS (parser-safe)
+- [x] Single column; **no tables-for-layout, no images, no text boxes, no header/footer** for content; standard font (Calibri); left-aligned.
+- [x] Linear order: **Header** (name, headline, contact line) → **Summary** (`bio`) → **Skills** (comma list) → **Experience** (Title — Company, dates; `highlights` bullets or `description`) → **Projects** (title + date) → **Education** (institution, course, grade, modules) → **Interests**.
+- [x] Standard heading text ("Summary", "Skills", "Experience", …); data order preserved.
+
+### Variant B — Designed (for humans) — single-column (reworked per feedback)
+- [x] Name block (large, `cvAccent`), headline, contact line, thick accent rule.
+- [x] Single column with accent section headings (full-width bottom rule), accent-coloured company/course. **Dates right-aligned via small borderless per-row tables with a fixed-width date column** (abbreviated months) so they never wrap — no full-page layout table.
+- [x] Sections: Profile → Skills (inline list) → Experience (bullets) → Selected Projects (title + date) → Education → Interests. Real selectable text. *(Not ATS-optimised — that's variant A's job.)*
+
+### UI
+- [x] Two buttons rendered into the hero (data-driven, after the contact links): **"Download CV"** (designed) + **"ATS CV"** — download icon, `aria-label`, gold styling, **matrix-mode green parity**.
+- [x] Click → disabled "Generating…" state → lazy-load lib → build → download → restore; `alert` on failure.
+
+### Verify
+- [x] Both variants produce valid OOXML (`PK` zip, correct `.docx` MIME); unzipped `word/document.xml` checked for real content + all headings (incl. SELECTED PROJECTS).
+- [x] **Reusability:** "Ada Lovelace" data produced an Ada CV (no "Joseph Loe") with zero code changes.
+- [x] Lazy-load confirmed (vendored, not loaded until click); no console errors; correct per-variant filenames.
+- [ ] *(Manual, recommended)* open both in Word / Google Docs / LibreOffice to eyeball layout + run a paste-as-plain-text ATS sniff test — couldn't be done from here (no Office runtime).
+
+- **Files:** `cv.js`, `vendor/docx.iife.js`; edits to `index.html` (script tag + buttons), `app.js` (button render), `styles.css` (button styles), `data.json` (`location`, `cvAccent`), `README.md`.
+- **Done when:** both buttons download correct, good-looking `.docx` files generated entirely from `data.json` — ATS-parseable (A) and design-polished (B), no hardcoded content. ✅ (pending your manual Word eyeball)
 
 ---
 
 ## Phase 7 — Backlog / future 🟢 (Low-priority list)
 - [ ] Document that a local server is required (`file://` breaks `fetch`) — or add an inline-data fallback.
-- [ ] Modal niceties: preload adjacent images, loading spinner for large images, touch swipe.
+- [x] Modal niceties: preload adjacent images, loading spinner for large images, touch swipe. — **done** (see *Recent fixes* above).
 - [ ] Light/dark theme toggle.
 - [ ] Privacy-friendly analytics (e.g. Plausible).
 - [ ] JSON Schema for `data.json` (editor autocomplete + validation; guards against path/role mistakes).

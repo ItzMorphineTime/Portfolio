@@ -17,8 +17,9 @@ A sleek, modern portfolio website built with vanilla HTML, CSS, and JavaScript. 
 | 📍 **Smart Navigation** | Floating bottom nav bar with scroll-aware section highlighting |
 | 📱 **Fully Responsive** | Optimized for mobile, tablet, and desktop viewports |
 | 🎨 **Dynamic Theming** | Gold accent theme with Matrix green variant |
-| ⚡ **Zero Dependencies** | Pure HTML/CSS/JS — no build tools required |
-| 📝 **JSON-Driven Content** | Update your portfolio by editing a single JSON file |
+| ⚡ **No Build Step** | Pure HTML/CSS/JS; the CV export lazy-loads a vendored `docx` library only when used |
+| 📝 **JSON-Driven Content** | Everything — page, `<head>` SEO, and CVs — is generated from a single JSON file |
+| 📄 **CV Export** | One-click **ATS-friendly** or **designed** `.docx` résumé, generated from your JSON |
 
 ---
 
@@ -26,9 +27,11 @@ A sleek, modern portfolio website built with vanilla HTML, CSS, and JavaScript. 
 
 ```
 Portfolio/
-├── index.html              # Page shell (HTML + meta/SEO/structured data)
+├── index.html              # Page shell (HTML only; all meta/SEO is injected by app.js)
 ├── styles.css              # All styles (theme variables, layout, responsive)
-├── app.js                  # App logic — fetches data.json and renders the DOM
+├── app.js                  # App logic — fetches data.json, renders the DOM + <head> meta
+├── cv.js                   # CV export — builds ATS + designed .docx résumés from data.json
+├── vendor/docx.iife.js     # Vendored docx library (lazy-loaded only when a CV is exported)
 ├── data.json               # Portfolio content (edit this!)
 ├── README.md               # Documentation
 ├── CNAME                   # Custom domain for GitHub Pages (joeloe.co.uk)
@@ -131,6 +134,10 @@ All portfolio content is managed through `data.json`. Here's the complete struct
 | `jobTitle` | Current job title — JSON-LD `Person.jobTitle` |
 | `organization` | `{ "name", "url" }` of your employer — JSON-LD `worksFor` |
 | `matrixRole` | Role that triggers Matrix mode + the alternate headshot (default: `"Software Engineer"`) |
+| `location` | Location line shown on the exported CV (optional) |
+| `cvAccent` | Accent colour for the **designed** CV variant (default: site gold `#d4a853`) |
+| `contact.phone` | Phone number shown on the CV only (optional; not rendered on the site) |
+| `highlights` | Optional `string[]` on any experience/project item → rendered as CV bullet points (falls back to `description`) |
 | `heroHeading` | Hero headline; wrap a word in `{ }` to render it in the gold accent (e.g. `Building {Digital} Experiences`) |
 | `contactTitle` | Heading for the contact section (defaults to "Let's Connect") |
 | `contactSubtitle` | Sub-text for the contact section |
@@ -294,6 +301,15 @@ Matrix mode (and the alternate headshot) activate for the role named by `matrixR
 ```json
 { "matrixRole": "Software Engineer" }
 ```
+
+### Exporting a CV
+
+Two buttons in the hero generate a Word `.docx` résumé entirely from `data.json`:
+
+- **Download CV** — a polished, accent-coloured single-column design (dates are right-aligned in small borderless rows so they never wrap), for sending to people.
+- **ATS CV** — a plain single-column, parser-safe layout for applicant-tracking systems.
+
+Both pull from the same fields (`name`, `headline`, `location`, `bio`, `skills`, `experience`, `projects` (listed as title + date), `education`, `interests`, `contact`). Add optional `highlights: []` arrays to experience items for punchy bullet points (otherwise the `description` is used). The [`docx`](https://docx.js.org/) library is vendored in `vendor/` and **lazy-loaded only on first click**, so it adds nothing to initial page load. CVs always include everything (they ignore the on-screen role filter).
 
 ### Adding New Sections
 
