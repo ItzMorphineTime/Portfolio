@@ -1,0 +1,5 @@
+{
+    "status": 401,
+    "message": "No security token provided",
+    "code": "Unauthorized"
+}

@@ -13,8 +13,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.footer-nav .nav-btn').forEach(btn => {
         if (btn.dataset.tooltip) btn.setAttribute('aria-label', btn.dataset.tooltip);
     });
+    setupNavToggle();
     await loadData();
 });
+
+// Collapse/expand the side navigation (starts expanded)
+function setupNavToggle() {
+    const nav = document.getElementById('footerNav');
+    const toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    toggle.addEventListener('click', () => {
+        const collapsed = nav.classList.toggle('collapsed');
+        toggle.setAttribute('aria-expanded', String(!collapsed));
+        toggle.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
+    });
+}
 
 // Header scroll effect
 function setupHeaderScroll() {
@@ -781,6 +794,7 @@ function openModal(projectIndex) {
 
     modalImages = project.images;
     modalIndex = 0;
+    buildModalThumbs(project.name || 'Project');
     updateModalImage();
     const modal = document.getElementById('imageModal');
     modal.classList.add('active');
@@ -788,6 +802,43 @@ function openModal(projectIndex) {
     lastFocused = document.activeElement;      // remember the trigger
     const closeBtn = modal.querySelector('.modal-close');
     if (closeBtn) closeBtn.focus();            // move focus into the dialog
+}
+
+// Render the thumbnail strip for the current project (hidden for single-image galleries).
+function buildModalThumbs(projectName) {
+    const strip = document.getElementById('modalThumbs');
+    if (!strip) return;
+    strip.innerHTML = '';
+    if (modalImages.length < 2) { strip.hidden = true; return; }
+    strip.hidden = false;
+    modalImages.forEach((src, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'modal-thumb';
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-label', `${projectName} image ${i + 1}`);
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        btn.appendChild(img);
+        btn.addEventListener('click', () => { modalIndex = i; updateModalImage(); });
+        strip.appendChild(btn);
+    });
+}
+
+// Highlight the active thumbnail and scroll it into view.
+function updateActiveThumb() {
+    const strip = document.getElementById('modalThumbs');
+    if (!strip) return;
+    const thumbs = strip.querySelectorAll('.modal-thumb');
+    thumbs.forEach((t, i) => {
+        const active = i === modalIndex;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', String(active));
+        if (active) t.scrollIntoView({ block: 'nearest', inline: 'center' });
+    });
 }
 
 function closeModal() {
@@ -841,6 +892,8 @@ function updateModalImage() {
     const single = modalImages.length < 2;
     modal.querySelectorAll('.modal-nav').forEach((b) => { b.hidden = single; });
     counter.hidden = single;
+
+    updateActiveThumb();
 }
 
 const imageModalEl = document.getElementById('imageModal');
