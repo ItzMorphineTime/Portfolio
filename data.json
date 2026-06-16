@@ -10,7 +10,7 @@
   "heroHeading": "Building {Digital} Experiences",
   "contactTitle": "Let's Connect",
   "contactSubtitle": "I'm always open to discussing new projects, opportunities, or just having a chat about technology and creativity.",
-  "bio": "A software engineer with experience in full-stack development, live events, virtual production, and game development. Skilled in various languages, frameworks, tools, and techniques. Passionate about AI, automation, and procedural generation.",
+  "bio": "Joseph Loe is a Head of Technology and software engineer with over two decades spanning full-stack development, virtual production, live events, and game development. He blends deep engineering experience with technical artistry and team leadership, specialising in real-time graphics systems and translating cutting-edge R&D into robust, production-ready pipelines. A fast adopter of agentic AI and generative tooling, he folds the best of each new model into practical workflows — from accelerating development to producing previs and concept art. Above all, he's motivated by automation, procedural generation, and pushing the boundaries of what real-time technology can do.",
   "headshot": "./Headshot-t-u.png",
   "headshotalt": "./Morphtransparent.GIF",
   "contact": {
@@ -32,7 +32,7 @@
     {
       "name": "JetBrains suite",
       "description": "Experienced in using the JetBrains suite of tools for software development.",
-      "proficiency": 80,
+      "proficiency": 25,
       "roles": [
         "Software Engineer",
         "Technical Artist"
@@ -94,7 +94,7 @@
     {
       "name": "Wireshark",
       "description": "Experienced in using Wireshark for network protocol analysis.",
-      "proficiency": 100,
+      "proficiency": 75,
       "roles": [
         "Software Engineer"
       ]
@@ -102,7 +102,7 @@
     {
       "name": "Project Management",
       "description": "Experienced in using efficient team communication.",
-      "proficiency": 70,
+      "proficiency": 95,
       "roles": [
         "Software Engineer",
         "Technical Artist",
@@ -207,6 +207,23 @@
       "name": "AI tools",
       "description": "Experienced in various AI tools for AI and automation.",
       "proficiency": 85,
+      "roles": [
+        "AI Consultant"
+      ]
+    },
+    {
+      "name": "Leonardo",
+      "description": "Skilled in using Leonardo AI for generative imagery and concept art.",
+      "proficiency": 80,
+      "roles": [
+        "AI Consultant",
+        "Technical Artist"
+      ]
+    },
+    {
+      "name": "ByteDance",
+      "description": "Experienced with ByteDance's generative AI models for image and video creation.",
+      "proficiency": 40,
       "roles": [
         "AI Consultant"
       ]
@@ -375,6 +392,113 @@
     }
   ],
   "projects": [
+    {
+      "name": "Brit Awards — Golden Arrow Winner",
+      "description": "VP Supervisor on the Golden Arrow award-winning Brit Awards production.",
+      "technologies": [
+        "Unreal",
+        "Virtual Production"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "VP Supervisor",
+        "Technical Artist"
+      ],
+      "startDate": "January 2024",
+      "endDate": "January 2024"
+    },
+    {
+      "name": "Ulster University VP Brainbar Talk",
+      "description": "Delivered a virtual production talk for Ulster University's Brainbar.",
+      "technologies": [
+        "Virtual Production"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "VP Supervisor",
+        "Technical Artist"
+      ],
+      "startDate": "February 2024",
+      "endDate": "February 2024"
+    },
+    {
+      "name": "Brockwell Live — LED Playback",
+      "description": "LED playback for Brockwell Live.",
+      "technologies": [
+        "LED",
+        "Media Playback"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "VP Supervisor",
+        "Technical Artist"
+      ],
+      "startDate": "June 2024",
+      "endDate": "June 2024"
+    },
+    {
+      "name": "Nokia Ad (NDA)",
+      "description": "Systems Engineer on a Nokia advertising shoot (under NDA).",
+      "technologies": [
+        "Virtual Production"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "VP Supervisor"
+      ],
+      "startDate": "July 2024",
+      "endDate": "July 2024"
+    },
+    {
+      "name": "Lima World U20",
+      "description": "Crew on the Lima World U20 event.",
+      "technologies": [],
+      "images": [],
+      "links": [],
+      "roles": [
+        "VP Supervisor"
+      ],
+      "startDate": "August 2024",
+      "endDate": "August 2024"
+    },
+    {
+      "name": "Unlimit Global Campaign",
+      "description": "Content Creator and VP Supervisor on the Unlimit global virtual production campaign.",
+      "technologies": [
+        "Unreal",
+        "Virtual Production"
+      ],
+      "images": [],
+      "links": [
+        "https://www.instagram.com/reel/DHUa8d4yOU0/?igsh=OGw1aDVqbHQxNmxi"
+      ],
+      "roles": [
+        "VP Supervisor",
+        "Technical Artist"
+      ],
+      "startDate": "September 2024",
+      "endDate": "September 2024"
+    },
+    {
+      "name": "Unity Unite Barcelona",
+      "description": "Live event operator at Unity's Unite event in Barcelona.",
+      "technologies": [
+        "Unity"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "VP Supervisor"
+      ],
+      "startDate": "September 2024",
+      "endDate": "September 2024"
+    },
     {
       "name": "ARRI & Friends",
       "description": "Hosted Unreal sessions and demos using nDisplay and ARRI Camera technologies and workflows, showcasing industry R&D and future technologies.",
@@ -1111,12 +1235,8 @@
       "description": "I also enjoy Muay Thai and MMA in my free time to keep fit and release stress, as I find it very calming and beneficial to keep both an active mind and body. As well as loving to play a game of golf or snooker whenever I get the chance."
     },
     {
-      "title": "AI and Stable Diffusion / Generative Art",
-      "description": "Recently been using Stable Diffusion AI combined with upscalers and ChatGPT to generate previs/concept textures for game jams."
-    },
-    {
-      "title": "NeRF",
-      "description": "I'm interested in NeRF (Neural Radiance Fields)."
+      "title": "AI / Generative Art",
+      "description": "Deeply invested in the fast-moving generative AI space, both as a creative medium and a development accelerator. On the coding side I work daily with agentic and assistant tools — Claude, Cursor, Codex, Gemini and the wider OpenAI ecosystem — to prototype, refactor and ship faster. For generative imagery and video I combine Stable Diffusion with upscalers, alongside newer models such as SeedDance and Leonardo, to produce previs, concept textures and motion studies for game jams and virtual production. I enjoy staying on the bleeding edge, comparing model strengths, and folding the best of each into practical pipelines."
     },
     {
       "title": "Gaussian Splats",

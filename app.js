@@ -488,7 +488,10 @@ function renderHero() {
 
 // Render skills section
 function renderSkills() {
-    const skills = portfolioData.skills || [];
+    // Sort a copy by proficiency, highest first (don't mutate the source data).
+    const skills = [...(portfolioData.skills || [])].sort(
+        (a, b) => (Number(b.proficiency) || 0) - (Number(a.proficiency) || 0)
+    );
     if (skills.length === 0) return '';
 
     return `
