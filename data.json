@@ -507,7 +507,10 @@
         "nDisplay",
         "ARRI Camera technologies"
       ],
-      "images": [],
+      "images": [
+        "./ArriFriends/arri (1).jpg",
+        "./ArriFriends/arri (2).jpg"
+      ],
       "links": [],
       "roles": [
         "Software Engineer",

@@ -34,6 +34,7 @@ Portfolio/
 ├── vendor/docx.iife.js     # Vendored docx library (lazy-loaded only when a CV is exported)
 ├── data.json               # Portfolio content (edit this!)
 ├── README.md               # Documentation
+├── PROJECT_IMAGE_RESEARCH.md  # Research notes + candidate image sources for image-less projects
 ├── CNAME                   # Custom domain for GitHub Pages (joeloe.co.uk)
 ├── Headshot-t-u.png        # Headshot — referenced by data.json (lives at repo root)
 ├── Morphtransparent.GIF    # Alternate headshot (shown in "Software Engineer" / Matrix mode)
@@ -70,6 +71,11 @@ Place your images in the project directory and reference them in `data.json`:
 - Headshot photos
 - Company logos
 - Project screenshots
+
+> **Tracking down imagery?** Some projects ship without images (`"images": []`).
+> [`PROJECT_IMAGE_RESEARCH.md`](PROJECT_IMAGE_RESEARCH.md) catalogues each image-less project with
+> inferred context and **candidate online sources** to review/download manually — plus licensing
+> caveats and a few data-accuracy corrections (e.g. the British Arrows "Live Again" duplicate).
 
 ### 4. Test Locally
 
