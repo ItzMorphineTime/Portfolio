@@ -26,6 +26,7 @@ Living plan for acting on [IMPROVEMENTS.md](IMPROVEMENTS.md). Update the checkbo
 | 4 | Hardening & polish | #5, #7, #8, #9, #10 | ◐ (only 4.6 career-data + thumbnails remain — your call) |
 | 5 | Refactor | #13 | ☑ (icon dedupe + template abstraction optional) |
 | 6 | Feature: CV `.docx` export (ATS + Designed) | #14 | ☑ Done & verified |
+| 6.5 | UI redesign (gallery viewer, left side-nav, role headshot) | — | ☑ Done & verified |
 | 7 | Backlog / future | Low list | ☐ |
 
 ---
@@ -34,6 +35,44 @@ Living plan for acting on [IMPROVEMENTS.md](IMPROVEMENTS.md). Update the checkbo
 - [x] **CV designed-variant date overflow** — line-item dates wrapped their last token onto a new line. Fixed by putting each date in a fixed-width (1.8"), right-aligned **borderless table cell** (per-row helper table, not the old full-page layout table) with abbreviated months, so dates can't wrap. (`cv.js`) — confirmed by you.
 - [x] **Footer-nav hover tooltips clipped** — `.footer-nav { overflow-x: auto }` makes the browser compute `overflow-y: auto` too, clipping the `::before` tooltip (positioned above the bar) inside the nav. Fixed: base nav → `overflow: visible` (tooltips escape on desktop), horizontal scroll moved to the ≤768px breakpoint (touch = no hover), tooltip `z-index: 10`. (`styles.css`) — verified in-browser: nav `overflow-y` is now `visible`, tooltip no longer clipped.
 - [x] **Image-modal niceties** — added (1) **adjacent-image preloading**: on open/navigate the next & previous images are warmed via `new Image()` so paging is instant; (2) **touch swipe** on the image stage (≥50px horizontal, <40px vertical slop → next/prev; ignores vertical scroll & multi-touch); (3) **loading UX**: a CSS spinner shows while a new image decodes and the image fades in (`.is-loaded`), with cached images settled synchronously so the spinner doesn't flash; (4) **single-image polish**: nav arrows + counter auto-hide and the focus trap skips hidden controls when a project has one image. New `#modalStage`/`#modalSpinner` markup; `aria-live` on the counter. (`index.html`, `app.js`, `styles.css`) — verified: cross-file wiring + nav/swipe logic assertions all pass, `node --check app.js` clean.
+
+---
+
+## UI redesign pass (post-Phase 6) — gallery viewer, side nav, role-based headshot
+
+### A. Image-modal nav buttons → consistent in-image placement
+- [x] **Problem:** prev/next arrows lived **outside** the image (`left/right: -70px`) on desktop but jumped **inside** (`10px`) at ≤1024px — inconsistent, and on wide ~90vw images the outside buttons could be clipped off-screen.
+- [x] First pass moved them to overlay the image edges (`left/right: 1rem`) with a translucent blurred backdrop + hover scale at all sizes; removed the redundant ≤1024px override.
+- [x] **Superseded by the full gallery rebuild below** (the arrows lost their anchor box because `.modal-content` had no width and collapsed to the image's intrinsic size — root cause fixed in §B).
+- **Files:** `index.html`, `styles.css`
+
+### B. Modal rebuilt as a sleek full-viewport gallery viewer — `Ref: backlog "modal niceties"`
+- [x] **Root cause of "disappearing" arrows:** `.modal-content` had no explicit width, so it shrank to the centered image's intrinsic size; the `absolute` arrows had no reliable box to anchor to and were lost behind/around the image. Fixed structurally by making `.modal-content` a full-viewport (`100% × 100%`) **flex column**.
+- [x] **New three-row layout** (`index.html`): **top bar** (pill counter left + circular SVG close button that rotates 90° on hover, right) → **stage** (`flex: 1`, image centered with `object-fit: contain`, soft drop shadow) → **thumbnail strip**.
+- [x] **Edge-anchored arrows:** prev/next are now 52px circular glass buttons (SVG chevrons) children of `.modal-stage`, anchored to the stage edges (`left/right: 0.5rem`), `z-index: 2` so they always paint above the image at every viewport size.
+- [x] **Thumbnail strip** (`#modalThumbs`, `role="tablist"`): horizontally scrollable row built in JS via DOM (no string interpolation/XSS); each thumb is a `role="tab"` button with `aria-label`/`aria-selected`; click jumps to that image. Active thumb gets accent border (green in matrix mode) + auto-`scrollIntoView`. Hidden for single-image projects.
+- [x] **JS** (`app.js`): `buildModalThumbs(projectName)` (called from `openModal`, lazy `loading`/`decoding` on thumbs) and `updateActiveThumb()` (called from `updateModalImage`). All prior behaviour preserved — keyboard nav, swipe, spinner/fade, adjacent preloading, single-image hide, and the Tab focus-trap (which now also cycles the thumb buttons).
+- [x] Responsive ≤768px: tighter `.modal-content` padding, 44px arrows, 56×42 thumbs.
+- [x] **Verified:** `node --check app.js` clean; all references consistent across `index.html`/`styles.css`/`app.js`.
+- **Files:** `index.html`, `styles.css`, `app.js`
+- **Done when:** arrows always visible, image fills the viewport, thumbnails navigate the gallery. ✅
+
+### C. Footer nav → left-side, vertical, collapsible
+- [x] Moved the floating nav from a **bottom-center horizontal pill** to a **left-anchored, vertically-centered vertical bar** (`top: 50%; left: 1.5rem; transform: translateY(-50%)`, safe-area inset aware).
+- [x] Added an **always-visible chevron toggle** (`#navToggle`) above a collapsible `.nav-items` group (icons wrapped in `#navItems`). Collapsing animates `max-height`/opacity; the chevron rotates 180° via `.footer-nav.collapsed`.
+- [x] **Starts expanded** (per your choice); the toggle works on **all screen sizes** (not mobile-only). Wired in `app.js` `setupNavToggle()` with `aria-expanded`/`aria-controls` + label swap ("Collapse/Expand navigation").
+- [x] Tooltips re-pointed to the **right** of the bar (it now hugs the left edge) for both `.nav-btn` and `.nav-toggle`.
+- [x] Responsive ≤768px: bar shifts to `0.75rem` left with safe-area insets, tightened padding/sizes; replaced the old bottom/horizontal-scroll mobile rules.
+- **Files:** `index.html`, `styles.css`, `app.js`
+- **Done when:** nav sits on the left, collapses/expands via an always-visible toggle, reads well on mobile. ✅
+
+### D. Role-based primary headshot (Technical Artist)
+- [x] Added support for a third headshot: new `headshot2` field in `data.json` (`./Headshot-t-u.png`; primary is now `./HeadshotNew.png`).
+- [x] `renderHero()` renders a third stacked `<img id="taHeadshot">` (hidden, lazy-loaded) in `.headshot-container`, reusing the existing crossfade (`.headshot` / `.headshot.hidden`).
+- [x] `updateHeadshot(role)` rewritten to choose **one of three** by role: **matrix role → `altHeadshot` (GIF)**, **Technical Artist → `taHeadshot` (`headshot2`)**, else **primary**. Graceful fallback to primary if `headshot2` is absent (template stays reusable).
+- [x] **Verified:** `node --check app.js` clean.
+- **Files:** `data.json`, `app.js`
+- **Done when:** selecting "Technical Artist" swaps the hero headshot to `headshot2`. ✅
 
 ---
 
@@ -207,7 +246,7 @@ Living plan for acting on [IMPROVEMENTS.md](IMPROVEMENTS.md). Update the checkbo
 
 ## Phase 7 — Backlog / future 🟢 (Low-priority list)
 - [ ] Document that a local server is required (`file://` breaks `fetch`) — or add an inline-data fallback.
-- [x] Modal niceties: preload adjacent images, loading spinner for large images, touch swipe. — **done** (see *Recent fixes* above).
+- [x] Modal niceties: preload adjacent images, loading spinner for large images, touch swipe. — **done** (see *Recent fixes* above); modal later **rebuilt as a full gallery viewer with a thumbnail strip** (see *UI redesign pass* §B).
 - [ ] Light/dark theme toggle.
 - [ ] Privacy-friendly analytics (e.g. Plausible).
 - [ ] JSON Schema for `data.json` (editor autocomplete + validation; guards against path/role mistakes).
