@@ -125,7 +125,7 @@
         if (model.skills.length) { kids.push(heading('Skills')); kids.push(para(model.skills.join(', '), { spacing: { after: 120 } })); }
 
         if (model.awards.length) {
-            kids.push(heading('Awards'));
+            kids.push(heading('Awards & Recognition'));
             model.awards.forEach((a) => {
                 kids.push(new Paragraph({
                     spacing: { after: 20 },
@@ -263,7 +263,7 @@
         }
 
         if (model.awards.length) {
-            kids.push(heading('Awards'));
+            kids.push(heading('Awards & Recognition'));
             kids.push(wrapTable(model.awards.map((a) => dateRow([
                 new Paragraph({
                     children: [

@@ -399,6 +399,29 @@
   ],
   "projects": [
     {
+      "name": "Believe Me (ITV True Crime)",
+      "award": {
+        "label": "Featured in British Cinematographer"
+      },
+      "description": "VP Supervisor and LED/studio provider for ITV's true-crime drama Believe Me — 2D playback integrated with DMX lighting fixtures for real-time lighting and backgrounds. Featured in British Cinematographer's production profile 'Creating a Believable World' ('Studio supreme').",
+      "technologies": [
+        "2D Playback",
+        "DMX Lighting",
+        "LED Volume",
+        "Virtual Production"
+      ],
+      "images": [],
+      "links": [
+        "https://britishcinematographer.co.uk/supplement_posts/production-profile-believe-me/"
+      ],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "October 2025",
+      "endDate": "October 2025"
+    },
+    {
       "name": "Riyadh Air Inflight Safety Video",
       "description": "VP Supervisor on Riyadh Air's inflight safety video, operating Unreal Engine and Pixera for the LED volume shoot in Riyadh.",
       "technologies": [
@@ -416,6 +439,58 @@
       ],
       "startDate": "October 2025",
       "endDate": "October 2025"
+    },
+    {
+      "name": "Final Pixel VP Academy",
+      "description": "VP Supervisor for Final Pixel's VP Academy — providing the LED wall and studio location at the Fivefold R&D hub to host and train students in virtual production.",
+      "technologies": [
+        "Virtual Production",
+        "LED Volume",
+        "Training"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "September 2025",
+      "endDate": "September 2025"
+    },
+    {
+      "name": "Batman / Clayface Feature Film",
+      "description": "Built the LED wall at Warner Brothers Studios and VP supervised 2D content playback for the Batman/Clayface feature film.",
+      "technologies": [
+        "LED Volume",
+        "2D Playback",
+        "Virtual Production"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "September 2025",
+      "endDate": "September 2025"
+    },
+    {
+      "name": "Rapture (TV Thriller)",
+      "description": "VP Supervisor on the thriller series Rapture — built the LED volume and advised on achieving a driving sequence through a burning forest, using Unreal and nDisplay to render out high-fidelity 2D plates.",
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "LED Volume",
+        "2D Plates"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "September 2025",
+      "endDate": "September 2025"
     },
     {
       "name": "7Dogs Feature Film — Riyadh",
