@@ -2,3 +2,8 @@
 # 193 MB master exceeds GitHub's 100 MB hard limit and can never be pushed.
 # The site uses the web encode (UnlimitVis-web.mp4). Keep the master out of git.
 Unlimit/UnlimitVis.mp4
+
+# These 100MB+ video masters exceed GitHub's hard push limit; the site uses the -web.mp4 encodes.
+7Dogs/7DogsRig.mp4
+AlhisnBigTime/BigTimeTest.mp4
+AlhisnBigTime/BigTimeTest_3D.mp4

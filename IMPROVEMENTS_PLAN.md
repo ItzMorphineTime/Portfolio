@@ -19,7 +19,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | Phase | Focus | Status |
 |-------|-------|--------|
 | 1 | Content update — wire new images, fix bad asset, dedupe entries | ☑ (only 1.4 QM leftovers await your call) |
-| 2 | Content update — new projects & missing dates (⚑ user input) | ◐ (featured flag + ordering done; career facts pending) |
+| 2 | Content update — new projects & missing dates (⚑ user input) | ◐ (7 new projects added 2026-08-27; 14 legacy dates + role tags pending) |
 | 3 | Gallery video support (`VolvoSafetyBTS.mp4`) | ☑ Done & verified |
 | 3.5 | Wire 2nd media drop (Ulster, Brockwell, Lima, Unlimit, GhostFrame, Coldplay+, ARRI BTS) | ☑ Done & verified 2026-08-27 |
 | 4 | Media & performance (thumbnails, video encodes, headshot, OG image) | ☑ Done & verified (deletions deferred) |
@@ -77,8 +77,8 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 
 *All career facts — needs Joseph's input. The structure is ready; each project takes `name`, `description`, `technologies[]`, `images[]`, `links[]`, `roles[]`, `startDate`, `endDate` (and optional `highlights[]` used by the CV export).*
 
-- [ ] **Add new projects** — nothing in `data.json` postdates Sep 2024 (Unlimit / Unite Barcelona), yet the Fivefold "Head of Technology" role started Sep 2024. Candidates to capture: recent Fivefold shoots/installs, AI-consulting work, anything shareable from the last ~12 months.
-- [ ] **Fill the 14 missing project dates** (list in the audit above) — even a year alone helps ordering and the CV export.
+- [x] **Add new projects** — 7 added 2026-08-27 from Joseph's notes, newest-first at the top of the grid: **Riyadh Air Inflight Safety Video** (Oct 2025), **7Dogs Feature Film — Riyadh** (Aug 2025, `featured` + 🏆 *2× Guinness World Records* award badge), **Alhisn BigTime Studios — Riyadh** (Jan–Apr 2025, `featured`), **Sir Kenneth Branagh Short Film** (May 2024), **Riyadh Promotional Video** (Jan 2024), **Mastercard Shoot** (Jan 2024), **ScreenSkills Final Pixel VP Training** (Nov 2023). All with imagery; 5 with web-encoded videos. Also wired the new photos into **ChemBros** (framed Golden Arrow trophy — note: file lives at `Coldplay/GoldenArrowAward.jpg` on disk — plus `chembro (7–9)`) and **Dark X Light** (`dl (2–3)`).
+- [ ] **Fill the 14 missing project dates** (list in the audit above) — even a year alone helps ordering and the CV export. *(All 7 new projects have dates.)*
 - [x] **`featured` flag + data-driven ordering** — done (2026-08-26). Cards render in exact `data.json` array order (verified; documented in the README), so position is controlled by moving entries. `"featured": true` gives a card an accent-glow border, a ★ Featured badge, and a double-width slot on grids ≥900px wide (single column on mobile is untouched). Also added a reusable `award: { "label", "icon" }` field → light-gold award chip over the card image. Initial featured set: ChemBros, Coldplay, SKY VP Demo, Doha VR — edit freely. ⚑ *Note: the strongest work still sits mid-array; reorder `data.json` when you're ready to curate the top of the grid.*
 - **Files:** `data.json`, `app.js`, `styles.css`, `README.md`
 

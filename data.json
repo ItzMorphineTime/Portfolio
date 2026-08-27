@@ -182,8 +182,8 @@
       ]
     },
     {
-      "name": "GPT-5",
-      "description": "Experienced in using GPT-5 for AI and automation.",
+      "name": "AI LLMs",
+      "description": "Expert in using frontier LLMs — GPT-5, Claude, and Gemini — for AI workflows, coding, and automation.",
       "proficiency": 95,
       "roles": [
         "AI Consultant"
@@ -214,9 +214,9 @@
       ]
     },
     {
-      "name": "Leonardo",
-      "description": "Skilled in using Leonardo AI for generative imagery and concept art.",
-      "proficiency": 80,
+      "name": "AI Image/Video Generation",
+      "description": "Expert across the latest AI image and video models — Midjourney, Leonardo, Kling, Nano Banana, SeedDance and more — for generative imagery, video, previs, and concept art.",
+      "proficiency": 95,
       "roles": [
         "AI Consultant",
         "Technical Artist"
@@ -395,6 +395,185 @@
   ],
   "projects": [
     {
+      "name": "Riyadh Air Inflight Safety Video",
+      "description": "VP Supervisor on Riyadh Air's inflight safety video, operating Unreal Engine and Pixera for the LED volume shoot in Riyadh.",
+      "technologies": [
+        "Unreal",
+        "Pixera",
+        "Virtual Production"
+      ],
+      "images": [
+        "./RiyadhAir/RiyadhAir.jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "October 2025",
+      "endDate": "October 2025"
+    },
+    {
+      "name": "7Dogs Feature Film — Riyadh",
+      "featured": true,
+      "award": {
+        "label": "2× Guinness World Records"
+      },
+      "description": "VP Supervisor on the 7Dogs feature film in Riyadh, integrating a custom motion-control rig for the driving sequences. The production earned two Guinness World Records: largest film stunt explosion, and most high explosives detonated in a single film take.",
+      "technologies": [
+        "Virtual Production",
+        "Motion Control",
+        "LED Volume"
+      ],
+      "images": [
+        "./7Dogs/7Dogs_01.jpg",
+        "./7Dogs/7Dogs_02.jpg",
+        "./7Dogs/7Dogs_03.jpg",
+        "./7Dogs/7Dogs_04.jpg",
+        {
+          "src": "./7Dogs/7DogsRig-web.mp4",
+          "type": "video",
+          "poster": "./7Dogs/7Dogs_01.jpg"
+        }
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "August 2025",
+      "endDate": "August 2025"
+    },
+    {
+      "name": "Alhisn BigTime Studios — Riyadh",
+      "featured": true,
+      "description": "Built and commissioned the ARRI Alhisn BigTime large-scale virtual production studio in Riyadh. Built and prepared 10 3D render servers and a huge curved LED wall covering a massive pixel-space canvas of Ruby 2.3c curved LED panels.",
+      "technologies": [
+        "Virtual Production",
+        "Ruby 2.3c Curved LED",
+        "Server Infrastructure",
+        "Studio Commissioning"
+      ],
+      "images": [
+        "./AlhisnBigTime/BigTime_01.jpg",
+        "./AlhisnBigTime/BigTime_02.jpg",
+        "./AlhisnBigTime/BigTime_03.jpg",
+        "./AlhisnBigTime/BigTime_04.jpg",
+        "./AlhisnBigTime/BigTime_05.jpg",
+        {
+          "src": "./AlhisnBigTime/BigTimeTest-web.mp4",
+          "type": "video",
+          "poster": "./AlhisnBigTime/BigTime_01.jpg"
+        },
+        {
+          "src": "./AlhisnBigTime/BigTimeTest_3D-web.mp4",
+          "type": "video",
+          "poster": "./AlhisnBigTime/BigTime_01.jpg"
+        }
+      ],
+      "links": [],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "January 2025",
+      "endDate": "April 2025"
+    },
+    {
+      "name": "Sir Kenneth Branagh Short Film",
+      "description": "VP Supervisor at the ARRI studio for a Sir Kenneth Branagh short film production.",
+      "technologies": [
+        "Virtual Production",
+        "LED Volume"
+      ],
+      "images": [
+        "./KennethBranagh/IMG_01.jpg",
+        "./KennethBranagh/IMG_02.jpg"
+      ],
+      "links": [],
+      "roles": [
+        "VP Supervisor"
+      ],
+      "startDate": "May 2024",
+      "endDate": "May 2024"
+    },
+    {
+      "name": "Riyadh Promotional Video",
+      "description": "VP Supervisor for 3D Unreal content on a promotional video celebrating media and entertainment in Saudi Arabia, shot on a large curved LED volume.",
+      "technologies": [
+        "Unreal",
+        "Virtual Production"
+      ],
+      "images": [
+        "./RiyadhPromo/RiyadhPromo_02.jpg",
+        "./RiyadhPromo/RiyadhPromo.jpg",
+        "./RiyadhPromo/RiyadhPromo_03.jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "January 2024",
+      "endDate": "January 2024"
+    },
+    {
+      "name": "Mastercard Shoot",
+      "description": "VP operator and motion-control supervisor, rendering out 2.5D plates perspective-matched to a Bolt motion-control rig, with a data-driven timeline based on the motion control.",
+      "technologies": [
+        "Virtual Production",
+        "Motion Control",
+        "Bolt Rig",
+        "2.5D Plates"
+      ],
+      "images": [
+        "./Mastercard/MasterCard_02.jpg",
+        "./Mastercard/MasterCard_01.jpg",
+        "./Mastercard/MasterCard_03.jpg",
+        "./Mastercard/MasterCard_04.jpg",
+        "./Mastercard/MasterCard_05.jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "January 2024",
+      "endDate": "January 2024"
+    },
+    {
+      "name": "ScreenSkills Final Pixel VP Training",
+      "description": "VP Supervisor helping host ScreenSkills virtual production training sessions with Final Pixel, teaching VP workflows on the LED volume.",
+      "technologies": [
+        "Virtual Production",
+        "Unreal",
+        "Training"
+      ],
+      "images": [
+        "./ScreenSkills/ScreenSkills_02.jpg",
+        "./ScreenSkills/ScreenSkills_01.jpg",
+        "./ScreenSkills/ScreenSkills_03.jpg",
+        {
+          "src": "./ScreenSkills/ScreenSkillsTitanic-web.mp4",
+          "type": "video",
+          "poster": "./ScreenSkills/ScreenSkills_02.jpg"
+        },
+        {
+          "src": "./ScreenSkills/SyncTest-web.mp4",
+          "type": "video",
+          "poster": "./ScreenSkills/ScreenSkills_02.jpg"
+        }
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "November 2023",
+      "endDate": "November 2023"
+    },
+    {
       "name": "Ulster University VP Brainbar Talk",
       "description": "Delivered a virtual production talk for Ulster University's Brainbar.",
       "technologies": [
@@ -546,13 +725,17 @@
       ],
       "images": [
         "./BritishArrows/live-again-still.jpg",
+        "./Coldplay/GoldenArrowAward.jpg",
         "./BritishArrows/british-arrows-arri-by-ian-wallman-00854-data.jpg",
         "./ChemBros/chembro (1).jpg",
         "./ChemBros/chembro (2).jpg",
         "./ChemBros/chembro (3).jpg",
         "./ChemBros/chembro (4).jpg",
         "./ChemBros/chembro (5).jpg",
-        "./ChemBros/chembro (6).jpg"
+        "./ChemBros/chembro (6).jpg",
+        "./ChemBros/chembro (7).jpg",
+        "./ChemBros/chembro (8).jpg",
+        "./ChemBros/chembro (9).jpg"
       ],
       "links": [
         "https://www.youtube.com/watch?v=pqU4g5iJk2Y",
@@ -946,7 +1129,9 @@
         "DMX"
       ],
       "images": [
-        "./DarkXLight/dl (1).jpg"
+        "./DarkXLight/dl (1).jpg",
+        "./DarkXLight/dl (2).jpg",
+        "./DarkXLight/dl (3).jpg"
       ],
       "links": [
         "https://vimeo.com/798322928"
