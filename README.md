@@ -15,6 +15,7 @@ A sleek, modern portfolio website built with vanilla HTML, CSS, and JavaScript. 
 | 📊 **Animated Skill Bars** | Visual proficiency indicators with smooth animations |
 | 🖼️ **Media Gallery** | Full-viewport viewer with thumbnails, keyboard/swipe navigation — plays project **videos** as well as stills |
 | ⭐ **Featured Projects & Awards** | `featured` flag highlights a card (accent glow + wide slot); `award` renders a gold award chip |
+| 💻 **Software Projects** | Optional GitHub repo section — compact cards with live-refreshing star badges (`githubUser`) |
 | 📍 **Smart Navigation** | Floating bottom nav bar with scroll-aware section highlighting |
 | 📱 **Fully Responsive** | Optimized for mobile, tablet, and desktop viewports |
 | 🎨 **Dynamic Theming** | Gold accent theme with Matrix green variant |
@@ -87,6 +88,11 @@ uses these small files for **project cards and the gallery's thumbnail strip**, 
 full-resolution originals on the gallery stage. It's incremental (only new/changed images are
 re-encoded), and if the manifest is missing the site silently falls back to the originals — so
 skipping this step never breaks anything, it's just slower for visitors.
+
+The same run also **extracts a poster frame from every gallery video** (to
+`<video basename>-poster.jpg`, recorded in the manifest) so video thumbnails and posters show the
+actual video content. Setting an explicit `"poster"` on a video entry in `data.json` overrides the
+extracted frame.
 
 > **Videos:** keep gallery videos small — re-encode masters to a web-friendly H.264 (e.g.
 > `ffmpeg -i master.mp4 -c:v libx264 -crf 24 -preset medium -vf scale=1280:-2 -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 128k clip-web.mp4`)
@@ -299,6 +305,37 @@ All fields are optional. Only provided fields will be displayed.
 | `roles` | array | Role filters |
 
 > **Ordering:** projects render in exactly the order they appear in `data.json` — move an entry up or down in the array to reposition its card. `featured` changes emphasis, not position.
+
+### Software Projects (GitHub repos)
+
+An optional second portfolio section of compact repo cards — name, star badge, description, tech tags, and links (github.com renders as "GitHub", `*.github.io` as "Live Demo"). Omit the array entirely and the section (and its nav button) disappears.
+
+```json
+{
+  "githubUser": "ItzMorphineTime",
+  "softwareProjects": [
+    {
+      "name": "Skybox Gallery",
+      "description": "Skybox previewer and generator using the BlockadeLabs AI API.",
+      "technologies": ["JavaScript", "BlockadeLabs AI"],
+      "stars": 15,
+      "links": [
+        "https://github.com/ItzMorphineTime/skybox-gallery",
+        "https://itzmorphinetime.github.io/skybox-gallery/"
+      ],
+      "roles": ["Software Engineer"],
+      "startDate": "March 2023"
+    }
+  ]
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `githubUser` | string | Top-level, optional — when set, star badges refresh from the live GitHub API on page load (fails silently; the static `stars` values remain) |
+| `stars` | number | Static star-count snapshot shown in the card's badge (omit to hide the badge) |
+| `images` | array | Optional — same media convention as projects; adds a gallery strip to the card |
+| *(rest)* | — | `name`, `description`, `technologies`, `links`, `roles`, `startDate` work exactly as in Projects |
 
 ### Interests
 

@@ -4,7 +4,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 
 ## How to use this file
 - Tick `- [ ]` → `- [x]` as tasks complete; keep the **Status** column in the summary in sync.
-- Test against a local server (`python -m http.server 8000`), **not** `file://` (the `fetch('./data.json')` call needs HTTP).
+- Test against a local server — preferably `python tools/serve.py 8000` (sends no-cache headers so edits show up immediately; plain `python -m http.server` heuristically caches stale files for hours). Never `file://` (the `fetch('./data.json')` call needs HTTP).
 - Image/logo paths in `data.json` are **case-sensitive** in production (GitHub Pages runs on Linux) — match on-disk capitalisation exactly.
 - **Git is handled manually by the user** — changes are left uncommitted for review; no commits/pushes by the assistant.
 - Items marked **⚑ needs your input** are career facts or judgement calls only Joseph can settle.
@@ -23,6 +23,8 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | 3 | Gallery video support (`VolvoSafetyBTS.mp4`) | ☑ Done & verified |
 | 3.5 | Wire 2nd media drop (Ulster, Brockwell, Lima, Unlimit, GhostFrame, Coldplay+, ARRI BTS) | ☑ Done & verified 2026-08-27 |
 | 4 | Media & performance (thumbnails, video encodes, headshot, OG image) | ☑ Done & verified (deletions deferred) |
+| 4.5 | New **Software Projects** section (21 GitHub repos, live star badges) | ☑ Done & verified 2026-08-27 |
+| 4.6 | **Video posters fixed** — real frames auto-extracted per video; no-cache dev server | ☑ Done & verified 2026-08-27 |
 | 5 | Data quality — role tagging & wording (⚑ user input) | ☐ |
 | 6 | Backlog / future | ☐ |
 
@@ -114,6 +116,31 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 - [ ] ⚑ **Deletions still deferred (DO NOT DELETE, per your note).** Now-unreferenced files to revisit *when you're ready*: `Headshot-t-u.png` (6.7 MB), the `BrockwellLive/Brockwell.mp4` (49.6 MB) & `Volvo/VolvoSafetyBTS.mp4` (14.9 MB) masters (⚠ untracked — a `git add -A` today would commit ~65 MB of unused masters; consider gitignoring them too), plus the legacy `MorphWolf*` ×6, `Headshot.jpg`, `Headshot-t.png`, `CT_NEP_portrait…`, unused `Reference/` photos, `QueenMary/QM (1–3).jpg`.
 - [ ] *(Considered, rejected)* `content-visibility: auto` on sections — the render-skip win is marginal for this DOM size and it would make the side-nav's `offsetTop` scroll targets unreliable. Media weight was the actual bottleneck.
 - **Files:** `tools/generate-media.mjs`, `thumbs/`, `app.js`, `index.html`, `data.json`, `og-image.jpg`, `.gitignore`, `*-web.mp4`, `Headshot-t-u-web.webp`
+
+---
+
+## Phase 4.5 — Software Projects section ☑ DONE & VERIFIED (2026-08-27)
+
+- [x] New `softwareProjects` array in `data.json` — **all 21 original repos** from [github.com/ItzMorphineTime](https://github.com/ItzMorphineTime), ordered strongest-first (stars/relevance blend), with descriptions distilled from each repo's README, language/tech tags, a static `stars` snapshot, and GitHub + Live-Demo links (Pages URLs verified live with HTTP 200 checks). Reorder/prune entries freely — display follows array order.
+- [x] New `renderSoftwareProjects()` section (`#software`, "Open Source / Software Projects", after Featured Projects): compact repo cards — name + gold ★ badge, description, `tech-tag` pills, links labelled **GitHub** / **Live Demo**. Role-filterable like every other section; matrix-mode parity (badges/pills go green).
+- [x] **Live star refresh** — optional top-level `githubUser` field; on load the site fetches the user's repos from the GitHub API once and updates the ★ badges in place. Fails silently (offline/rate-limit) leaving the static counts.
+- [x] Optional `images` on a software project reuses the full media-gallery convention (`openModal` generalised to multiple collections).
+- [x] New side-nav "Software" button (`</>` icon) + nav buttons now auto-hide when their section isn't rendered (template stays reusable with sparse data).
+- [x] Verified in-browser: 21 cards render, grid layout, filter (AI Consultant → the two skybox repos), matrix parity, live-star fetch, zero console errors. Documented in README.
+- [ ] ⚑ *(Optional follow-ups, your call)* Prune weaker/personal repos (SaraCV, BabyQuiz, Sussex Exterior Clean, Renamer) or reorder; add screenshots to the strong repos via `images`; include software projects in the CV export's projects list (`cv.js` currently lists only `projects`).
+- **Files:** `data.json`, `app.js`, `index.html`, `styles.css`, `README.md`
+
+---
+
+## Phase 4.6 — Real video posters + no-cache dev server ☑ DONE & VERIFIED (2026-08-27)
+
+*Problem: video thumbnails/posters reused the project's lead photo, so what you clicked bore no relation to what played.*
+
+- [x] [`tools/generate-media.mjs`](tools/generate-media.mjs) now **extracts a representative frame from every gallery video** (`-ss 1.5` + ffmpeg's `thumbnail` filter over ~90 frames, 1280 px wide) to `<video basename>-poster.jpg`, thumbs it for the strip, and records it in the manifest (new shape: `{ "thumbs": {...}, "posters": {...} }`). Incremental like the thumbs.
+- [x] `app.js` resolves a video's poster as: explicit `poster` in `data.json` → extracted frame from the manifest → none. The 8 video entries in `data.json` collapsed to plain strings (the object form remains for manual poster overrides).
+- [x] All 8 videos verified: distinct, representative strip thumbnails (e.g. Alhisn's moto-test vs safari-frustum test), matching stage posters, playback intact, no broken images.
+- [x] **New [`tools/serve.py`](tools/serve.py)** — threaded local dev server sending `Cache-Control: no-cache` (plain `python -m http.server` sends no caching headers, so browsers heuristically serve stale files for hours — the recurring "my changes don't show" problem). `.claude/launch.json` gained a "portfolio-fresh" config on port 8010.
+- **Files:** `tools/generate-media.mjs`, `tools/serve.py`, `app.js`, `data.json`, `thumbs/manifest.json`, 8 × `*-poster.jpg`, `README.md`
 
 ---
 

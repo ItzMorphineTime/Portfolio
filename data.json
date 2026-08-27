@@ -4,7 +4,10 @@
   "siteUrl": "https://joeloe.co.uk/",
   "jobTitle": "Head of Technology",
   "location": "Brighton, United Kingdom",
-  "organization": { "name": "Fivefold Studios", "url": "https://www.fivefoldstudios.co.uk/" },
+  "organization": {
+    "name": "Fivefold Studios",
+    "url": "https://www.fivefoldstudios.co.uk/"
+  },
   "matrixRole": "Software Engineer",
   "cvAccent": "#d4a853",
   "heroHeading": "Building {Digital} Experiences",
@@ -15,6 +18,7 @@
   "headshot2": "./Headshot-t-u-web.webp",
   "headshotalt": "./Morphtransparent.GIF",
   "ogImage": "./og-image.jpg",
+  "githubUser": "ItzMorphineTime",
   "contact": {
     "email": "jl@fivefoldstudios.co.uk",
     "linkedin": "https://www.linkedin.com/in/josephloe/",
@@ -430,11 +434,7 @@
         "./7Dogs/7Dogs_02.jpg",
         "./7Dogs/7Dogs_03.jpg",
         "./7Dogs/7Dogs_04.jpg",
-        {
-          "src": "./7Dogs/7DogsRig-web.mp4",
-          "type": "video",
-          "poster": "./7Dogs/7Dogs_01.jpg"
-        }
+        "./7Dogs/7DogsRig-web.mp4"
       ],
       "links": [],
       "roles": [
@@ -460,16 +460,8 @@
         "./AlhisnBigTime/BigTime_03.jpg",
         "./AlhisnBigTime/BigTime_04.jpg",
         "./AlhisnBigTime/BigTime_05.jpg",
-        {
-          "src": "./AlhisnBigTime/BigTimeTest-web.mp4",
-          "type": "video",
-          "poster": "./AlhisnBigTime/BigTime_01.jpg"
-        },
-        {
-          "src": "./AlhisnBigTime/BigTimeTest_3D-web.mp4",
-          "type": "video",
-          "poster": "./AlhisnBigTime/BigTime_01.jpg"
-        }
+        "./AlhisnBigTime/BigTimeTest-web.mp4",
+        "./AlhisnBigTime/BigTimeTest_3D-web.mp4"
       ],
       "links": [],
       "roles": [
@@ -554,16 +546,8 @@
         "./ScreenSkills/ScreenSkills_02.jpg",
         "./ScreenSkills/ScreenSkills_01.jpg",
         "./ScreenSkills/ScreenSkills_03.jpg",
-        {
-          "src": "./ScreenSkills/ScreenSkillsTitanic-web.mp4",
-          "type": "video",
-          "poster": "./ScreenSkills/ScreenSkills_02.jpg"
-        },
-        {
-          "src": "./ScreenSkills/SyncTest-web.mp4",
-          "type": "video",
-          "poster": "./ScreenSkills/ScreenSkills_02.jpg"
-        }
+        "./ScreenSkills/ScreenSkillsTitanic-web.mp4",
+        "./ScreenSkills/SyncTest-web.mp4"
       ],
       "links": [],
       "roles": [
@@ -603,11 +587,7 @@
         "./BrockwellLive/Brockwell_01.jpg",
         "./BrockwellLive/Brockwell_02.jpg",
         "./BrockwellLive/Brockwell_03.jpg",
-        {
-          "src": "./BrockwellLive/Brockwell-web.mp4",
-          "type": "video",
-          "poster": "./BrockwellLive/Brockwell.webp"
-        }
+        "./BrockwellLive/Brockwell-web.mp4"
       ],
       "links": [],
       "roles": [
@@ -659,11 +639,7 @@
         "./Unlimit/Unlimit_02.png",
         "./Unlimit/Unlimit_03.png",
         "./Unlimit/UnLimit_Team.jpg",
-        {
-          "src": "./Unlimit/UnlimitVis-web.mp4",
-          "type": "video",
-          "poster": "./Unlimit/Simu-Liu-goes-borderless-with-Unlimit-hero.jpg"
-        }
+        "./Unlimit/UnlimitVis-web.mp4"
       ],
       "links": [
         "https://www.instagram.com/reel/DHUa8d4yOU0/?igsh=OGw1aDVqbHQxNmxi"
@@ -1102,11 +1078,7 @@
       ],
       "images": [
         "./Volvo/VolvoSafety.avif",
-        {
-          "src": "./Volvo/VolvoSafetyBTS-web.mp4",
-          "type": "video",
-          "poster": "./Volvo/VolvoSafety.avif"
-        }
+        "./Volvo/VolvoSafetyBTS-web.mp4"
       ],
       "links": [
         "https://dandelion-burdock.com/projects/volvo-safety-in-mind"
@@ -1449,6 +1421,374 @@
         "Technical Artist",
         "VP Supervisor"
       ]
+    }
+  ],
+  "softwareProjects": [
+    {
+      "name": "Skybox Gallery",
+      "description": "Skybox previewer and generator creating 360° environments with the BlockadeLabs AI API — my most-starred repo.",
+      "technologies": [
+        "JavaScript",
+        "CSS",
+        "BlockadeLabs AI"
+      ],
+      "stars": 15,
+      "links": [
+        "https://github.com/ItzMorphineTime/skybox-gallery",
+        "https://itzmorphinetime.github.io/skybox-gallery/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "AI Consultant"
+      ],
+      "startDate": "March 2023"
+    },
+    {
+      "name": "Skybox Blender",
+      "description": "Python scripts that build skyboxes in Blender from BlockadeLabs AI-generated textures.",
+      "technologies": [
+        "Python",
+        "Blender",
+        "BlockadeLabs AI"
+      ],
+      "stars": 6,
+      "links": [
+        "https://github.com/ItzMorphineTime/skybox-blender"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist",
+        "AI Consultant"
+      ],
+      "startDate": "May 2023"
+    },
+    {
+      "name": "Morph Mapping",
+      "description": "Interactive projection-mapping study — previewing projection warps and blends in the browser.",
+      "technologies": [
+        "JavaScript",
+        "HTML Canvas",
+        "Projection Mapping"
+      ],
+      "stars": 6,
+      "links": [
+        "https://github.com/ItzMorphineTime/MorphMapping",
+        "https://itzmorphinetime.github.io/MorphMapping/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ],
+      "startDate": "December 2025"
+    },
+    {
+      "name": "Morph Diagrams",
+      "description": "Feature-complete system diagramming tool with intelligent connectors and extensive editing — zero dependencies, runs entirely in the browser.",
+      "technologies": [
+        "JavaScript",
+        "SVG"
+      ],
+      "stars": 3,
+      "links": [
+        "https://github.com/ItzMorphineTime/MorphDiagrams",
+        "https://itzmorphinetime.github.io/MorphDiagrams/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "January 2026"
+    },
+    {
+      "name": "LED Configurator",
+      "description": "Browser-based LED wall configurator for planning panel layouts and canvas sizes — born from real virtual production stage workflows.",
+      "technologies": [
+        "JavaScript",
+        "LED",
+        "Virtual Production"
+      ],
+      "stars": 2,
+      "links": [
+        "https://github.com/ItzMorphineTime/LED_Configurator",
+        "https://itzmorphinetime.github.io/LED_Configurator/"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ],
+      "startDate": "December 2025"
+    },
+    {
+      "name": "Projection Test-Pattern Generator",
+      "description": "Desktop app generating seamless, loopable projection test patterns — scrolling colour loops, tracking lines and number grids exported to video. Ships as a single Windows executable.",
+      "technologies": [
+        "Python",
+        "Projection Mapping"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/Test-Pattern-Generator"
+      ],
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ],
+      "startDate": "August 2026"
+    },
+    {
+      "name": "Portfolio (This Site)",
+      "description": "This website — fully JSON-driven portfolio with role filtering, media galleries, video support, and client-side ATS/designed .docx CV export. Zero build step.",
+      "technologies": [
+        "JavaScript",
+        "HTML/CSS",
+        "docx.js"
+      ],
+      "stars": 1,
+      "links": [
+        "https://github.com/ItzMorphineTime/Portfolio",
+        "https://joeloe.co.uk/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "December 2025"
+    },
+    {
+      "name": "Morph Wars — RTS Game",
+      "description": "Feature-rich real-time strategy game in pure ES6 JavaScript — no dependencies, playable in the browser.",
+      "technologies": [
+        "JavaScript",
+        "Canvas",
+        "Game Dev"
+      ],
+      "stars": 1,
+      "links": [
+        "https://github.com/ItzMorphineTime/MorphWars",
+        "https://itzmorphinetime.github.io/MorphWars/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "January 2026"
+    },
+    {
+      "name": "Morph Market Intel",
+      "description": "Real-time market intelligence dashboard — live equity prices, multi-timeframe candlestick charts, order-book depth, watchlists with alerts, an algorithmic screener and sentiment news feed. React 18 + TypeScript + Vite.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/MorphMarketIntel"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "July 2026"
+    },
+    {
+      "name": "Morpheus",
+      "description": "React studio for previewing one business's content across many website templates — all driven by a single strict, validated JSON Site Data Object. Author once, switch designs instantly.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "JSON Schema"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/Morpheus",
+        "https://itzmorphinetime.github.io/Morpheus/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "June 2026"
+    },
+    {
+      "name": "Tidehold: Dragonwake Defense",
+      "description": "Pirate-themed incremental island-defense game blending tower defense, fleet defense and dragon-sanctuary systems into one loop.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Game Dev"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/PirateDefence",
+        "https://itzmorphinetime.github.io/PirateDefence/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "June 2026"
+    },
+    {
+      "name": "Tidewarden: Sanctuary Run",
+      "description": "Dragon-rescue incremental plinko game with Matter.js physics — runs entirely in the browser with localStorage saves.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Matter.js"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/PiratePlinko",
+        "https://itzmorphinetime.github.io/PiratePlinko/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "June 2026"
+    },
+    {
+      "name": "YoHoH",
+      "description": "Browser-based pirate game.",
+      "technologies": [
+        "JavaScript",
+        "Game Dev"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/YoHoH",
+        "https://itzmorphinetime.github.io/YoHoH/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "January 2026"
+    },
+    {
+      "name": "BattleNav",
+      "description": "Naval battle navigation proof of concept.",
+      "technologies": [
+        "JavaScript"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/BattleNav",
+        "https://itzmorphinetime.github.io/BattleNav/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "February 2026"
+    },
+    {
+      "name": "Matrix Magic",
+      "description": "Matrix-style falling-code message generator.",
+      "technologies": [
+        "JavaScript",
+        "Canvas"
+      ],
+      "stars": 1,
+      "links": [
+        "https://github.com/ItzMorphineTime/MatrixMagic",
+        "https://itzmorphinetime.github.io/MatrixMagic/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "January 2026"
+    },
+    {
+      "name": "Route Planner",
+      "description": "Lightweight route planner website.",
+      "technologies": [
+        "JavaScript",
+        "HTML"
+      ],
+      "stars": 1,
+      "links": [
+        "https://github.com/ItzMorphineTime/RoutePlanner",
+        "https://itzmorphinetime.github.io/RoutePlanner/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "December 2025"
+    },
+    {
+      "name": "SaraCV",
+      "description": "CV publishing workflow: an Excel workbook as the editable source of truth, exported to JSON, rendered as a responsive web CV with an ATS-friendly Word export.",
+      "technologies": [
+        "JavaScript",
+        "Excel",
+        "docx.js"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/SaraCV",
+        "https://itzmorphinetime.github.io/SaraCV/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "June 2026"
+    },
+    {
+      "name": "Morph Macro",
+      "description": "Autoclicker and macro recorder for Windows.",
+      "technologies": [
+        "Python"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/MorphMacro"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "February 2026"
+    },
+    {
+      "name": "Renamer",
+      "description": "Batch file renaming utility.",
+      "technologies": [
+        "Python"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/Renamer"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "October 2023"
+    },
+    {
+      "name": "Sussex Exterior Clean",
+      "description": "Business website for a Sussex exterior cleaning company.",
+      "technologies": [
+        "JavaScript"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/sussex-exterior-clean",
+        "https://itzmorphinetime.github.io/sussex-exterior-clean/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "July 2026"
+    },
+    {
+      "name": "BabyQuiz",
+      "description": "Lightweight browser quiz app.",
+      "technologies": [
+        "HTML",
+        "JavaScript"
+      ],
+      "stars": 0,
+      "links": [
+        "https://github.com/ItzMorphineTime/BabyQuiz",
+        "https://itzmorphinetime.github.io/BabyQuiz/"
+      ],
+      "roles": [
+        "Software Engineer"
+      ],
+      "startDate": "October 2025"
     }
   ],
   "interests": [
