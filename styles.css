@@ -31,6 +31,11 @@
     box-sizing: border-box;
 }
 
+/* Ensure the hidden attribute always wins, even over display:flex rules */
+[hidden] {
+    display: none !important;
+}
+
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -980,6 +985,104 @@ body.matrix-mode .project-link:hover {
     background: rgba(0, 255, 65, 0.1);
 }
 
+/* Featured projects — accent-glow card; spans two columns where the grid is wide enough */
+.project-card.featured {
+    border-color: var(--border-accent);
+    box-shadow: 0 0 30px rgba(212, 168, 83, 0.12);
+}
+
+.project-card.featured:hover {
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(212, 168, 83, 0.18);
+}
+
+body.matrix-mode .project-card.featured {
+    border-color: rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+}
+
+body.matrix-mode .project-card.featured:hover {
+    border-color: rgba(0, 255, 65, 0.6);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(0, 255, 65, 0.15);
+}
+
+@media (min-width: 900px) {
+    .project-card.featured {
+        grid-column: span 2;
+    }
+    .project-card.featured .project-images {
+        height: 280px;
+    }
+}
+
+.project-featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(10, 10, 15, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-secondary);
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    pointer-events: none;
+    z-index: 2;
+}
+
+body.matrix-mode .project-featured-badge {
+    border-color: rgba(0, 255, 65, 0.3);
+    color: #00ff41;
+}
+
+/* Award badge — light-gold chip so dark award logos stay legible on the dark theme */
+.project-award-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: linear-gradient(135deg, #f7efd8 0%, #e9d9a6 100%);
+    color: #231f20;
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.project-award-badge img {
+    height: 20px;
+    width: auto;
+    display: block;
+}
+
+/* Card face when the lead media is a video with no poster */
+.project-video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, #000 100%);
+}
+
+.project-video-placeholder svg {
+    width: 56px;
+    height: 56px;
+    opacity: 0.6;
+}
+
 /* Interests Section */
 .interests-grid {
     display: grid;
@@ -1390,6 +1493,15 @@ body.matrix-mode .nav-btn.active {
     opacity: 1;
 }
 
+.modal-video {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: #000;
+    outline: none;
+}
+
 .modal-spinner {
     position: absolute;
     top: 50%;
@@ -1508,6 +1620,33 @@ body.matrix-mode .nav-btn.active {
 
 body.matrix-mode .modal-thumb.active {
     border-color: #00ff41;
+}
+
+/* Video thumbnails get a play glyph overlay (and a dark tile when no poster exists) */
+.modal-thumb {
+    position: relative;
+}
+
+.modal-thumb .thumb-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.modal-thumb .thumb-play svg {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+}
+
+.modal-thumb .thumb-video-noposter {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, #000 100%);
 }
 
 /* Loading state */

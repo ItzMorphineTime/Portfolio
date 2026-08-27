@@ -12,8 +12,9 @@
   "contactSubtitle": "I'm always open to discussing new projects, opportunities, or just having a chat about technology and creativity.",
   "bio": "Joseph Loe is a Head of Technology and software engineer with over two decades spanning full-stack development, virtual production, live events, and game development. He blends deep engineering experience with technical artistry and team leadership, specialising in real-time graphics systems and translating cutting-edge R&D into robust, production-ready pipelines. A fast adopter of agentic AI and generative tooling, he folds the best of each new model into practical workflows — from accelerating development to producing previs and concept art. Above all, he's motivated by automation, procedural generation, and pushing the boundaries of what real-time technology can do.",
   "headshot": "./HeadshotNew.png",
-  "headshot2": "./Headshot-t-u.png",
+  "headshot2": "./Headshot-t-u-web.webp",
   "headshotalt": "./Morphtransparent.GIF",
+  "ogImage": "./og-image.jpg",
   "contact": {
     "email": "jl@fivefoldstudios.co.uk",
     "linkedin": "https://www.linkedin.com/in/josephloe/",
@@ -394,28 +395,15 @@
   ],
   "projects": [
     {
-      "name": "Brit Awards — Golden Arrow Winner",
-      "description": "VP Supervisor on the Golden Arrow award-winning Brit Awards production.",
-      "technologies": [
-        "Unreal",
-        "Virtual Production"
-      ],
-      "images": [],
-      "links": [],
-      "roles": [
-        "VP Supervisor",
-        "Technical Artist"
-      ],
-      "startDate": "January 2024",
-      "endDate": "January 2024"
-    },
-    {
       "name": "Ulster University VP Brainbar Talk",
       "description": "Delivered a virtual production talk for Ulster University's Brainbar.",
       "technologies": [
         "Virtual Production"
       ],
-      "images": [],
+      "images": [
+        "./UlsterVP/Ulster.jpg",
+        "./UlsterVP/Ulster_02.png"
+      ],
       "links": [],
       "roles": [
         "VP Supervisor",
@@ -431,7 +419,17 @@
         "LED",
         "Media Playback"
       ],
-      "images": [],
+      "images": [
+        "./BrockwellLive/Brockwell.webp",
+        "./BrockwellLive/Brockwell_01.jpg",
+        "./BrockwellLive/Brockwell_02.jpg",
+        "./BrockwellLive/Brockwell_03.jpg",
+        {
+          "src": "./BrockwellLive/Brockwell-web.mp4",
+          "type": "video",
+          "poster": "./BrockwellLive/Brockwell.webp"
+        }
+      ],
       "links": [],
       "roles": [
         "VP Supervisor",
@@ -459,7 +457,9 @@
       "name": "Lima World U20",
       "description": "Crew on the Lima World U20 event.",
       "technologies": [],
-      "images": [],
+      "images": [
+        "./LimaU20/Lima_01.png"
+      ],
       "links": [],
       "roles": [
         "VP Supervisor"
@@ -474,7 +474,18 @@
         "Unreal",
         "Virtual Production"
       ],
-      "images": [],
+      "images": [
+        "./Unlimit/Simu-Liu-goes-borderless-with-Unlimit-hero.jpg",
+        "./Unlimit/Unlimit_01.png",
+        "./Unlimit/Unlimit_02.png",
+        "./Unlimit/Unlimit_03.png",
+        "./Unlimit/UnLimit_Team.jpg",
+        {
+          "src": "./Unlimit/UnlimitVis-web.mp4",
+          "type": "video",
+          "poster": "./Unlimit/Simu-Liu-goes-borderless-with-Unlimit-hero.jpg"
+        }
+      ],
       "links": [
         "https://www.instagram.com/reel/DHUa8d4yOU0/?igsh=OGw1aDVqbHQxNmxi"
       ],
@@ -522,10 +533,20 @@
       "endDate": "August 2023"
     },
     {
-      "name": "Chemical Brothers Live Again",
-      "description": "",
-      "technologies": [],
+      "name": "The Chemical Brothers — Live Again",
+      "featured": true,
+      "award": {
+        "label": "British Arrows Craft Gold 2024",
+        "icon": "./BritishArrows/british-arrows-logo.svg"
+      },
+      "description": "VP Supervisor on The Chemical Brothers' 'Live Again' promo for EMI Records, directed by DOM&NIC and shot on the ARRI x CT virtual production stage. Winner of the British Arrows 2024 Craft Gold Arrow for Innovative Use of Realtime 3D — credited to Outsider, Untold Studios, ARRI Stage London, Creative Technology and Lux Machina.",
+      "technologies": [
+        "Unreal",
+        "Virtual Production"
+      ],
       "images": [
+        "./BritishArrows/live-again-still.jpg",
+        "./BritishArrows/british-arrows-arri-by-ian-wallman-00854-data.jpg",
         "./ChemBros/chembro (1).jpg",
         "./ChemBros/chembro (2).jpg",
         "./ChemBros/chembro (3).jpg",
@@ -534,7 +555,8 @@
         "./ChemBros/chembro (6).jpg"
       ],
       "links": [
-        "https://www.youtube.com/watch?v=pqU4g5iJk2Y"
+        "https://www.youtube.com/watch?v=pqU4g5iJk2Y",
+        "https://www.britisharrows.com/films/british-arrows/2024/live-again-the-chemical-brothers"
       ],
       "roles": [
         "Software Engineer",
@@ -546,9 +568,11 @@
     },
     {
       "name": "Coldplay DUBAI EXPO",
+      "featured": true,
       "description": "",
       "technologies": [],
       "images": [
+        "./Coldplay/coldplay (1)1.jpg",
         "./Coldplay/coldplay (1).jpg",
         "./Coldplay/coldplay (2).jpg",
         "./Coldplay/coldplay (3).jpg",
@@ -699,7 +723,9 @@
         "nDisplay",
         "Ghostframe Technology"
       ],
-      "images": [],
+      "images": [
+        "./GhostFrame/GhostFrame.png"
+      ],
       "links": [
         "https://www.ghostframe.com/news/ghostframe-explained"
       ],
@@ -721,7 +747,9 @@
         "Perforce",
         "Performance Monitoring"
       ],
-      "images": [],
+      "images": [
+        "./Flite/FLITE-Case-Study-Header-1980x820.jpg"
+      ],
       "links": [
         "https://www.framestore.com/work/flite?language=en",
         "https://www.youtube.com/watch?v=Pm88PvECp7Y"
@@ -758,6 +786,7 @@
     },
     {
       "name": "SKY VP Demo",
+      "featured": true,
       "description": "Operated nDisplay, Photon, and optimising assets and server configurations to create a Demo piece for SKY VP in collaboration with DNEG and Dimension studios.",
       "technologies": [
         "nDisplay",
@@ -888,7 +917,14 @@
         "AR Compositing",
         "Cluster Syncing"
       ],
-      "images": [],
+      "images": [
+        "./Volvo/VolvoSafety.avif",
+        {
+          "src": "./Volvo/VolvoSafetyBTS-web.mp4",
+          "type": "video",
+          "poster": "./Volvo/VolvoSafety.avif"
+        }
+      ],
       "links": [
         "https://dandelion-burdock.com/projects/volvo-safety-in-mind"
       ],
@@ -929,7 +965,11 @@
       "technologies": [
         "VR"
       ],
-      "images": [],
+      "images": [
+        "./ScottishWhiskey/ScotWhisky_01.jpg",
+        "./ScottishWhiskey/ScotWhisky_02.jpg",
+        "./ScottishWhiskey/ScotWhisky_03.jpg"
+      ],
       "links": [
         "https://www.scotchwhiskyexperience.co.uk/tours/"
       ],
@@ -1012,6 +1052,7 @@
     },
     {
       "name": "Doha VR",
+      "featured": true,
       "description": "Modelled Khalifa stadium in VR to scale in HDR to preview/sell as a pre-visualisation tool, with pyrotechnics, projection blends, ray tracing, stadium lighting, simulated athletes and crowds. Huge project which I programmed all the backend system for and deployed various AAA games techniques to optimise for hardware considerations. Ended up securing multi-million pound contract, aired live September 2019.",
       "technologies": [
         "VR",

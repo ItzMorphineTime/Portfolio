@@ -1,1 +1,4 @@
 .claude
+# 193 MB master exceeds GitHub's 100 MB hard limit and can never be pushed.
+# The site uses the web encode (UnlimitVis-web.mp4). Keep the master out of git.
+Unlimit/UnlimitVis.mp4

@@ -10,6 +10,10 @@
     <!-- Neutral fallback icon; app.js replaces it with an initials icon built from data.json -->
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 
+    <!-- Start the JSON downloads during HTML parse instead of after the deferred script runs -->
+    <link rel="preload" href="./data.json" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="./thumbs/manifest.json" as="fetch" crossorigin="anonymous">
+
     <!--
       No identity is hardcoded here. All SEO/meta — title, description, author, canonical,
       Open Graph, Twitter Card, JSON-LD Person, and the favicon — is generated at runtime by
@@ -123,6 +127,7 @@
                 </button>
                 <div class="modal-spinner" id="modalSpinner" aria-hidden="true"></div>
                 <img class="modal-image" id="modalImage" src="" alt="Project image">
+                <video class="modal-video" id="modalVideo" controls playsinline preload="metadata" hidden></video>
                 <button class="modal-nav next" onclick="navigateModal(1)" aria-label="Next image">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <polyline points="9 18 15 12 9 6"/>

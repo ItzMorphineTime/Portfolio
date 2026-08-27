@@ -13,7 +13,8 @@ A sleek, modern portfolio website built with vanilla HTML, CSS, and JavaScript. 
 | 🎭 **Role-Based Filtering** | Filter portfolio content by professional role (Software Engineer, Technical Artist, etc.) |
 | 🟢 **Matrix Mode** | Animated Matrix-style background activates when "Software Engineer" role is selected |
 | 📊 **Animated Skill Bars** | Visual proficiency indicators with smooth animations |
-| 🖼️ **Image Gallery** | Lightbox modal with keyboard navigation for project images |
+| 🖼️ **Media Gallery** | Full-viewport viewer with thumbnails, keyboard/swipe navigation — plays project **videos** as well as stills |
+| ⭐ **Featured Projects & Awards** | `featured` flag highlights a card (accent glow + wide slot); `award` renders a gold award chip |
 | 📍 **Smart Navigation** | Floating bottom nav bar with scroll-aware section highlighting |
 | 📱 **Fully Responsive** | Optimized for mobile, tablet, and desktop viewports |
 | 🎨 **Dynamic Theming** | Gold accent theme with Matrix green variant |
@@ -33,6 +34,9 @@ Portfolio/
 ├── cv.js                   # CV export — builds ATS + designed .docx résumés from data.json
 ├── vendor/docx.iife.js     # Vendored docx library (lazy-loaded only when a CV is exported)
 ├── data.json               # Portfolio content (edit this!)
+├── tools/generate-media.mjs   # Thumbnail generator (run after adding images; needs ffmpeg)
+├── thumbs/                 # Generated WebP card/strip thumbnails + manifest.json (committed)
+├── og-image.jpg            # 1200×630 social share card (referenced by data.json "ogImage")
 ├── README.md               # Documentation
 ├── PROJECT_IMAGE_RESEARCH.md  # Research notes + candidate image sources for image-less projects
 ├── CNAME                   # Custom domain for GitHub Pages (joeloe.co.uk)
@@ -71,6 +75,22 @@ Place your images in the project directory and reference them in `data.json`:
 - Headshot photos
 - Company logos
 - Project screenshots
+
+Then regenerate the card thumbnails (requires [ffmpeg](https://ffmpeg.org/) on PATH):
+
+```bash
+node tools/generate-media.mjs
+```
+
+This writes a ~960px WebP per project image into `thumbs/` plus `thumbs/manifest.json`. The site
+uses these small files for **project cards and the gallery's thumbnail strip**, and only loads the
+full-resolution originals on the gallery stage. It's incremental (only new/changed images are
+re-encoded), and if the manifest is missing the site silently falls back to the originals — so
+skipping this step never breaks anything, it's just slower for visitors.
+
+> **Videos:** keep gallery videos small — re-encode masters to a web-friendly H.264 (e.g.
+> `ffmpeg -i master.mp4 -c:v libx264 -crf 24 -preset medium -vf scale=1280:-2 -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 128k clip-web.mp4`)
+> and reference the `-web` file from `data.json`. GitHub rejects files over 100 MB outright.
 
 > **Tracking down imagery?** Some projects ship without images (`"images": []`).
 > [`PROJECT_IMAGE_RESEARCH.md`](PROJECT_IMAGE_RESEARCH.md) catalogues each image-less project with
@@ -244,11 +264,18 @@ All fields are optional. Only provided fields will be displayed.
   "projects": [
     {
       "name": "Project Name",
+      "featured": true,
+      "award": {
+        "label": "Some Award 2024",
+        "icon": "./MyProject/award-logo.svg"
+      },
       "description": "Built a full-stack application...",
       "technologies": ["React", "Node.js", "PostgreSQL"],
       "images": [
         "./MyProject/screenshot-1.jpg",
-        "./MyProject/screenshot-2.jpg"
+        "./MyProject/screenshot-2.jpg",
+        "./MyProject/bts-clip.mp4",
+        { "src": "./MyProject/demo.mp4", "type": "video", "poster": "./MyProject/screenshot-1.jpg" }
       ],
       "links": ["https://project-demo.com", "https://github.com/user/project"],
       "roles": ["Software Engineer"],
@@ -262,12 +289,16 @@ All fields are optional. Only provided fields will be displayed.
 | Field | Type | Description |
 |-------|------|-------------|
 | `name` | string | Project title |
+| `featured` | boolean | Optional — gives the card an accent glow, a ★ Featured badge, and a double-width slot on wide screens |
+| `award` | object | Optional — `{ "label", "icon" }` renders a light-gold award chip over the card image (icon is optional; falls back to 🏆) |
 | `description` | string | Project summary |
 | `technologies` | array | Tech stack tags |
-| `images` | array | Project screenshots (click to open gallery) |
+| `images` | array | Gallery media, shown in order. Plain strings are stills — or **videos**, auto-detected by extension (`.mp4`, `.webm`, `.mov`, `.m4v`, `.ogv`). Use the object form `{ "src", "type": "video", "poster" }` to give a video a poster frame. Videos play in the gallery with native controls; the card face uses the first still (or the first poster) |
 | `links` | array | Live demo, GitHub, etc. (displays as domain) |
 | `startDate` / `endDate` | string | Project timeline |
 | `roles` | array | Role filters |
+
+> **Ordering:** projects render in exactly the order they appear in `data.json` — move an entry up or down in the array to reposition its card. `featured` changes emphasis, not position.
 
 ### Interests
 
