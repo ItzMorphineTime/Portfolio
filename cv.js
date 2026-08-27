@@ -1,7 +1,7 @@
 /*
  * CV export — generates Word (.docx) résumés purely from portfolioData (data.json).
- * Two variants: "ats" (single-column, parser-safe) and "designed" (two-column, accented).
- * The heavy `docx` library is vendored and lazy-loaded on first use.
+ * Two variants: "ats" (single-column, parser-safe) and "designed" (single-column, accented).
+ * Both are A4. The heavy `docx` library is vendored and lazy-loaded on first use.
  */
 (function () {
     'use strict';
@@ -31,17 +31,43 @@
         return s || e || '';
     };
 
+    // How many project lines the CV carries (featured projects always survive the cap).
+    const MAX_CV_PROJECTS = 12;
+    const MAX_CV_REPOS = 5;
+
     // data.json -> normalized CV model. Always the full CV (decision D2: role filter ignored).
     function buildCvModel(data) {
         data = data || {};
         const c = data.contact || {};
+        // `value` is the display text; `url` (when set) is the full machine-parseable link —
+        // the ATS variant prints it, the designed variant hyperlinks the display text.
         const contacts = [];
-        if (c.email) contacts.push({ label: 'Email', value: c.email });
+        if (c.email) contacts.push({ label: 'Email', value: c.email, url: 'mailto:' + c.email, atsValue: c.email });
         if (c.phone) contacts.push({ label: 'Phone', value: c.phone });
         if (data.location) contacts.push({ label: 'Location', value: data.location });
-        if (c.linkedin) contacts.push({ label: 'LinkedIn', value: cleanUrl(c.linkedin) });
-        if (c.github) contacts.push({ label: 'GitHub', value: cleanUrl(c.github) });
-        if (c.website) contacts.push({ label: 'Website', value: cleanUrl(c.website) });
+        if (c.linkedin) contacts.push({ label: 'LinkedIn', value: cleanUrl(c.linkedin), url: c.linkedin });
+        if (c.github) contacts.push({ label: 'GitHub', value: cleanUrl(c.github), url: c.github });
+        if (c.website) contacts.push({ label: 'Website', value: cleanUrl(c.website), url: c.website });
+
+        // "Selected Projects": featured entries always make the cut; remaining slots are
+        // filled with dated projects. Data order (the user's curated order) is preserved.
+        const allProjects = data.projects || [];
+        const featured = allProjects.filter((p) => p.featured);
+        const fill = allProjects.filter((p) => !p.featured && projectDate(p)).slice(0, Math.max(0, MAX_CV_PROJECTS - featured.length));
+        const picked = new Set(featured.concat(fill));
+
+        // Top open-source repos by stars (ties keep data order).
+        const openSource = (data.softwareProjects || [])
+            .map((sp, i) => ({ sp, i }))
+            .sort((a, b) => ((b.sp.stars || 0) - (a.sp.stars || 0)) || (a.i - b.i))
+            .slice(0, MAX_CV_REPOS)
+            .map(({ sp }) => ({
+                name: sp.name || '',
+                technologies: sp.technologies || [],
+                stars: sp.stars || 0,
+                url: (sp.links || []).find((l) => /github\.com\//i.test(l)) || ''
+            }))
+            .filter((r) => r.name);
 
         return {
             name: data.name || 'Your Name',
@@ -49,7 +75,9 @@
             contacts,
             summary: data.bio || '',
             skills: (data.skills || []).map((s) => s.name).filter(Boolean),
-            skillDetails: (data.skills || []).map((s) => ({ name: s.name, proficiency: s.proficiency })),
+            awards: allProjects
+                .filter((p) => p.award && p.award.label)
+                .map((p) => ({ label: p.award.label, project: p.name || '', date: projectDate(p) })),
             experience: (data.experience || []).map((e) => ({
                 title: e.title || '',
                 company: e.company || '',
@@ -58,7 +86,8 @@
                     ? e.highlights
                     : (e.description ? [e.description] : [])
             })),
-            projects: (data.projects || []).map((p) => ({ title: p.name || '', date: projectDate(p) })).filter((p) => p.title),
+            projects: allProjects.filter((p) => picked.has(p)).map((p) => ({ title: p.name || '', date: projectDate(p) })).filter((p) => p.title),
+            openSource,
             education: (data.education || []).map((ed) => ({
                 institution: ed.institution || '',
                 course: ed.course || '',
@@ -78,9 +107,10 @@
         kids.push(new Paragraph({ spacing: { after: 40 }, children: [new TextRun({ text: model.name, bold: true, size: 34 })] }));
         if (model.headline) kids.push(new Paragraph({ spacing: { after: 60 }, children: [new TextRun({ text: model.headline, size: 22 })] }));
         if (model.contacts.length) {
+            // Full URLs here — machine-parseable links matter more than looks in the ATS variant.
             kids.push(new Paragraph({
                 spacing: { after: 220 },
-                children: [new TextRun({ text: model.contacts.map((x) => x.value).join('   |   '), size: 18, color: '444444' })]
+                children: [new TextRun({ text: model.contacts.map((x) => x.atsValue || x.url || x.value).join('   |   '), size: 18, color: '444444' })]
             }));
         }
 
@@ -94,6 +124,19 @@
         if (model.summary) { kids.push(heading('Summary')); kids.push(para(model.summary, { spacing: { after: 120 } })); }
         if (model.skills.length) { kids.push(heading('Skills')); kids.push(para(model.skills.join(', '), { spacing: { after: 120 } })); }
 
+        if (model.awards.length) {
+            kids.push(heading('Awards'));
+            model.awards.forEach((a) => {
+                kids.push(new Paragraph({
+                    spacing: { after: 20 },
+                    children: [
+                        new TextRun({ text: a.label, bold: true, size: 20 }),
+                        new TextRun({ text: `  -  ${a.project}${a.date ? ` (${a.date})` : ''}`, size: 20 })
+                    ]
+                }));
+            });
+        }
+
         if (model.experience.length) {
             kids.push(heading('Experience'));
             model.experience.forEach((e) => {
@@ -101,7 +144,7 @@
                     spacing: { before: 100 },
                     children: [
                         new TextRun({ text: e.title, bold: true, size: 22 }),
-                        e.company ? new TextRun({ text: `  —  ${e.company}`, size: 22 }) : null
+                        e.company ? new TextRun({ text: `  -  ${e.company}`, size: 22 }) : null
                     ].filter(Boolean)
                 }));
                 if (e.duration) kids.push(new Paragraph({ children: [new TextRun({ text: e.duration, italics: true, size: 18, color: '666666' })] }));
@@ -116,7 +159,21 @@
                     spacing: { after: 20 },
                     children: [
                         new TextRun({ text: p.title, size: 20 }),
-                        p.date ? new TextRun({ text: `   —   ${p.date}`, size: 18, color: '666666' }) : null
+                        p.date ? new TextRun({ text: `   -   ${p.date}`, size: 18, color: '666666' }) : null
+                    ].filter(Boolean)
+                }));
+            });
+        }
+
+        if (model.openSource.length) {
+            kids.push(heading('Open Source'));
+            model.openSource.forEach((r) => {
+                kids.push(new Paragraph({
+                    spacing: { after: 20 },
+                    children: [
+                        new TextRun({ text: r.name, bold: true, size: 20 }),
+                        r.technologies.length ? new TextRun({ text: `  (${r.technologies.join(', ')})`, size: 18, color: '444444' }) : null,
+                        r.url ? new TextRun({ text: `  -  ${r.url}`, size: 18, color: '444444' }) : null
                     ].filter(Boolean)
                 }));
             });
@@ -129,7 +186,7 @@
                     spacing: { before: 100 },
                     children: [
                         new TextRun({ text: ed.institution, bold: true, size: 22 }),
-                        ed.course ? new TextRun({ text: `  —  ${ed.course}`, size: 22 }) : null
+                        ed.course ? new TextRun({ text: `  -  ${ed.course}`, size: 22 }) : null
                     ].filter(Boolean)
                 }));
                 if (ed.grade) kids.push(new Paragraph({ children: [new TextRun({ text: ed.grade, italics: true, size: 18, color: '666666' })] }));
@@ -144,7 +201,7 @@
             creator: model.name,
             title: `${model.name} — CV`,
             styles: { default: { document: { run: { font: 'Calibri', size: 20 } } } },
-            sections: [{ properties: { page: { margin: { top: 1080, right: 1080, bottom: 1080, left: 1080 } } }, children: kids }]
+            sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1080, right: 1080, bottom: 1080, left: 1080 } } }, children: kids }]
         });
     }
 
@@ -153,9 +210,9 @@
     // borderless table cell so they can NEVER wrap onto the next line. This is a per-row helper
     // table, not the old full-page layout table.
     function renderDesignedDocx(model, accentInput) {
-        const { Document, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, TableLayoutType, AlignmentType, VerticalAlign, BorderStyle } = window.docx;
+        const { Document, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, TableLayoutType, AlignmentType, VerticalAlign, BorderStyle, ExternalHyperlink } = window.docx;
         const accent = String(accentInput || '#d4a853').replace('#', '') || 'd4a853';
-        const CONTENT_W = 10080, DATE_W = 2600, LEAD_W = CONTENT_W - DATE_W; // Letter, 0.75in margins
+        const CONTENT_W = 9746, DATE_W = 2600, LEAD_W = CONTENT_W - DATE_W; // A4 (11906 twips) - 2x 0.75in margins
 
         const MONTHS = { January: 'Jan', February: 'Feb', March: 'Mar', April: 'Apr', May: 'May', June: 'Jun', July: 'Jul', August: 'Aug', September: 'Sep', October: 'Oct', November: 'Nov', December: 'Dec' };
         const shortDate = (d) => String(d || '').replace(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g, (m) => MONTHS[m]);
@@ -177,7 +234,16 @@
 
         kids.push(new Paragraph({ spacing: { after: 20 }, children: [new TextRun({ text: model.name, bold: true, size: 44, color: accent })] }));
         if (model.headline) kids.push(new Paragraph({ spacing: { after: 60 }, children: [new TextRun({ text: model.headline, size: 24, color: '555555' })] }));
-        if (model.contacts.length) kids.push(new Paragraph({ spacing: { after: 60 }, children: [new TextRun({ text: model.contacts.map((c) => c.value).join('   ·   '), size: 17, color: '666666' })] }));
+        if (model.contacts.length) {
+            // Same visual as before, but email/profile entries are clickable hyperlinks.
+            const contactChildren = [];
+            model.contacts.forEach((c, i) => {
+                if (i) contactChildren.push(new TextRun({ text: '   ·   ', size: 17, color: '666666' }));
+                const run = new TextRun({ text: c.value, size: 17, color: '666666' });
+                contactChildren.push(c.url ? new ExternalHyperlink({ link: c.url, children: [run] }) : run);
+            });
+            kids.push(new Paragraph({ spacing: { after: 60 }, children: contactChildren }));
+        }
         kids.push(new Paragraph({ spacing: { after: 160 }, border: { bottom: { style: BorderStyle.SINGLE, size: 18, color: accent } }, children: [] }));
 
         const heading = (t) => new Paragraph({
@@ -196,6 +262,18 @@
             kids.push(new Paragraph({ spacing: { after: 80 }, children: [new TextRun({ text: model.skills.join('   ·   '), size: 18, color: '333333' })] }));
         }
 
+        if (model.awards.length) {
+            kids.push(heading('Awards'));
+            kids.push(wrapTable(model.awards.map((a) => dateRow([
+                new Paragraph({
+                    children: [
+                        new TextRun({ text: a.label, bold: true, size: 19, color: '222222' }),
+                        a.project ? new TextRun({ text: `    ${a.project}`, size: 18, color: accent }) : null
+                    ].filter(Boolean)
+                })
+            ], a.date, 24))));
+        }
+
         if (model.experience.length) {
             kids.push(heading('Experience'));
             model.experience.forEach((e) => {
@@ -211,6 +289,21 @@
             kids.push(wrapTable(model.projects.map((p) => dateRow([new Paragraph({ children: [new TextRun({ text: p.title, size: 19, color: '222222' })] })], p.date, 24))));
         }
 
+        if (model.openSource.length) {
+            kids.push(heading('Open Source'));
+            kids.push(wrapTable(model.openSource.map((r) => {
+                const nameRun = new TextRun({ text: r.name, bold: true, size: 19, color: '222222' });
+                return dateRow([
+                    new Paragraph({
+                        children: [
+                            r.url ? new ExternalHyperlink({ link: r.url, children: [nameRun] }) : nameRun,
+                            r.technologies.length ? new TextRun({ text: `    ${r.technologies.join(' · ')}`, size: 17, color: accent }) : null
+                        ].filter(Boolean)
+                    })
+                ], r.stars ? `★ ${r.stars}` : '', 24);
+            })));
+        }
+
         if (model.education.length) {
             kids.push(heading('Education'));
             model.education.forEach((ed) => {
@@ -218,6 +311,7 @@
                 if (ed.course) lead.push(new TextRun({ text: `    ${ed.course}`, size: 18, color: accent }));
                 kids.push(new Paragraph({ spacing: { before: 100 }, children: lead }));
                 if (ed.grade) kids.push(new Paragraph({ children: [new TextRun({ text: ed.grade, italics: true, size: 17, color: '666666' })] }));
+                if (ed.description) kids.push(new Paragraph({ spacing: { after: 20 }, children: [new TextRun({ text: ed.description, size: 18, color: '333333' })] }));
                 if (ed.modules.length) kids.push(new Paragraph({ spacing: { after: 30 }, children: [new TextRun({ text: 'Modules: ' + ed.modules.join(', '), size: 16, color: '777777' })] }));
             });
         }
@@ -231,7 +325,7 @@
             creator: model.name,
             title: `${model.name} — CV`,
             styles: { default: { document: { run: { font: 'Calibri' } } } },
-            sections: [{ properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1080, right: 1080, bottom: 1080, left: 1080 } } }, children: kids }]
+            sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1080, right: 1080, bottom: 1080, left: 1080 } } }, children: kids }]
         });
     }
 
@@ -260,7 +354,7 @@
         try {
             if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.innerHTML = 'Generating…'; }
             const blob = await generateCvBlob(variant);
-            const name = buildCvModel(portfolioData).name;
+            const name = (portfolioData && portfolioData.name) || 'cv';
             triggerDownload(blob, `${slug(name)}-CV${variant === 'ats' ? '-ATS' : ''}.docx`);
         } catch (e) {
             console.error('CV generation failed:', e);

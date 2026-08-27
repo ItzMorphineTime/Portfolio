@@ -383,7 +383,14 @@ Two buttons in the hero generate a Word `.docx` résumé entirely from `data.jso
 - **Download CV** — a polished, accent-coloured single-column design (dates are right-aligned in small borderless rows so they never wrap), for sending to people.
 - **ATS CV** — a plain single-column, parser-safe layout for applicant-tracking systems.
 
-Both pull from the same fields (`name`, `headline`, `location`, `bio`, `skills`, `experience`, `projects` (listed as title + date), `education`, `interests`, `contact`). Add optional `highlights: []` arrays to experience items for punchy bullet points (otherwise the `description` is used). The [`docx`](https://docx.js.org/) library is vendored in `vendor/` and **lazy-loaded only on first click**, so it adds nothing to initial page load. CVs always include everything (they ignore the on-screen role filter).
+Both are **A4** and pull from the same fields (`name`, `headline`, `location`, `bio`, `skills`, `experience`, `education`, `interests`, `contact`), plus:
+
+- **Awards** — any project with an `award` gets a line in a dedicated Awards section (label + project + date).
+- **Selected Projects** — capped at 12: every `featured` project is guaranteed a slot, remaining slots fill with dated projects, all in `data.json` order. Undated, non-featured projects are omitted.
+- **Open Source** — the top 5 `softwareProjects` by stars (name, tech tags, GitHub URL; the designed variant hyperlinks the name and shows a ★ count).
+- The ATS variant prints **full URLs** and sticks to ASCII separators for parser safety; the designed variant makes email/profile links **clickable**.
+
+Add optional `highlights: []` arrays to experience items for punchy bullet points (otherwise the `description` is used as a single bullet). The [`docx`](https://docx.js.org/) library is vendored in `vendor/` and **lazy-loaded only on first click**, so it adds nothing to initial page load. CVs ignore the on-screen role filter.
 
 ### Adding New Sections
 

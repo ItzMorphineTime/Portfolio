@@ -27,6 +27,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | 4.6 | **Video posters fixed** — real frames auto-extracted per video; no-cache dev server | ☑ Done & verified 2026-08-27 |
 | 5 | Data quality — role tagging & wording (⚑ user input) | ☐ |
 | 6 | Backlog / future | ☐ |
+| 7 | CV export review — awards/projects/software drift + A4/ATS polish | ☑ Implemented & verified 2026-08-27 (⚑ highlights/phone remain) |
 
 ---
 
@@ -153,6 +154,33 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 - [ ] Wording accuracy from the research pass: "Scottish Whiskey Exhibit VR" → the venue is **The Scotch Whisky Experience** ("whisky", no *e*) and the public piece is an immersive projection (the VR was previs — title/description could say so); confirm the Polestar shoot was Framestore's (public demos credit NantStudios). 
 - [ ] The two **ARRI & Friends** entries are confirmed distinct events (Dec 2021 / Aug 2023) — differentiate their titles, e.g. suffix the year, so they don't read as an accidental duplicate.
 - **Files:** `data.json`
+
+---
+
+## Phase 7 — CV export review (2026-08-27) ☑ FIXES IMPLEMENTED & VERIFIED (same day)
+
+> **Implemented 2026-08-27:** all 🔴 and 🟠 items below plus designed-variant hyperlinks — verified by regenerating both variants through the real `cv.js` (38/38 automated checks pass: A4 in both, AWARDS section with both awards, projects capped at 12 with all 6 featured surviving in data order, OPEN SOURCE top-5 by stars, ATS still zero-tables with ASCII separators + full URLs, designed has clickable email/LinkedIn/GitHub/website/repo links, education description in both, dead code removed). In-browser generation re-checked (lazy-load path, correct MIME). Remaining ⚑ items (highlights authoring, phone, skill grouping) are yours.
+
+*Reviewed `cv.js` by generating both variants against today's data (real code path, Node harness) and inspecting the OOXML. The Phase-6 mechanics all still hold: valid zips, ATS variant is genuinely table-free (0 tables), standard headings, designed variant's 8 borderless date-tables render with fully abbreviated dates, "2:1" and special characters survive, filenames/metadata correct. The problems are content drift — the data has doubled since the exporter was built.*
+
+### 🔴 Content drift — high value
+- [x] **Awards never reach the CV.** `award` fields exist (7Dogs: *2× Guinness World Records*; ChemBros: *British Arrows Craft Gold 2024*) but neither variant exports them — the strongest differentiators on the whole site are absent from the résumé. Add an **Awards** section (or ⭐ annotations on the matching project lines) built from `projects[].award`.
+- [x] **"Selected Projects" isn't selected — it's all 44.** The list now runs 44 rows (~a full page), ~20 of them undated (blank date cells look unfinished). Filter to `featured: true` (6 today) plus dated recents, or introduce a `cvInclude`/cap (~12). Shortens both docs from ~3 pages toward the ideal 2.
+- [x] **Software projects absent.** For SE applications the GitHub portfolio matters — add a compact **Open Source** section from `softwareProjects` (top ~5 by stars: name, one-liner, URL; Skybox Gallery ★15 first).
+
+### 🟠 Robustness / consistency
+- [x] **Page size is US Letter in both variants** (designed hardcodes it; ATS inherits the library default) — for a UK CV both should be **A4** (11906×16838 twips; recompute `CONTENT_W` in the designed variant).
+- [x] **ATS uses decorative em-dashes** (`Title  —  Company`, 40×) — conservative ATS parsers prefer ASCII; switch separators to `-` or `|` (content em-dashes in real names like "7Dogs Feature Film — Riyadh" can stay).
+- [x] **`cleanUrl` strips `https://`** — bare domains are fine to read but full URLs machine-parse better in ATS; keep full URLs there (display-clean in designed).
+- [x] **Designed variant drops `education.description`** while ATS includes it — align (include in both).
+- [x] Dead code: `buildCvModel().skillDetails` is computed and never used by either renderer; `buildCvModel` also runs twice per download (harmless, but trivial to fix).
+
+### 🟡 Nice-to-have
+- [x] Clickable `ExternalHyperlink`s (email/LinkedIn/GitHub) in the designed variant.
+- [ ] ⚑ **Author `highlights[]` for experience entries** — renderer has supported bullet arrays since Phase 6, but every job still exports its long prose paragraph as ONE giant bullet (the CT software-engineer entry is a 746-character blob). Needs your words; 3-5 punchy bullets per role would transform both variants.
+- [ ] ⚑ `contact.phone` still unset (renders on CV only, never the site).
+- [ ] Group the 24-skill comma list by role headings (e.g. Engineering / AI / VP) for scannability.
+- **Files:** `cv.js` (+ optionally `data.json` for highlights/phone)
 
 ---
 
