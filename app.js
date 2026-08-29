@@ -496,11 +496,13 @@ function renderContent() {
 
     main.innerHTML = `
         ${renderHero()}
-        ${renderSkills()}
-        ${renderExperience()}
-        ${renderEducation()}
+        ${renderClients()}
         ${renderProjects()}
         ${renderSoftwareProjects()}
+        ${renderSkills()}
+        ${renderTalks()}
+        ${renderExperience()}
+        ${renderEducation()}
         ${renderInterests()}
         ${renderContact()}
         ${renderFooter()}
@@ -701,9 +703,75 @@ function renderHero() {
                         </div>
                     </div>
                 </div>
+                ${Array.isArray(portfolioData.stats) && portfolioData.stats.length ? `
+                    <div class="hero-stats">
+                        ${portfolioData.stats.map((st) => `
+                            <div class="stat">
+                                <div class="stat-value">${esc(st.value)}</div>
+                                <div class="stat-label">${esc(st.label)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
             </div>
             <div class="scroll-cue" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+        </section>
+    `;
+}
+
+// Slim band of client/production wordmarks (data.json "clients": string or {name, logo})
+function renderClients() {
+    const clients = portfolioData.clients || [];
+    if (clients.length === 0) return '';
+    return `
+        <section id="clients" class="clients-band" aria-label="${esc(portfolioData.clientsNote || 'Clients')}">
+            <div class="container">
+                <div class="clients-note">${esc(portfolioData.clientsNote || 'Selected clients')}</div>
+                <div class="clients-row">
+                    ${clients.map((c) => {
+                        const name = typeof c === 'string' ? c : (c && c.name) || '';
+                        const logo = typeof c === 'object' && c ? c.logo : '';
+                        if (!name) return '';
+                        return logo
+                            ? `<span class="client-mark"><img src="${esc(logo)}" alt="${esc(name)}" loading="lazy" decoding="async"></span>`
+                            : `<span class="client-mark">${esc(name)}</span>`;
+                    }).join('')}
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+// Speaking & Training — derived from projects flagged "talk": true (no data duplication).
+function renderTalks() {
+    const all = portfolioData.projects || [];
+    const talks = all.map((p, idx) => ({ p, idx })).filter(({ p }) => p.talk);
+    if (talks.length === 0) return '';
+    return `
+        <section id="talks">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Community</div>
+                    <h2 class="section-title">Speaking & Training</h2>
+                </div>
+                <div class="talks-list">
+                    ${talks.map(({ p, idx }) => {
+                        const media = normalizeMedia(p.images);
+                        const date = [p.startDate, p.endDate].filter(Boolean)
+                            .filter((v, i, a) => a.indexOf(v) === i).join(' – ');
+                        return `
+                        <div class="talk-row filterable" data-roles='${esc(JSON.stringify(p.roles || []))}'>
+                            <div class="talk-head">
+                                <h3 class="talk-title">${esc(p.name)}</h3>
+                                ${date ? `<span class="talk-date">${esc(date)}</span>` : ''}
+                            </div>
+                            ${p.description ? `<p class="talk-desc">${esc(p.description)}</p>` : ''}
+                            ${media.length ? `<button type="button" class="project-link talk-photos" onclick="openModal(${idx})">Photos ↗</button>` : ''}
+                        </div>`;
+                    }).join('')}
+                </div>
             </div>
         </section>
     `;
@@ -779,6 +847,7 @@ function renderSkills() {
                 <div class="section-header">
                     <div class="section-label">Expertise</div>
                     <h2 class="section-title">Skills & Technologies</h2>
+                    ${portfolioData.skillsNote ? `<p class="section-subnote">${esc(portfolioData.skillsNote)}</p>` : ''}
                 </div>
                 ${body}
             </div>

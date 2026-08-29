@@ -27,26 +27,6 @@
   },
   "skills": [
     {
-      "name": "Microsoft suite",
-      "description": "Proficient in using the entire Microsoft Suite for software development, project management, and tool creation.",
-      "proficiency": 95,
-      "roles": [
-        "Software Engineer",
-        "Technical Artist"
-      ],
-      "category": "Tools & Leadership"
-    },
-    {
-      "name": "JetBrains suite",
-      "description": "Experienced in using the JetBrains suite of tools for software development.",
-      "proficiency": 25,
-      "roles": [
-        "Software Engineer",
-        "Technical Artist"
-      ],
-      "category": "Tools & Leadership"
-    },
-    {
       "name": "Adobe tools",
       "description": "Skilled in using Adobe tools for design and development, including their Firefly AI.",
       "proficiency": 75,
@@ -98,7 +78,7 @@
     {
       "name": "Unity",
       "description": "Skilled in using Unity for game development.",
-      "proficiency": 90,
+      "proficiency": 75,
       "roles": [
         "Software Engineer",
         "Technical Artist"
@@ -106,17 +86,18 @@
       "category": "Realtime & Virtual Production"
     },
     {
-      "name": "Wireshark",
-      "description": "Experienced in using Wireshark for network protocol analysis.",
-      "proficiency": 75,
+      "name": "Networking & Cluster Infrastructure",
+      "description": "Networking for real-time production: Wireshark diagnostics, LAN presentation-sync systems, nDisplay cluster networking, and multi-server VP stage builds.",
+      "proficiency": 85,
       "roles": [
-        "Software Engineer"
+        "Software Engineer",
+        "VP Supervisor"
       ],
       "category": "Engineering"
     },
     {
       "name": "Project Management",
-      "description": "Experienced in using efficient team communication.",
+      "description": "Leading teams and productions — planning, communication, and delivery, across the full Microsoft/Office ecosystem.",
       "proficiency": 95,
       "roles": [
         "Software Engineer",
@@ -129,7 +110,7 @@
     {
       "name": "Unreal Engine",
       "description": "Proficient in using Unreal Engine for game development, nDisplay operation, and Virtual Production.",
-      "proficiency": 90,
+      "proficiency": 95,
       "roles": [
         "Software Engineer",
         "Technical Artist",
@@ -148,21 +129,21 @@
       "category": "Engineering"
     },
     {
+      "name": "WPF",
+      "description": "Experienced in WPF for Windows desktop tooling and data-driven UI — including the live athletics graphics control system parsing ODF data.",
+      "proficiency": 65,
+      "roles": [
+        "Software Engineer"
+      ],
+      "category": "Engineering"
+    },
+    {
       "name": "Python",
       "description": "Skilled in Python for software development and AI.",
       "proficiency": 90,
       "roles": [
         "Software Engineer",
         "AI Consultant"
-      ],
-      "category": "Engineering"
-    },
-    {
-      "name": "Java",
-      "description": "Proficient in Java for software development (legacy).",
-      "proficiency": 40,
-      "roles": [
-        "Software Engineer"
       ],
       "category": "Engineering"
     },
@@ -213,8 +194,8 @@
       "category": "AI & Generative"
     },
     {
-      "name": "AI/GA/NN",
-      "description": "Skilled in AI, Genetic Algorithms, and Neural Networks.",
+      "name": "Machine Learning & Genetic Algorithms",
+      "description": "Machine learning fundamentals with a specialism in genetic algorithms and meta-heuristic search, from university research through practical tooling.",
       "proficiency": 85,
       "roles": [
         "AI Consultant"
@@ -231,15 +212,6 @@
       "category": "AI & Generative"
     },
     {
-      "name": "AI tools",
-      "description": "Experienced in various AI tools for AI and automation.",
-      "proficiency": 85,
-      "roles": [
-        "AI Consultant"
-      ],
-      "category": "AI & Generative"
-    },
-    {
       "name": "AI Image/Video Generation",
       "description": "Expert across the latest AI image and video models — Midjourney, Leonardo, Kling, Nano Banana, SeedDance and more — for generative imagery, video, previs, and concept art.",
       "proficiency": 95,
@@ -250,11 +222,111 @@
       "category": "AI & Generative"
     },
     {
-      "name": "ByteDance",
-      "description": "Experienced with ByteDance's generative AI models for image and video creation.",
-      "proficiency": 40,
+      "name": "nDisplay",
+      "description": "Expert in nDisplay for LED-volume rendering: cluster configuration, frustum management, and syncing across ten-plus productions and demos.",
+      "proficiency": 95,
       "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "Photon",
+      "description": "Experienced with Photon for synchronised playback and control across multi-node VP and event systems on eight-plus productions.",
+      "proficiency": 50,
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "Motion Control (Bolt)",
+      "description": "Motion-control supervision — Bolt rig integration, perspective-matched 2.5D plates, and data-driven timelines for the Mastercard shoot and the 7Dogs feature.",
+      "proficiency": 80,
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "Media Servers & Playback",
+      "description": "2D/2.5D content playback for stages and events with Pixera and Pixilabs — from inflight-safety shoots to synced multi-device exhibits.",
+      "proficiency": 80,
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "DMX & Lighting Integration",
+      "description": "DMX integrations tying LED-wall content to lighting fixtures for real-time interactive lighting — as on Believe Me and the Dark X Light showcase.",
+      "proficiency": 80,
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "React + TypeScript",
+      "description": "Building modern web apps with React, TypeScript and Vite — dashboards, games, and studio tools across my open-source projects.",
+      "proficiency": 80,
+      "roles": [
+        "Software Engineer"
+      ],
+      "category": "Engineering"
+    },
+    {
+      "name": "Perforce",
+      "description": "Production source control with Perforce on Unreal virtual-production shoots.",
+      "proficiency": 80,
+      "roles": [
+        "Software Engineer",
+        "Technical Artist"
+      ],
+      "category": "Tools & Leadership"
+    },
+    {
+      "name": "Blender",
+      "description": "Blender for asset preparation and pipeline tooling, including Python scripting for AI-generated skybox workflows.",
+      "proficiency": 70,
+      "roles": [
+        "Technical Artist",
         "AI Consultant"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "Pixera",
+      "description": "Pixera media server programming and operation for stage and event playback — from inflight-safety shoots to synced exhibits.",
+      "proficiency": 85,
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "LiveFX",
+      "description": "Assimilate LiveFX for stage playback, live compositing and colour on virtual production shoots.",
+      "proficiency": 70,
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "category": "Realtime & Virtual Production"
+    },
+    {
+      "name": "NeRF + Gaussian Splats",
+      "description": "Neural radiance fields and 3D Gaussian Splatting for fast scene capture and real-time rendering — where emerging capture tech overlaps virtual production workflows.",
+      "proficiency": 50,
+      "roles": [
+        "AI Consultant",
+        "Technical Artist"
       ],
       "category": "AI & Generative"
     }
@@ -499,7 +571,10 @@
         "VP Supervisor"
       ],
       "startDate": "January 2025",
-      "endDate": "April 2025"
+      "endDate": "April 2025",
+      "award": {
+        "label": "ARRI Certified"
+      }
     },
     {
       "name": "The Chemical Brothers — Live Again",
@@ -679,7 +754,8 @@
         "VP Supervisor"
       ],
       "startDate": "September 2025",
-      "endDate": "September 2025"
+      "endDate": "September 2025",
+      "talk": true
     },
     {
       "name": "Batman / Clayface Feature Film",
@@ -799,7 +875,8 @@
         "VP Supervisor"
       ],
       "startDate": "November 2023",
-      "endDate": "November 2023"
+      "endDate": "November 2023",
+      "talk": true
     },
     {
       "name": "Ulster University VP Brainbar Talk",
@@ -817,7 +894,8 @@
         "Technical Artist"
       ],
       "startDate": "February 2024",
-      "endDate": "February 2024"
+      "endDate": "February 2024",
+      "talk": true
     },
     {
       "name": "Brockwell Live — LED Playback",
@@ -929,7 +1007,8 @@
         "VP Supervisor"
       ],
       "startDate": "August 2023",
-      "endDate": "August 2023"
+      "endDate": "August 2023",
+      "talk": true
     },
     {
       "name": "Amazon Studio VP Advert",
@@ -1287,7 +1366,8 @@
         "VP Supervisor"
       ],
       "startDate": "December 2021",
-      "endDate": "December 2021"
+      "endDate": "December 2021",
+      "talk": true
     },
     {
       "name": "Epic Game Directors Week",
@@ -1919,5 +1999,55 @@
     "Technical Artist",
     "AI Consultant",
     "VP Supervisor"
+  ],
+  "skillsNote": "Percentages are my own honest judgment of my competency in each skill.",
+  "clientsNote": "Selected clients & productions",
+  "clients": [
+    "Warner Bros.",
+    "ITV",
+    "Coldplay",
+    "The Chemical Brothers",
+    "Mastercard",
+    "Google",
+    "Amazon",
+    "Netflix",
+    "BBC",
+    "Sky",
+    "Volvo",
+    "Riyadh Air",
+    "Riyadh Season",
+    "Alhisn BigTime Studios",
+    "Framestore",
+    "Epic Games",
+    "ARRI",
+    "Creative Technology",
+    "VSS",
+    "Deloitte",
+    "Cisco",
+    "Gartner",
+    "McDonald's",
+    "World Athletics"
+  ],
+  "stats": [
+    {
+      "value": "20+",
+      "label": "Years in technology"
+    },
+    {
+      "value": "45+",
+      "label": "Productions delivered"
+    },
+    {
+      "value": "2×",
+      "label": "Guinness World Records"
+    },
+    {
+      "value": "1×",
+      "label": "Golden Arrow Winner"
+    },
+    {
+      "value": "25+",
+      "label": "VP shoots supervised"
+    }
   ]
 }

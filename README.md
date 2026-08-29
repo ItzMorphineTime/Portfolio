@@ -340,6 +340,28 @@ An optional second portfolio section of compact repo cards — name, star badge,
 | `images` | array | Optional — same media convention as projects; adds a gallery strip to the card |
 | *(rest)* | — | `name`, `description`, `technologies`, `links`, `roles`, `startDate` work exactly as in Projects |
 
+### Stats, Clients & Speaking (optional bands)
+
+All three render only when their data exists:
+
+```json
+{
+  "skillsNote": "Percentages are my own honest judgment of my competency in each skill.",
+  "stats": [
+    { "value": "20+", "label": "Years in technology" }
+  ],
+  "clientsNote": "Selected clients & productions",
+  "clients": ["Warner Bros.", "ITV", { "name": "ACME", "logo": "./logos/acme.svg" }]
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `skillsNote` | Small italic note under the Skills heading (e.g. how percentages should be read) |
+| `stats` | Hero stats band — `{ value, label }` pairs rendered as big accent numbers under the hero |
+| `clients` / `clientsNote` | Slim wordmark strip after the hero; entries are plain names or `{ name, logo }` |
+| `"talk": true` on a project | Collects that project into the **Speaking & Training** section (zero duplication — same entry powers both; its gallery opens from the talk row) |
+
 ### Interests
 
 ```json

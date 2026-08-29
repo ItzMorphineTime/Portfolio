@@ -534,16 +534,167 @@ body.matrix-mode .headshot-container::after {
 }
 
 /* Skills Section */
-/* Skills — compact radial-progress tiles; the ring wraps the centred label.
-   Clicking a tile opens the skill-detail modal (description, roles). */
-.skills-grid {
+/* Hero stats band (auto-fits however many stats the data carries) */
+.hero-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+}
+
+.stat-value {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body.matrix-mode .stat-value {
+    background: linear-gradient(135deg, #00ff41 0%, #88ff88 50%, #00ff41 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Clients band — quiet wordmark strip */
+.clients-band {
+    padding: 2.25rem 0 2.5rem;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.012);
+}
+
+.clients-note {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.clients-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.9rem 2.5rem;
+}
+
+.client-mark {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+    white-space: nowrap;
+}
+
+.client-mark:hover {
+    color: var(--text-primary);
+}
+
+.client-mark img {
+    height: 26px;
+    width: auto;
+    display: block;
+    opacity: 0.75;
+}
+
+/* Speaking & Training list */
+.talks-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.talk-row {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.talk-row:last-child {
+    border-bottom: none;
+}
+
+.talk-row.hidden {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+}
+
+.talk-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.talk-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.talk-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.talk-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 0.4rem;
+    max-width: 75ch;
+}
+
+.talk-photos {
+    margin-top: 0.7rem;
+    display: inline-flex;
+}
+
+/* Small explanatory note under a section title */
+.section-subnote {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.6rem;
+    max-width: 60ch;
+}
+
+/* Skills — compact radial-progress tiles; the ring wraps the centred label.
+   Clicking a tile opens the skill-detail modal (description, roles).
+   Flex-centred so partial rows sit centred rather than ragged-left. */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.25rem;
 }
 
 .skill-tile {
     position: relative;
+    width: 132px;
     aspect-ratio: 1 / 1;
     background: transparent;
     border: none;
@@ -2252,10 +2403,26 @@ body.matrix-mode .back-to-top {
         height: 10px;
     }
 
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem 1rem;
+    }
+
+    .clients-row {
+        gap: 0.6rem 1.5rem;
+    }
+
+    .client-mark {
+        font-size: 0.9rem;
+    }
+
     /* Tighter skill tiles: three per row on phones */
     .skills-grid {
-        grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
         gap: 0.75rem;
+    }
+
+    .skill-tile {
+        width: 96px;
     }
 
     .skill-tile-name {

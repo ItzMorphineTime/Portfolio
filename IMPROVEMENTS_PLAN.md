@@ -30,6 +30,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | 6 | Backlog / future | ☐ |
 | 7 | CV export review — awards/projects/software drift + A4/ATS polish | ☑ Implemented & verified 2026-08-27 (⚑ highlights/phone remain) |
 | 8 | Design/UX deep dive + analytics → [DESIGN_UX_REVIEW.md](DESIGN_UX_REVIEW.md) | ☑ Implemented & verified 2026-08-28 (grid folding, compact mobile header, static meta, placeholders, footer, skill groups, focus styles, GoatCounter w/ events) |
+| 10 | **Appeal pass** — skill roster curated (28 evidence-backed tiles: +nDisplay/Photon/MoCo/Media Servers/DMX/React+TS/Perforce/Blender/WPF; −JetBrains/ByteDance/AI tools/Java/Microsoft suite; Networking & ML renames), hero **stats band**, **clients wordmark strip** (18 brands), **Speaking & Training** section via `talk` flags, `skillsNote` subheading, projects/software moved above skills | ☑ Done & verified 2026-08-28 |
 | 9 | **Radial skills redesign** — ring tiles + detail modal (skills 2,420→1,216 px desktop, 6,446→1,528 px mobile); featured-first grid; bottom nav now ≤1280px (left bar overlapped content on small laptops/tablets) | ☑ Done & verified 2026-08-28 |
 
 ---
@@ -203,6 +204,8 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 ---
 
 ## Phase 6 — Backlog / future 🟢
+
+- [ ] **Client logos in the clients band** — the renderer already accepts `{ "name", "logo" }` entries; gather brand marks (monochrome/white SVG or PNG suited to the dark background — press-kit assets from each brand), drop them into a `./logos/` folder, and convert the string entries in `data.json.clients`. Rerun nothing — logos render at 26 px tall with lazy loading.
 
 - [ ] Light/dark theme toggle (design is dark-only).
 - [ ] Privacy-friendly analytics (e.g. Plausible).
