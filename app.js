@@ -709,31 +709,47 @@ function renderHero() {
     `;
 }
 
-// Render skills section — grouped under category sub-headings when skills carry a
-// "category" field in data.json; falls back to one flat grid otherwise.
+// Skills, sorted for display — module state so the tiles can open the detail modal.
+let sortedSkills = [];
+
+// Circumference of the progress ring (r=54 in a 120 viewBox).
+const RING_C = 339.292;
+
+// The radial ring SVG. `animate: false` draws the final state immediately (modal).
+function skillRingSvg(pct, animate) {
+    const offset = RING_C * (1 - pct / 100);
+    return `
+        <svg class="skill-ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-track" cx="60" cy="60" r="54"/>
+            <circle class="ring-fill" cx="60" cy="60" r="54" data-pct="${pct}"
+                    style="stroke-dashoffset: ${animate ? RING_C : offset}"></circle>
+        </svg>`;
+}
+
+// Render skills section — compact radial tiles (ring wraps the label; click for
+// details), grouped under category sub-headings when skills carry a "category"
+// field in data.json. Falls back to one flat grid otherwise.
 function renderSkills() {
     // Sort a copy by proficiency, highest first (don't mutate the source data).
-    const skills = [...(portfolioData.skills || [])].sort(
+    sortedSkills = [...(portfolioData.skills || [])].sort(
         (a, b) => (Number(b.proficiency) || 0) - (Number(a.proficiency) || 0)
     );
+    const skills = sortedSkills;
     if (skills.length === 0) return '';
 
-    const skillCard = (skill) => {
+    const skillTile = (skill) => {
+        const idx = sortedSkills.indexOf(skill);
         const pct = Math.max(0, Math.min(100, Number(skill.proficiency) || 0));
         return `
-        <div class="skill-card filterable" data-roles='${esc(JSON.stringify(skill.roles || []))}'>
-            <div class="skill-name">${esc(skill.name)}</div>
-            <div class="skill-description">${esc(skill.description || '')}</div>
-            <div class="skill-bar-container">
-                <div class="skill-bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${esc(skill.name)} proficiency" data-proficiency="${pct}" style="width: 0%"></div>
-            </div>
-            <div class="skill-proficiency">${pct}%</div>
-            ${skill.roles && skill.roles.length ? `
-                <div class="skill-roles">
-                    ${skill.roles.map(role => `<span class="skill-role-tag">${esc(role)}</span>`).join('')}
-                </div>
-            ` : ''}
-        </div>`;
+        <button type="button" class="skill-tile filterable" data-roles='${esc(JSON.stringify(skill.roles || []))}'
+                onclick="openSkillModal(${idx})"
+                aria-label="${esc(skill.name)}: ${pct}% proficiency — view details">
+            ${skillRingSvg(pct, true)}
+            <span class="skill-tile-label">
+                <span class="skill-tile-name">${esc(skill.name)}</span>
+                <span class="skill-tile-pct">${pct}%</span>
+            </span>
+        </button>`;
     };
 
     const hasCategories = skills.some((s) => s.category);
@@ -750,11 +766,11 @@ function renderSkills() {
         body = groups.map((cat) => `
             <div class="skill-group">
                 <div class="skill-group-title">${esc(cat)}</div>
-                <div class="skills-grid">${byName.get(cat).map(skillCard).join('')}</div>
+                <div class="skills-grid">${byName.get(cat).map(skillTile).join('')}</div>
             </div>
         `).join('');
     } else {
-        body = `<div class="skills-grid">${skills.map(skillCard).join('')}</div>`;
+        body = `<div class="skills-grid">${skills.map(skillTile).join('')}</div>`;
     }
 
     return `
@@ -770,11 +786,52 @@ function renderSkills() {
     `;
 }
 
+// Animate the tile rings from empty to their proficiency (CSS transitions the offset).
 function animateSkillBars() {
-    document.querySelectorAll('.skill-bar').forEach(bar => {
-        const proficiency = bar.dataset.proficiency;
-        bar.style.width = proficiency + '%';
+    document.querySelectorAll('.skill-tile .ring-fill').forEach((c) => {
+        const pct = Number(c.dataset.pct) || 0;
+        c.style.strokeDashoffset = String(RING_C * (1 - pct / 100));
     });
+}
+
+// ---- Skill detail modal ----
+let skillModalLastFocused = null;
+
+function openSkillModal(idx) {
+    const skill = sortedSkills[idx];
+    if (!skill) return;
+    const pct = Math.max(0, Math.min(100, Number(skill.proficiency) || 0));
+    trackEvent('skill-open-' + eventSlug(skill.name));
+
+    document.getElementById('skillModalRing').innerHTML =
+        skillRingSvg(pct, false) + `<div class="skill-modal-pct">${pct}%</div>`;
+    document.getElementById('skillModalTitle').textContent = skill.name || '';
+    document.getElementById('skillModalCategory').textContent = skill.category || '';
+    document.getElementById('skillModalDesc').textContent = skill.description || '';
+    const roles = document.getElementById('skillModalRoles');
+    roles.innerHTML = '';
+    (skill.roles || []).forEach((r) => {
+        const tag = document.createElement('span');
+        tag.className = 'skill-role-tag';
+        tag.textContent = r;
+        roles.appendChild(tag);
+    });
+
+    const modal = document.getElementById('skillModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    skillModalLastFocused = document.activeElement;
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
+}
+
+function closeSkillModal() {
+    document.getElementById('skillModal').classList.remove('active');
+    document.body.style.overflow = '';
+    if (skillModalLastFocused && typeof skillModalLastFocused.focus === 'function') {
+        skillModalLastFocused.focus();
+        skillModalLastFocused = null;
+    }
 }
 
 // Render experience section
@@ -1233,6 +1290,13 @@ imageModalEl.addEventListener('click', (e) => {
     if (e.target.id === 'imageModal') closeModal();
 });
 
+const skillModalEl = document.getElementById('skillModal');
+if (skillModalEl) {
+    skillModalEl.addEventListener('click', (e) => {
+        if (e.target.id === 'skillModal') closeSkillModal();
+    });
+}
+
 // Touch swipe navigation (mobile).
 let touchStartX = 0;
 let touchStartY = 0;
@@ -1264,6 +1328,18 @@ if (modalStageEl) {
 }
 
 document.addEventListener('keydown', (e) => {
+    // Skill-detail modal: Escape closes; Tab stays on its single control.
+    const skillModal = document.getElementById('skillModal');
+    if (skillModal && skillModal.classList.contains('active')) {
+        if (e.key === 'Escape') { closeSkillModal(); return; }
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const btn = skillModal.querySelector('.modal-close');
+            if (btn) btn.focus();
+        }
+        return;
+    }
+
     const modal = document.getElementById('imageModal');
     if (!modal.classList.contains('active')) return;
     if (e.key === 'Escape') { closeModal(); return; }

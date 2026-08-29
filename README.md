@@ -17,7 +17,7 @@ A sleek, modern portfolio website built with vanilla HTML, CSS, and JavaScript. 
 | ⭐ **Featured Projects & Awards** | `featured` flag highlights a card (accent glow + wide slot); `award` renders a gold award chip |
 | 💻 **Software Projects** | Optional GitHub repo section — compact cards with live-refreshing star badges (`githubUser`) |
 | 📦 **Grid folding** | Projects/repos show 9/6 cards with a "Show all" pill (suspended while a role filter is active); counts set by `VISIBLE_PROJECTS`/`VISIBLE_REPOS` in `app.js` |
-| 🧭 **Skill groups** | Skills group under sub-headings via an optional `category` field (flat grid if none set) |
+| 🧭 **Radial skills** | Skills render as compact radial-progress tiles (ring wraps the label) grouped by an optional `category` field; clicking a tile opens a detail modal with the description and role tags |
 | 📈 **Analytics** | GoatCounter (cookieless, no consent banner) — page views + events: CV downloads, gallery opens, role filters, repo clicks. Tag in `index.html`; update the `data-goatcounter` URL for your own account |
 | 📍 **Smart Navigation** | Floating bottom nav bar with scroll-aware section highlighting |
 | 📱 **Fully Responsive** | Optimized for mobile, tablet, and desktop viewports |

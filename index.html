@@ -168,6 +168,23 @@
         </div>
     </div>
 
+    <!-- Skill detail modal (opened by clicking a skill tile) -->
+    <div class="modal-overlay" id="skillModal">
+        <div class="skill-modal" role="dialog" aria-modal="true" aria-labelledby="skillModalTitle">
+            <button class="modal-close" onclick="closeSkillModal()" aria-label="Close skill details">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="skill-modal-ring" id="skillModalRing" aria-hidden="true"></div>
+            <h3 id="skillModalTitle"></h3>
+            <div class="skill-modal-category" id="skillModalCategory"></div>
+            <p class="skill-modal-desc" id="skillModalDesc"></p>
+            <div class="skill-roles" id="skillModalRoles"></div>
+        </div>
+    </div>
+
     <script src="./app.js" defer></script>
     <script src="./cv.js" defer></script>
 </body>
