@@ -9,19 +9,43 @@
     const DOCX_SRC = './vendor/docx.iife.js';
     let _docxLoading = null;
 
+    function loadScript(src) {
+        return new Promise((resolve, reject) => {
+            const s = document.createElement('script');
+            s.src = src;
+            s.onload = resolve;
+            s.onerror = () => reject(new Error('Failed to load ' + src));
+            document.head.appendChild(s);
+        });
+    }
+
     // Lazy-load the vendored docx library once, on first click.
     function loadDocx() {
         if (window.docx) return Promise.resolve(window.docx);
         if (_docxLoading) return _docxLoading;
-        _docxLoading = new Promise((resolve, reject) => {
-            const s = document.createElement('script');
-            s.src = DOCX_SRC;
-            s.onload = () => window.docx ? resolve(window.docx) : reject(new Error('docx did not initialise'));
-            s.onerror = () => reject(new Error('Failed to load ' + DOCX_SRC));
-            document.head.appendChild(s);
+        _docxLoading = loadScript(DOCX_SRC).then(() => {
+            if (!window.docx) throw new Error('docx did not initialise');
+            return window.docx;
         });
         return _docxLoading;
     }
+
+    // Lazy-load the vendored pdfmake library (+ its Roboto fonts) once, on first PDF click.
+    let _pdfLoading = null;
+    function loadPdfMake() {
+        if (window.pdfMake && window.pdfMake.createPdf && window.pdfMake.vfs) return Promise.resolve(window.pdfMake);
+        if (_pdfLoading) return _pdfLoading;
+        _pdfLoading = loadScript('./vendor/pdfmake.min.js')
+            .then(() => loadScript('./vendor/vfs_fonts.js'))
+            .then(() => {
+                if (!window.pdfMake || !window.pdfMake.createPdf) throw new Error('pdfmake did not initialise');
+                return window.pdfMake;
+            });
+        return _pdfLoading;
+    }
+
+    const MONTHS_ABBR = { January: 'Jan', February: 'Feb', March: 'Mar', April: 'Apr', May: 'May', June: 'Jun', July: 'Jul', August: 'Aug', September: 'Sep', October: 'Oct', November: 'Nov', December: 'Dec' };
+    const shortDateStr = (d) => String(d || '').replace(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g, (m) => MONTHS_ABBR[m]);
 
     const cleanUrl = (u) => String(u || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
     const slug = (s) => (String(s || 'cv').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'cv');
@@ -329,6 +353,165 @@
         });
     }
 
+    // ---------- PDF variants (pdfmake doc definitions, built from the same model) ----------
+    const PDF_CONTENT_W = 499; // A4 (595.28pt) minus 2x 48pt margins
+
+    function pdfRule(color, weight, marginBottom) {
+        return { canvas: [{ type: 'line', x1: 0, y1: 0, x2: PDF_CONTENT_W, y2: 0, lineWidth: weight, lineColor: color }], margin: [0, 0, 0, marginBottom] };
+    }
+
+    function renderAtsPdf(model) {
+        const heading = (t) => [
+            { text: t.toUpperCase(), bold: true, fontSize: 11.5, margin: [0, 12, 0, 3] },
+            pdfRule('#999999', 0.75, 6)
+        ];
+        const content = [];
+        content.push({ text: model.name, bold: true, fontSize: 17 });
+        if (model.headline) content.push({ text: model.headline, fontSize: 11, margin: [0, 2, 0, 2] });
+        if (model.contacts.length) content.push({ text: model.contacts.map((x) => x.atsValue || x.url || x.value).join('   |   '), fontSize: 8.5, color: '#444444', margin: [0, 0, 0, 8] });
+
+        if (model.summary) { content.push(...heading('Summary'), { text: model.summary, fontSize: 9.5, margin: [0, 0, 0, 4] }); }
+        if (model.skills.length) { content.push(...heading('Skills'), { text: model.skills.join(', '), fontSize: 9.5 }); }
+        if (model.awards.length) {
+            content.push(...heading('Awards & Recognition'));
+            model.awards.forEach((a) => content.push({
+                text: [{ text: a.label, bold: true }, { text: `  -  ${a.project}${a.date ? ` (${a.date})` : ''}` }],
+                fontSize: 9.5, margin: [0, 0, 0, 2]
+            }));
+        }
+        if (model.experience.length) {
+            content.push(...heading('Experience'));
+            model.experience.forEach((e) => {
+                content.push({ text: [{ text: e.title, bold: true, fontSize: 10.5 }, e.company ? { text: `  -  ${e.company}`, fontSize: 10.5 } : null].filter(Boolean), margin: [0, 5, 0, 0] });
+                if (e.duration) content.push({ text: e.duration, italics: true, fontSize: 8.5, color: '#666666' });
+                if (e.bullets.length) content.push({ ul: e.bullets, fontSize: 9.5, margin: [0, 2, 0, 2] });
+            });
+        }
+        if (model.projects.length) {
+            content.push(...heading('Projects'));
+            model.projects.forEach((p) => content.push({
+                text: [{ text: p.title }, p.date ? { text: `   -   ${p.date}`, fontSize: 8.5, color: '#666666' } : null].filter(Boolean),
+                fontSize: 9.5, margin: [0, 0, 0, 2]
+            }));
+        }
+        if (model.openSource.length) {
+            content.push(...heading('Open Source'));
+            model.openSource.forEach((r) => content.push({
+                text: [
+                    { text: r.name, bold: true },
+                    r.technologies.length ? { text: `  (${r.technologies.join(', ')})`, fontSize: 8.5, color: '#444444' } : null,
+                    r.url ? { text: `  -  ${r.url}`, fontSize: 8.5, color: '#444444' } : null
+                ].filter(Boolean),
+                fontSize: 9.5, margin: [0, 0, 0, 2]
+            }));
+        }
+        if (model.education.length) {
+            content.push(...heading('Education'));
+            model.education.forEach((ed) => {
+                content.push({ text: [{ text: ed.institution, bold: true, fontSize: 10.5 }, ed.course ? { text: `  -  ${ed.course}`, fontSize: 10.5 } : null].filter(Boolean), margin: [0, 5, 0, 0] });
+                if (ed.grade) content.push({ text: ed.grade, italics: true, fontSize: 8.5, color: '#666666' });
+                if (ed.description) content.push({ text: ed.description, fontSize: 9.5, margin: [0, 2, 0, 0] });
+                if (ed.modules.length) content.push({ text: 'Modules: ' + ed.modules.join(', '), fontSize: 8.5, color: '#444444', margin: [0, 2, 0, 2] });
+            });
+        }
+        if (model.interests.length) { content.push(...heading('Interests'), { text: model.interests.join(', '), fontSize: 9.5 }); }
+
+        return {
+            pageSize: 'A4',
+            pageMargins: [48, 48, 48, 48],
+            info: { title: `${model.name} — CV`, author: model.name },
+            defaultStyle: { fontSize: 9.5, color: '#000000' },
+            content
+        };
+    }
+
+    function renderDesignedPdf(model, accentInput) {
+        const accent = '#' + (String(accentInput || '#d4a853').replace('#', '') || 'd4a853');
+        const heading = (t) => [
+            { text: t.toUpperCase(), bold: true, fontSize: 10.5, color: accent, margin: [0, 13, 0, 2] },
+            pdfRule(accent, 0.75, 6)
+        ];
+        const dateRow = (lead, dateText) => ({
+            columns: [
+                { text: lead, width: '*' },
+                { text: shortDateStr(dateText), width: 100, alignment: 'right', fontSize: 8, color: '#777777' }
+            ],
+            margin: [0, 2, 0, 1]
+        });
+
+        const content = [];
+        content.push({ text: model.name, bold: true, fontSize: 21, color: accent });
+        if (model.headline) content.push({ text: model.headline, fontSize: 11, color: '#555555', margin: [0, 2, 0, 2] });
+        if (model.contacts.length) {
+            const parts = [];
+            model.contacts.forEach((c, i) => {
+                if (i) parts.push({ text: '   ·   ', color: '#666666' });
+                parts.push(c.url ? { text: c.value, color: '#666666', link: c.url } : { text: c.value, color: '#666666' });
+            });
+            content.push({ text: parts, fontSize: 8.5, margin: [0, 0, 0, 6] });
+        }
+        content.push(pdfRule(accent, 2.5, 8));
+
+        if (model.summary) { content.push(...heading('Profile'), { text: model.summary, fontSize: 9.5, color: '#333333', margin: [0, 0, 0, 3] }); }
+        if (model.skills.length) { content.push(...heading('Skills'), { text: model.skills.join('   ·   '), fontSize: 9, color: '#333333' }); }
+        if (model.awards.length) {
+            content.push(...heading('Awards & Recognition'));
+            model.awards.forEach((a) => content.push(dateRow([
+                { text: a.label, bold: true, fontSize: 9.5, color: '#222222' },
+                a.project ? { text: `    ${a.project}`, fontSize: 9, color: accent } : null
+            ].filter(Boolean), a.date)));
+        }
+        if (model.experience.length) {
+            content.push(...heading('Experience'));
+            model.experience.forEach((e) => {
+                content.push(dateRow([
+                    { text: e.title, bold: true, fontSize: 10, color: '#222222' },
+                    e.company ? { text: `    ${e.company}`, fontSize: 9.5, color: accent } : null
+                ].filter(Boolean), e.duration));
+                if (e.bullets.length) content.push({ ul: e.bullets, fontSize: 9.5, color: '#333333', margin: [0, 1, 0, 3] });
+            });
+        }
+        if (model.projects.length) {
+            content.push(...heading('Selected Projects'));
+            model.projects.forEach((p) => content.push(dateRow({ text: p.title, fontSize: 9.5, color: '#222222' }, p.date)));
+        }
+        if (model.openSource.length) {
+            content.push(...heading('Open Source'));
+            model.openSource.forEach((r) => content.push(dateRow([
+                r.url ? { text: r.name, bold: true, fontSize: 9.5, color: '#222222', link: r.url } : { text: r.name, bold: true, fontSize: 9.5, color: '#222222' },
+                r.technologies.length ? { text: `    ${r.technologies.join(' · ')}`, fontSize: 8.5, color: accent } : null
+            ].filter(Boolean), r.stars ? `★ ${r.stars}` : '')));
+        }
+        if (model.education.length) {
+            content.push(...heading('Education'));
+            model.education.forEach((ed) => {
+                content.push({ text: [{ text: ed.institution, bold: true, fontSize: 10, color: '#222222' }, ed.course ? { text: `    ${ed.course}`, fontSize: 9, color: accent } : null].filter(Boolean), margin: [0, 4, 0, 0] });
+                if (ed.grade) content.push({ text: ed.grade, italics: true, fontSize: 8.5, color: '#666666' });
+                if (ed.description) content.push({ text: ed.description, fontSize: 9, color: '#333333', margin: [0, 1, 0, 0] });
+                if (ed.modules.length) content.push({ text: 'Modules: ' + ed.modules.join(', '), fontSize: 8, color: '#777777', margin: [0, 1, 0, 2] });
+            });
+        }
+        if (model.interests.length) { content.push(...heading('Interests'), { text: model.interests.join('   ·   '), fontSize: 9, color: '#444444' }); }
+
+        return {
+            pageSize: 'A4',
+            pageMargins: [48, 48, 48, 48],
+            info: { title: `${model.name} — CV`, author: model.name },
+            defaultStyle: { fontSize: 9.5 },
+            content
+        };
+    }
+
+    // Build a .pdf Blob for the given variant ("ats" | "designed"). Exposed for testing too.
+    async function generateCvPdfBlob(variant) {
+        const pdfMake = await loadPdfMake();
+        const model = buildCvModel(portfolioData);
+        const dd = variant === 'ats' ? renderAtsPdf(model) : renderDesignedPdf(model, portfolioData && portfolioData.cvAccent);
+        return new Promise((resolve, reject) => {
+            try { pdfMake.createPdf(dd).getBlob(resolve); } catch (e) { reject(e); }
+        });
+    }
+
     function triggerDownload(blob, filename) {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -348,15 +531,16 @@
         return lib.Packer.toBlob(doc);
     }
 
-    async function downloadCv(variant, btn) {
+    async function downloadCv(variant, btn, format) {
         if (typeof portfolioData === 'undefined' || !portfolioData) return;
+        const fmt = format === 'pdf' ? 'pdf' : 'docx';
         const original = btn ? btn.innerHTML : null;
         try {
-            if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.innerHTML = 'Generating…'; }
-            const blob = await generateCvBlob(variant);
+            if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.innerHTML = '…'; }
+            const blob = fmt === 'pdf' ? await generateCvPdfBlob(variant) : await generateCvBlob(variant);
             const name = (portfolioData && portfolioData.name) || 'cv';
-            triggerDownload(blob, `${slug(name)}-CV${variant === 'ats' ? '-ATS' : ''}.docx`);
-            if (typeof window.trackEvent === 'function') window.trackEvent('cv-download-' + variant);
+            triggerDownload(blob, `${slug(name)}-CV${variant === 'ats' ? '-ATS' : ''}.${fmt}`);
+            if (typeof window.trackEvent === 'function') window.trackEvent('cv-download-' + variant + (fmt === 'pdf' ? '-pdf' : ''));
         } catch (e) {
             console.error('CV generation failed:', e);
             alert('Sorry — CV generation failed. Please try again.');
@@ -366,5 +550,6 @@
     }
 
     window.downloadCv = downloadCv;
-    window.generateCvBlob = generateCvBlob; // used by verification / programmatic export
+    window.generateCvBlob = generateCvBlob;       // used by verification / programmatic export
+    window.generateCvPdfBlob = generateCvPdfBlob; // used by verification / programmatic export
 })();

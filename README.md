@@ -415,7 +415,7 @@ Both are **A4** and pull from the same fields (`name`, `headline`, `location`, `
 - **Open Source** — the top 5 `softwareProjects` by stars (name, tech tags, GitHub URL; the designed variant hyperlinks the name and shows a ★ count).
 - The ATS variant prints **full URLs** and sticks to ASCII separators for parser safety; the designed variant makes email/profile links **clickable**.
 
-Add optional `highlights: []` arrays to experience items for punchy bullet points (otherwise the `description` is used as a single bullet). The [`docx`](https://docx.js.org/) library is vendored in `vendor/` and **lazy-loaded only on first click**, so it adds nothing to initial page load. CVs ignore the on-screen role filter.
+Each button offers **.docx and .pdf**: Word documents via the vendored [`docx`](https://docx.js.org/) library, PDFs (real selectable text, ~2 pages, A4) via vendored [`pdfmake`](http://pdfmake.org/) — both **lazy-loaded only on first click**, so neither adds anything to initial page load. Add optional `highlights: []` arrays to experience items for punchy bullet points (otherwise the `description` is used as a single bullet). CVs ignore the on-screen role filter.
 
 ### Adding New Sections
 

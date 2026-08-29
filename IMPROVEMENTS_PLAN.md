@@ -30,6 +30,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | 6 | Backlog / future | ☐ |
 | 7 | CV export review — awards/projects/software drift + A4/ATS polish | ☑ Implemented & verified 2026-08-27 (⚑ highlights/phone remain) |
 | 8 | Design/UX deep dive + analytics → [DESIGN_UX_REVIEW.md](DESIGN_UX_REVIEW.md) | ☑ Implemented & verified 2026-08-28 (grid folding, compact mobile header, static meta, placeholders, footer, skill groups, focus styles, GoatCounter w/ events) |
+| 11 | **PDF CV export** — each CV button is now a `.docx / .pdf` split; PDFs built by vendored `pdfmake` (lazy-loaded, A4, real text, 2 pages, hyperlinked in the designed variant; ATS + designed both mirror the docx content incl. Awards & Open Source) | ☑ Done & verified 2026-08-28 |
 | 10 | **Appeal pass** — skill roster curated (28 evidence-backed tiles: +nDisplay/Photon/MoCo/Media Servers/DMX/React+TS/Perforce/Blender/WPF; −JetBrains/ByteDance/AI tools/Java/Microsoft suite; Networking & ML renames), hero **stats band**, **clients wordmark strip** (18 brands), **Speaking & Training** section via `talk` flags, `skillsNote` subheading, projects/software moved above skills | ☑ Done & verified 2026-08-28 |
 | 9 | **Radial skills redesign** — ring tiles + detail modal (skills 2,420→1,216 px desktop, 6,446→1,528 px mobile); featured-first grid; bottom nav now ≤1280px (left bar overlapped content on small laptops/tablets) | ☑ Done & verified 2026-08-28 |
 
