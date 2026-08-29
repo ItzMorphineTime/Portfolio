@@ -25,6 +25,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | 4 | Media & performance (thumbnails, video encodes, headshot, OG image) | ☑ Done & verified (deletions deferred) |
 | 4.5 | New **Software Projects** section (21 GitHub repos, live star badges) | ☑ Done & verified 2026-08-27 |
 | 4.6 | **Video posters fixed** — real frames auto-extracted per video; no-cache dev server | ☑ Done & verified 2026-08-27 |
+| 4.7 | **Mobile nav UX** — bottom-centred bar on ≤768px (left bar overlapped content) | ☑ Done & verified 2026-08-28 |
 | 5 | Data quality — role tagging & wording (⚑ user input) | ☐ |
 | 6 | Backlog / future | ☐ |
 | 7 | CV export review — awards/projects/software drift + A4/ATS polish | ☑ Implemented & verified 2026-08-27 (⚑ highlights/phone remain) |
@@ -143,6 +144,20 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 - [x] All 8 videos verified: distinct, representative strip thumbnails (e.g. Alhisn's moto-test vs safari-frustum test), matching stage posters, playback intact, no broken images.
 - [x] **New [`tools/serve.py`](tools/serve.py)** — threaded local dev server sending `Cache-Control: no-cache` (plain `python -m http.server` sends no caching headers, so browsers heuristically serve stale files for hours — the recurring "my changes don't show" problem). `.claude/launch.json` gained a "portfolio-fresh" config on port 8010.
 - **Files:** `tools/generate-media.mjs`, `tools/serve.py`, `app.js`, `data.json`, `thumbs/manifest.json`, 8 × `*-poster.jpg`, `README.md`
+
+---
+
+## Phase 4.7 — Mobile navigation UX ☑ DONE & VERIFIED (2026-08-28)
+
+*Problem: the left-anchored vertical nav overlapped page content on narrow screens.*
+
+- [x] On **≤768px** the nav becomes a **bottom-centred horizontal pill** (the standard mobile pattern): `bottom: 0.75rem + env(safe-area-inset-bottom)` for iPhone home-indicator clearance, max-width capped, internally scrollable if ever cramped (scrollbar hidden).
+- [x] The collapse **toggle is hidden on mobile** and any desktop-collapsed state is neutralised in CSS, so the bar can never arrive empty after a resize/rotation. Desktop keeps the left bar + working collapse untouched (verified).
+- [x] **Tooltips disabled on mobile** (touch has no hover) — also makes the horizontal overflow safe.
+- [x] `main` gets `72px + safe-area` bottom padding — measured 78 px clearance between the bar and the last contact card at full scroll.
+- [x] **≤400px**: buttons shrink to 36 px so all eight fit without scrolling.
+- [x] Verified at 375×812: row orientation, centred, 8 buttons, correct scroll targets on tap, desktop restore clean. (Note: in-pane smooth-scroll animation can't run while the Browser pane is hidden — compositor-driven; verified with instant scrolls + target math.)
+- **Files:** `styles.css` only
 
 ---
 
