@@ -193,6 +193,11 @@ async function loadData() {
         renderFilters();
         renderContent();
         observeSections();
+        // A small easter-egg hint for the people who open DevTools
+        try {
+            console.log('%c👀 Curious? Select the "' + (portfolioData.matrixRole || 'Software Engineer') + '" role filter…',
+                'color:#00ff41;background:#0a0a0f;padding:6px 10px;border-radius:6px;font-family:monospace;');
+        } catch (e) { /* ignore */ }
     } catch (error) {
         console.error('Error loading data:', error);
         document.getElementById('mainContent').innerHTML = `
@@ -230,6 +235,41 @@ function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+// Privacy-friendly custom events (GoatCounter). Silently no-ops when the analytics
+// script is blocked or absent — never let tracking break the site.
+function trackEvent(path) {
+    try {
+        if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+            window.goatcounter.count({ path: path, title: path, event: true });
+        }
+    } catch (e) { /* ignore */ }
+}
+window.trackEvent = trackEvent;
+
+function eventSlug(s) {
+    return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+}
+
+// How many cards each grid shows before its "Show all" button (folding keeps the
+// initial page a sane length — the full grids are ~50 and ~20 cards).
+const VISIBLE_PROJECTS = 9;
+const VISIBLE_REPOS = 6;
+
+// Expand/collapse a folded grid. The fold indexes are fixed at render time.
+function toggleFold(gridId, btn) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    const expanded = btn.dataset.expanded === 'true';
+    grid.querySelectorAll('[data-foldable]').forEach((el) => {
+        el.classList.toggle('fold-hidden', expanded);
+    });
+    btn.dataset.expanded = String(!expanded);
+    const total = btn.dataset.total, noun = btn.dataset.noun;
+    btn.textContent = expanded ? `Show all ${total} ${noun} ▾` : 'Show fewer ▴';
+    if (!expanded) trackEvent('show-all-' + gridId);
+    if (expanded) grid.scrollIntoView({ block: 'start' });
+}
+
 // Render role filter buttons
 function renderFilters() {
     const container = document.getElementById('roleFilters');
@@ -252,7 +292,11 @@ function renderFilters() {
 // Filter content by role
 function filterByRole(role) {
     currentRole = role;
-    
+    trackEvent('role-filter-' + eventSlug(role));
+
+    // While a filter is active, suspend grid folding so filters search everything.
+    document.body.classList.toggle('role-filtered', role !== 'All');
+
     document.querySelectorAll('.role-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.role === role);
     });
@@ -287,6 +331,13 @@ function updateSectionVisibility() {
         if (items.length === 0) return; // hero / interests / contact have no filterable cards
         const anyVisible = [...items].some(el => !el.classList.contains('hidden'));
         section.classList.toggle('section-hidden', !anyVisible);
+    });
+    // Same per skill group, so empty group headings disappear under a filter
+    document.querySelectorAll('.skill-group').forEach(group => {
+        const items = group.querySelectorAll('.filterable');
+        if (items.length === 0) return;
+        const anyVisible = [...items].some(el => !el.classList.contains('hidden'));
+        group.classList.toggle('section-hidden', !anyVisible);
     });
 }
 
@@ -452,7 +503,20 @@ function renderContent() {
         ${renderSoftwareProjects()}
         ${renderInterests()}
         ${renderContact()}
+        ${renderFooter()}
     `;
+
+    // Track clicks out to repos/demos from software cards (event delegation, added once)
+    if (!main.dataset.trackingBound) {
+        main.dataset.trackingBound = 'true';
+        main.addEventListener('click', (e) => {
+            const a = e.target.closest('.software-card .project-link');
+            if (!a) return;
+            const card = a.closest('.software-card');
+            const name = card ? card.querySelector('.software-name') : null;
+            trackEvent('repo-click-' + eventSlug(name ? name.textContent : a.href));
+        });
+    }
 
     // Hide nav buttons whose section isn't rendered (keeps the template reusable
     // when a data.json doesn't populate every section).
@@ -494,15 +558,16 @@ function renderSoftwareProjects() {
                     <div class="section-label">Open Source</div>
                     <h2 class="section-title">Software Projects</h2>
                 </div>
-                <div class="software-grid">
+                <div class="software-grid" id="softwareGrid">
                     ${repos.map((sp, idx) => {
+                        const folded = idx >= VISIBLE_REPOS;
                         const media = normalizeMedia(sp.images);
                         const face = media.find((m) => m.type === 'image');
                         const faceSrc = face ? face.src : (media.length ? media[0].poster : '');
                         const gh = (sp.links || []).find((l) => /github\.com\//i.test(l)) || '';
                         const repoName = gh ? gh.replace(/\/+$/, '').split('/').pop() : '';
                         return `
-                        <div class="software-card filterable" data-roles='${esc(JSON.stringify(sp.roles || []))}'>
+                        <div class="software-card filterable ${folded ? 'fold-hidden' : ''}" ${folded ? 'data-foldable' : ''} data-roles='${esc(JSON.stringify(sp.roles || []))}'>
                             ${media.length ? `
                                 <div class="project-images has-images"
                                      onclick="openModal(${idx}, 'softwareProjects')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal(${idx}, 'softwareProjects');}" tabindex="0" role="button" aria-label="Open media gallery for ${esc(sp.name)}">
@@ -530,6 +595,9 @@ function renderSoftwareProjects() {
                         </div>`;
                     }).join('')}
                 </div>
+                ${repos.length > VISIBLE_REPOS ? `
+                    <button type="button" class="show-more-btn" data-total="${repos.length}" data-noun="repositories" data-expanded="false" onclick="toggleFold('softwareGrid', this)">Show all ${repos.length} repositories ▾</button>
+                ` : ''}
             </div>
         </section>
     `;
@@ -606,13 +674,13 @@ function renderHero() {
                             </div>
                         ` : ''}
                         <div class="cv-actions">
-                            <button type="button" class="cv-btn cv-btn-primary" onclick="downloadCv('designed', this)" aria-label="Download a designed CV as a Word document">
+                            <button type="button" class="cv-btn cv-btn-primary" onclick="downloadCv('designed', this)" aria-label="Download a designed CV as a Word .docx document" title="Word .docx">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                Download CV
+                                Download CV<span class="cv-ext">.docx</span>
                             </button>
-                            <button type="button" class="cv-btn" onclick="downloadCv('ats', this)" aria-label="Download an ATS-friendly CV as a Word document">
+                            <button type="button" class="cv-btn" onclick="downloadCv('ats', this)" aria-label="Download an ATS-friendly CV as a Word .docx document" title="Word .docx">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                                ATS CV
+                                ATS CV<span class="cv-ext">.docx</span>
                             </button>
                         </div>
                     </div>
@@ -634,17 +702,60 @@ function renderHero() {
                     </div>
                 </div>
             </div>
+            <div class="scroll-cue" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
         </section>
     `;
 }
 
-// Render skills section
+// Render skills section — grouped under category sub-headings when skills carry a
+// "category" field in data.json; falls back to one flat grid otherwise.
 function renderSkills() {
     // Sort a copy by proficiency, highest first (don't mutate the source data).
     const skills = [...(portfolioData.skills || [])].sort(
         (a, b) => (Number(b.proficiency) || 0) - (Number(a.proficiency) || 0)
     );
     if (skills.length === 0) return '';
+
+    const skillCard = (skill) => {
+        const pct = Math.max(0, Math.min(100, Number(skill.proficiency) || 0));
+        return `
+        <div class="skill-card filterable" data-roles='${esc(JSON.stringify(skill.roles || []))}'>
+            <div class="skill-name">${esc(skill.name)}</div>
+            <div class="skill-description">${esc(skill.description || '')}</div>
+            <div class="skill-bar-container">
+                <div class="skill-bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${esc(skill.name)} proficiency" data-proficiency="${pct}" style="width: 0%"></div>
+            </div>
+            <div class="skill-proficiency">${pct}%</div>
+            ${skill.roles && skill.roles.length ? `
+                <div class="skill-roles">
+                    ${skill.roles.map(role => `<span class="skill-role-tag">${esc(role)}</span>`).join('')}
+                </div>
+            ` : ''}
+        </div>`;
+    };
+
+    const hasCategories = skills.some((s) => s.category);
+    let body;
+    if (hasCategories) {
+        // Group in first-appearance order of category (per the data's own ordering).
+        const groups = [];
+        const byName = new Map();
+        skills.forEach((s) => {
+            const cat = s.category || 'Other';
+            if (!byName.has(cat)) { byName.set(cat, []); groups.push(cat); }
+            byName.get(cat).push(s);
+        });
+        body = groups.map((cat) => `
+            <div class="skill-group">
+                <div class="skill-group-title">${esc(cat)}</div>
+                <div class="skills-grid">${byName.get(cat).map(skillCard).join('')}</div>
+            </div>
+        `).join('');
+    } else {
+        body = `<div class="skills-grid">${skills.map(skillCard).join('')}</div>`;
+    }
 
     return `
         <section id="skills">
@@ -653,25 +764,7 @@ function renderSkills() {
                     <div class="section-label">Expertise</div>
                     <h2 class="section-title">Skills & Technologies</h2>
                 </div>
-                <div class="skills-grid">
-                    ${skills.map(skill => {
-                        const pct = Math.max(0, Math.min(100, Number(skill.proficiency) || 0));
-                        return `
-                        <div class="skill-card filterable" data-roles='${esc(JSON.stringify(skill.roles || []))}'>
-                            <div class="skill-name">${esc(skill.name)}</div>
-                            <div class="skill-description">${esc(skill.description || '')}</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${esc(skill.name)} proficiency" data-proficiency="${pct}" style="width: 0%"></div>
-                            </div>
-                            <div class="skill-proficiency">${pct}%</div>
-                            ${skill.roles && skill.roles.length ? `
-                                <div class="skill-roles">
-                                    ${skill.roles.map(role => `<span class="skill-role-tag">${esc(role)}</span>`).join('')}
-                                </div>
-                            ` : ''}
-                        </div>`;
-                    }).join('')}
-                </div>
+                ${body}
             </div>
         </section>
     `;
@@ -771,8 +864,9 @@ function renderProjects() {
                     <div class="section-label">Portfolio</div>
                     <h2 class="section-title">Featured Projects</h2>
                 </div>
-                <div class="projects-grid">
+                <div class="projects-grid" id="projectsGrid">
                     ${projects.map((project, idx) => {
+                        const folded = idx >= VISIBLE_PROJECTS;
                         const media = normalizeMedia(project.images);
                         const imgCount = media.filter((m) => m.type === 'image').length;
                         const vidCount = media.length - imgCount;
@@ -784,7 +878,7 @@ function renderProjects() {
                         const faceSrc = firstImage ? firstImage.src : (media.length ? media[0].poster : '');
                         const award = project.award && project.award.label ? project.award : null;
                         return `
-                        <div class="project-card filterable ${project.featured ? 'featured' : ''}" data-roles='${esc(JSON.stringify(project.roles || []))}'>
+                        <div class="project-card filterable ${project.featured ? 'featured' : ''} ${folded ? 'fold-hidden' : ''}" ${folded ? 'data-foldable' : ''} data-roles='${esc(JSON.stringify(project.roles || []))}'>
                             <div class="project-images ${media.length ? 'has-images' : ''}"
                                  ${media.length ? `onclick="openModal(${idx})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal(${idx});}" tabindex="0" role="button" aria-label="Open media gallery for ${esc(project.name)}"` : ''}>
                                 ${media.length ? `
@@ -797,15 +891,17 @@ function renderProjects() {
                                     </div>
                                     `}
                                     ${media.length > 1 ? `<div class="project-image-counter">${counterParts.join(' · ')}</div>` : (vidCount ? `<div class="project-image-counter">▶ video</div>` : '')}
-                                ` : `
-                                    <div class="project-placeholder">
-                                        <svg class="project-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                            <rect x="3" y="3" width="18" height="18" rx="2"/>
-                                            <circle cx="8.5" cy="8.5" r="1.5"/>
-                                            <path d="m21 15-5-5L5 21"/>
-                                        </svg>
+                                ` : (
+                                    /\bNDA\b/i.test(project.name) ? `
+                                    <div class="project-placeholder nda">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                        <span class="placeholder-label">Under NDA</span>
                                     </div>
-                                `}
+                                    ` : `
+                                    <div class="project-placeholder">
+                                        <span class="placeholder-initials">${esc(project.name.split(/\s+/).filter(w => /^[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w[0].toUpperCase()).join(''))}</span>
+                                    </div>
+                                `)}
                                 ${award ? `
                                     <div class="project-award-badge" title="${esc(award.label)}">
                                         ${award.icon ? `<img src="${esc(award.icon)}" alt="" loading="lazy" decoding="async">` : '🏆'}
@@ -835,6 +931,9 @@ function renderProjects() {
                     `;
                     }).join('')}
                 </div>
+                ${projects.length > VISIBLE_PROJECTS ? `
+                    <button type="button" class="show-more-btn" data-total="${projects.length}" data-noun="projects" data-expanded="false" onclick="toggleFold('projectsGrid', this)">Show all ${projects.length} projects ▾</button>
+                ` : ''}
             </div>
         </section>
     `;
@@ -862,6 +961,25 @@ function renderInterests() {
                 </div>
             </div>
         </section>
+    `;
+}
+
+// Render footer
+function renderFooter() {
+    const name = portfolioData.name || '';
+    const year = new Date().getFullYear();
+    // Prefer the site's own repo link (from the software projects), else the GitHub profile.
+    const selfRepo = (portfolioData.softwareProjects || [])
+        .flatMap((sp) => sp.links || [])
+        .find((l) => /github\.com\/.+\/Portfolio/i.test(l));
+    const sourceUrl = selfRepo || (portfolioData.contact && portfolioData.contact.github) || '';
+    return `
+        <footer class="site-footer">
+            <div class="container">
+                © ${year} ${esc(name)} · Built with vanilla JS from a single <code>data.json</code>${sourceUrl ? ` — <a href="${esc(sourceUrl)}" target="_blank" rel="noopener">view source</a>` : ''}
+                · <button type="button" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to top ↑</button>
+            </div>
+        </footer>
     `;
 }
 
@@ -960,6 +1078,7 @@ function openModal(projectIndex, listKey) {
 
     modalMedia = media;
     modalIndex = 0;
+    trackEvent('gallery-open-' + eventSlug(project.name || 'project'));
     buildModalThumbs(project.name || 'Project');
     updateModalMedia();
     const modal = document.getElementById('imageModal');

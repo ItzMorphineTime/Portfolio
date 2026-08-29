@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Portfolio</title>
-    <meta name="description" content="">
+
+    <!--
+      STATIC FALLBACK META — social scrapers (LinkedIn, Slack, WhatsApp, X) don't run JS,
+      so these mirror data.json for link previews. app.js overwrites them at runtime, which
+      keeps data.json the source of truth for browsers/search. If name/headline/bio change
+      in data.json, update these once to match.
+    -->
+    <title>Joseph Loe — Team Leader, Software Engineer, Technical Artist & Virtual Production Supervisor</title>
+    <meta name="description" content="Joseph Loe is a Head of Technology and software engineer with over two decades spanning full-stack development, virtual production, live events, and game development.">
+    <link rel="canonical" href="https://joeloe.co.uk/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Joseph Loe">
+    <meta property="og:title" content="Joseph Loe — Team Leader, Software Engineer, Technical Artist & Virtual Production Supervisor">
+    <meta property="og:description" content="Head of Technology · virtual production, real-time graphics and software engineering. 2× Guinness World Records, British Arrows Craft Gold.">
+    <meta property="og:url" content="https://joeloe.co.uk/">
+    <meta property="og:image" content="https://joeloe.co.uk/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Joseph Loe — Software Engineer, Technical Artist & VP Supervisor">
+    <meta name="twitter:description" content="Head of Technology · virtual production, real-time graphics and software engineering.">
+    <meta name="twitter:image" content="https://joeloe.co.uk/og-image.jpg">
     <meta name="theme-color" content="#0a0a0f">
+
+    <!-- Privacy-friendly analytics (GoatCounter): cookieless, no consent banner needed.
+         Static so it counts even if the JS app fails; ignores localhost by default. -->
+    <script data-goatcounter="https://joeloe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
     <!-- Neutral fallback icon; app.js replaces it with an initials icon built from data.json -->
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">

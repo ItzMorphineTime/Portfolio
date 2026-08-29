@@ -356,6 +356,7 @@
             const blob = await generateCvBlob(variant);
             const name = (portfolioData && portfolioData.name) || 'cv';
             triggerDownload(blob, `${slug(name)}-CV${variant === 'ats' ? '-ATS' : ''}.docx`);
+            if (typeof window.trackEvent === 'function') window.trackEvent('cv-download-' + variant);
         } catch (e) {
             console.error('CV generation failed:', e);
             alert('Sorry — CV generation failed. Please try again.');

@@ -29,6 +29,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | 5 | Data quality — role tagging & wording (⚑ user input) | ☐ |
 | 6 | Backlog / future | ☐ |
 | 7 | CV export review — awards/projects/software drift + A4/ATS polish | ☑ Implemented & verified 2026-08-27 (⚑ highlights/phone remain) |
+| 8 | Design/UX deep dive + analytics → [DESIGN_UX_REVIEW.md](DESIGN_UX_REVIEW.md) | ☑ Implemented & verified 2026-08-28 (grid folding, compact mobile header, static meta, placeholders, footer, skill groups, focus styles, GoatCounter w/ events) |
 
 ---
 
