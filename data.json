@@ -777,6 +777,59 @@
       ]
     },
     {
+      "name": "Reef Advert (feat. Karim Benzema)",
+      "description": "Created the Unreal 3D content for the Reef advert starring Karim Benzema — building the entire Riyadh skyline from scratch in Blender and Unreal — and VP supervised and operated the shoot with Vicon camera tracking at Alhisn BigTime Studios.",
+      "technologies": [
+        "Unreal",
+        "Blender",
+        "Vicon Tracking",
+        "3D Environments",
+        "Virtual Production"
+      ],
+      "images": [
+        "./Reef/Reef (2).jpg",
+        "./Reef/Reef (1).jpg",
+        "./Reef/Reef (3).jpg",
+        "./Reef/Reef (4).jpg",
+        "./Reef/Reef (5).jpg",
+        "./Reef/Reef (6).jpg"
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "March 2026",
+      "endDate": "March 2026"
+    },
+    {
+      "name": "Gucci Advert (feat. Georgina Rodríguez)",
+      "description": "VP Supervisor and Unreal operator on a Gucci advert featuring Georgina Rodríguez — running real-time Vicon camera tracking while multitasking techvis creation and art-directing environments live on set at Alhisn BigTime Studios.",
+      "technologies": [
+        "Unreal",
+        "Vicon Tracking",
+        "Techvis",
+        "Art Direction",
+        "Virtual Production"
+      ],
+      "images": [
+        "./Gucci/Gucci (1).jpeg",
+        "./Gucci/Gucci (2).jpeg",
+        "./Gucci/Gucci (3).jpeg",
+        "./Gucci/GucciTakes (1)-web.mp4",
+        "./Gucci/GucciTakes (2)-web.mp4",
+        "./Gucci/GucciTakes (3)-web.mp4",
+        "./Gucci/GucciTakes (4)-web.mp4"
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "February 2026",
+      "endDate": "February 2026"
+    },
+    {
       "name": "Joy Awards — Riyadh",
       "description": "VP Supervisor, Unreal operator and content creator for the Joy Awards in Riyadh.",
       "technologies": [
@@ -2073,6 +2126,7 @@
   "clientsNote": "Selected clients & productions",
   "clients": [
     "Warner Bros.",
+    "Gucci",
     "ITV",
     "Coldplay",
     "The Chemical Brothers",
