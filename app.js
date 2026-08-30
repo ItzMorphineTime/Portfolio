@@ -251,8 +251,10 @@ function eventSlug(s) {
 }
 
 // How many cards each grid shows before its "Show all" button (folding keeps the
-// initial page a sane length — the full grids are ~50 and ~20 cards).
-const VISIBLE_PROJECTS = 9;
+// initial page a sane length — the full grids are ~50 and ~20 cards). With 8
+// full-width featured cards leading, 14 = featured block + three pairs of
+// regular cards in the two-column grid.
+const VISIBLE_PROJECTS = 14;
 const VISIBLE_REPOS = 6;
 
 // Expand/collapse a folded grid. The fold indexes are fixed at render time.
