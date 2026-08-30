@@ -506,7 +506,10 @@
         "LED Volume",
         "Virtual Production"
       ],
-      "images": [],
+      "images": [
+        "./BelieveMe/BelieveMe_02.jpg",
+        "./BelieveMe/BelieveMe_01.jpg"
+      ],
       "links": [
         "https://britishcinematographer.co.uk/supplement_posts/production-profile-believe-me/"
       ],
@@ -516,6 +519,37 @@
       ],
       "startDate": "October 2025",
       "endDate": "October 2025",
+      "featured": true
+    },
+    {
+      "name": "Rapture (TV Thriller)",
+      "description": "VP Supervisor on the thriller series Rapture — built the LED volume and advised on achieving a driving sequence through a burning forest, using Unreal and nDisplay to render out high-fidelity 2D plates. Pioneered pixel-mapping the new MBS Pixel Brute lighting fixture, providing both hard and soft light sources pixel-mapped to the playback media — perfect for imitating fire, burning embers and sunlight.",
+      "technologies": [
+        "Unreal",
+        "nDisplay",
+        "LED Volume",
+        "2D Plates",
+        "MBS Pixel Brute",
+        "Pixel Mapping"
+      ],
+      "images": [
+        "./Rapture/Rapture (2).jpg",
+        "./Rapture/Rapture (1).jpg",
+        "./Rapture/Rapture (3).jpg",
+        "./Rapture/Rapture (4).jpg",
+        "./Rapture/Rapture (5).jpg",
+        "./Rapture/Rapture (6).jpg",
+        "./Rapture/Rapture (7).jpg",
+        "./Rapture/RaptureVid (1)-web.mp4",
+        "./Rapture/RaptureVid (2)-web.mp4"
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "September 2025",
+      "endDate": "September 2025",
       "featured": true
     },
     {
@@ -721,6 +755,31 @@
       ]
     },
     {
+      "name": "Joy Awards — Riyadh",
+      "description": "VP Supervisor, Unreal operator and content creator for the Joy Awards in Riyadh.",
+      "technologies": [
+        "Unreal",
+        "Virtual Production",
+        "Content Creation"
+      ],
+      "images": [
+        "./JoyAwards/JoyAwards (1).jpg",
+        "./JoyAwards/JoyAwards (2).jpg",
+        "./JoyAwards/JoyAwards (3).jpg",
+        "./JoyAwards/JoyAwards (4).jpg",
+        "./JoyAwards/JoyAwards (5).jpg",
+        "./JoyAwards/JoyAwards (6).jpg",
+        "./JoyAwards/JoyAwardsVid-web.mp4"
+      ],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "October 2025",
+      "endDate": "October 2025"
+    },
+    {
       "name": "Riyadh Air Inflight Safety Video",
       "description": "VP Supervisor on Riyadh Air's inflight safety video, operating Unreal Engine and Pixera for the LED volume shoot in Riyadh.",
       "technologies": [
@@ -765,25 +824,13 @@
         "2D Playback",
         "Virtual Production"
       ],
-      "images": [],
-      "links": [],
-      "roles": [
-        "Technical Artist",
-        "VP Supervisor"
+      "images": [
+        "./Clayface/ClayFace_01 (1).jpg",
+        "./Clayface/ClayFace_01 (2).jpg",
+        "./Clayface/ClayFace_01 (3).jpg",
+        "./Clayface/ClayFace_01 (4).jpg",
+        "./Clayface/ClayFace_01 (5).jpg"
       ],
-      "startDate": "September 2025",
-      "endDate": "September 2025"
-    },
-    {
-      "name": "Rapture (TV Thriller)",
-      "description": "VP Supervisor on the thriller series Rapture — built the LED volume and advised on achieving a driving sequence through a burning forest, using Unreal and nDisplay to render out high-fidelity 2D plates.",
-      "technologies": [
-        "Unreal",
-        "nDisplay",
-        "LED Volume",
-        "2D Plates"
-      ],
-      "images": [],
       "links": [],
       "roles": [
         "Technical Artist",
