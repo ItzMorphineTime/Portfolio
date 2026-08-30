@@ -198,7 +198,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 
 ### 🟡 Nice-to-have
 - [x] Clickable `ExternalHyperlink`s (email/LinkedIn/GitHub) in the designed variant.
-- [ ] ⚑ **Author `highlights[]` for experience entries** — renderer has supported bullet arrays since Phase 6, but every job still exports its long prose paragraph as ONE giant bullet (the CT software-engineer entry is a 746-character blob). Needs your words; 3-5 punchy bullets per role would transform both variants.
+- [x] ⚑ **`highlights[]` — Fivefold entry done** (2026-08-30): 5 fact-based bullets (Pixel Brute pioneering, Alhisn build, 7Dogs records, WB/ITV volume builds, VP Academy) replace the prose paragraph on all four CV exports. **Remaining jobs (CT ×2, VIP, ASL, Ideal, GreedyGull) still export prose blobs — those bullets need Joseph's words.**
 - [ ] ⚑ `contact.phone` still unset (renders on CV only, never the site).
 - [ ] Group the 24-skill comma list by role headings (e.g. Engineering / AI / VP) for scannability.
 - **Files:** `cv.js` (+ optionally `data.json` for highlights/phone)

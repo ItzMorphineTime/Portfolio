@@ -345,6 +345,13 @@
         "Software Engineer",
         "Technical Artist",
         "VP Supervisor"
+      ],
+      "highlights": [
+        "Pioneered pixel-mapping the new MBS Pixel Brute lighting fixture — hard and soft light sources driven by the playback media for realistic fire, embers and sunlight (Rapture).",
+        "Built and commissioned the ARRI-certified Alhisn BigTime virtual production studio in Riyadh — 10 render servers driving a massive curved Ruby 2.3c LED canvas.",
+        "VP supervised the 7Dogs feature film, integrating a custom motion-control rig for its driving sequences — production earned two Guinness World Records.",
+        "Supervised LED volume builds and playback for Warner Bros.’ Batman/Clayface, ITV’s Believe Me (DMX-integrated real-time lighting) and the thriller Rapture.",
+        "Provided the LED wall and studio at the Fivefold R&D hub to host and train students for Final Pixel’s VP Academy."
       ]
     },
     {
@@ -373,6 +380,12 @@
         "Software Engineer",
         "Technical Artist",
         "VP Supervisor"
+      ],
+      "highlights": [
+        "Promoted to senior technical lead on the ARRI x CT virtual production stage, driving innovation and new functionality across film and VP techniques.",
+        "Worked on 25+ virtual production shoots — including The Chemical Brothers’ ‘Live Again’ promo, winner of the British Arrows Craft Gold for Innovative Use of Realtime 3D.",
+        "Led R&D that reduced stage downtime: LED colour workflows, DMX integrations, network upgrades, remote operation/control and camera-tracking systems.",
+        "Debugged and optimised client Unreal Engine projects for reliable real-time playback on the LED volume."
       ]
     },
     {
@@ -388,6 +401,12 @@
         "Software Engineer",
         "Technical Artist",
         "VP Supervisor"
+      ],
+      "highlights": [
+        "One of two full-stack developers serving major sports, film and corporate clients under strict show deadlines — owning requirement analysis and both hardware and software architecture.",
+        "Built and solely maintained AWS-based event platforms (Lambda, EC2, S3, CloudFront, SES/SNS) with SQL/NoSQL backends and HTML/JS frontends.",
+        "Delivered the World Athletics live-graphics control system (WPF, ODF data) across 10+ global championships, and the Doha VR previs that helped secure a multi-million-pound contract.",
+        "Led the transition to Azure, .NET and Blazor to build a multi-platform integrated streaming service as live events shifted online."
       ]
     },
     {
@@ -550,7 +569,10 @@
       ],
       "startDate": "September 2025",
       "endDate": "September 2025",
-      "featured": true
+      "featured": true,
+      "award": {
+        "label": "Pixel-Mapped First MBS Pixel Brute"
+      }
     },
     {
       "name": "7Dogs Feature Film — Riyadh",
