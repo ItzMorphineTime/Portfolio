@@ -112,6 +112,12 @@
             })),
             projects: allProjects.filter((p) => picked.has(p)).map((p) => ({ title: p.name || '', date: projectDate(p) })).filter((p) => p.title),
             openSource,
+            publications: (data.publications || []).map((pub) => ({
+                title: pub.title || '',
+                publisher: pub.publisher || '',
+                date: pub.date || '',
+                url: pub.link || ''
+            })).filter((pub) => pub.title),
             education: (data.education || []).map((ed) => ({
                 institution: ed.institution || '',
                 course: ed.course || '',
@@ -157,6 +163,20 @@
                         new TextRun({ text: a.label, bold: true, size: 20 }),
                         new TextRun({ text: `  -  ${a.project}${a.date ? ` (${a.date})` : ''}`, size: 20 })
                     ]
+                }));
+            });
+        }
+
+        if (model.publications.length) {
+            kids.push(heading('Publications'));
+            model.publications.forEach((pub) => {
+                kids.push(new Paragraph({
+                    spacing: { after: 20 },
+                    children: [
+                        new TextRun({ text: pub.title, bold: true, size: 20 }),
+                        pub.publisher ? new TextRun({ text: `  -  ${pub.publisher}${pub.date ? ` (${pub.date})` : ''}`, size: 20 }) : null,
+                        pub.url ? new TextRun({ text: `  -  ${pub.url}`, size: 18, color: '444444' }) : null
+                    ].filter(Boolean)
                 }));
             });
         }
@@ -298,6 +318,21 @@
             ], a.date, 24))));
         }
 
+        if (model.publications.length) {
+            kids.push(heading('Publications'));
+            kids.push(wrapTable(model.publications.map((pub) => {
+                const titleRun = new TextRun({ text: pub.title, bold: true, size: 19, color: '222222' });
+                return dateRow([
+                    new Paragraph({
+                        children: [
+                            pub.url ? new ExternalHyperlink({ link: pub.url, children: [titleRun] }) : titleRun,
+                            pub.publisher ? new TextRun({ text: `    ${pub.publisher}`, size: 18, color: accent }) : null
+                        ].filter(Boolean)
+                    })
+                ], pub.date, 24);
+            })));
+        }
+
         if (model.experience.length) {
             kids.push(heading('Experience'));
             model.experience.forEach((e) => {
@@ -376,6 +411,17 @@
             content.push(...heading('Awards & Recognition'));
             model.awards.forEach((a) => content.push({
                 text: [{ text: a.label, bold: true }, { text: `  -  ${a.project}${a.date ? ` (${a.date})` : ''}` }],
+                fontSize: 9.5, margin: [0, 0, 0, 2]
+            }));
+        }
+        if (model.publications.length) {
+            content.push(...heading('Publications'));
+            model.publications.forEach((pub) => content.push({
+                text: [
+                    { text: pub.title, bold: true },
+                    pub.publisher ? { text: `  -  ${pub.publisher}${pub.date ? ` (${pub.date})` : ''}` } : null,
+                    pub.url ? { text: `  -  ${pub.url}`, fontSize: 8.5, color: '#444444' } : null
+                ].filter(Boolean),
                 fontSize: 9.5, margin: [0, 0, 0, 2]
             }));
         }
@@ -460,6 +506,13 @@
                 { text: a.label, bold: true, fontSize: 9.5, color: '#222222' },
                 a.project ? { text: `    ${a.project}`, fontSize: 9, color: accent } : null
             ].filter(Boolean), a.date)));
+        }
+        if (model.publications.length) {
+            content.push(...heading('Publications'));
+            model.publications.forEach((pub) => content.push(dateRow([
+                pub.url ? { text: pub.title, bold: true, fontSize: 9.5, color: '#222222', link: pub.url } : { text: pub.title, bold: true, fontSize: 9.5, color: '#222222' },
+                pub.publisher ? { text: `    ${pub.publisher}`, fontSize: 8.5, color: accent } : null
+            ].filter(Boolean), pub.date)));
         }
         if (model.experience.length) {
             content.push(...heading('Experience'));

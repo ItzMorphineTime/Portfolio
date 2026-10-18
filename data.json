@@ -20,9 +20,9 @@
   "ogImage": "./og-image.jpg",
   "githubUser": "ItzMorphineTime",
   "contact": {
-    "email": "jl@fivefoldstudios.co.uk",
+    "email": "joeloe@morph-media.com",
     "linkedin": "https://www.linkedin.com/in/josephloe/",
-    "website": "https://www.fivefoldstudios.co.uk/",
+    "website": "https://morph-media.com/",
     "github": "https://github.com/ItzMorphineTime"
   },
   "skills": [
@@ -828,6 +828,24 @@
       ],
       "startDate": "February 2026",
       "endDate": "February 2026"
+    },
+    {
+      "name": "Highlander Feature Film (NDA)",
+      "description": "VP operator on the upcoming Highlander feature film — operating an Unreal Engine 3D world on the latest RTX 6000 Blackwell GPUs with real-time path tracing for high-quality reflections and transparency in a cityscape background, pushing the limits of what real-time virtual production can do. Imagery withheld under NDA until release.",
+      "technologies": [
+        "Unreal",
+        "RTX 6000 Blackwell",
+        "Real-time Path Tracing",
+        "Virtual Production"
+      ],
+      "images": [],
+      "links": [],
+      "roles": [
+        "Technical Artist",
+        "VP Supervisor"
+      ],
+      "startDate": "December 2025",
+      "endDate": "December 2025"
     },
     {
       "name": "Joy Awards — Riyadh",
@@ -2169,8 +2187,27 @@
       "label": "Golden Arrow Winner"
     },
     {
+      "value": "1×",
+      "label": "IBC Published Paper"
+    },
+    {
       "value": "25+",
       "label": "VP shoots supervised"
+    }
+  ],
+  "publications": [
+    {
+      "title": "Beyond SaaS: AI-Assisted Rapid Application Development in Virtual Production — Three Case Studies",
+      "publisher": "IBC Technical Papers 2026",
+      "authors": "Joseph Loe",
+      "date": "September 2026",
+      "description": "Peer-reviewed technical paper on how virtual production, real-time engines and advanced VFX pipelines rely on complex, interconnected software ecosystems — with three Fivefold case studies demonstrating how AI-assisted Rapid Application Development (RAD) materially changes how production tooling gets built.",
+      "link": "https://www.ibc.org/virtual-production/reports/beyond-saas-ai-assisted-rapid-application-development-in-virtual-production-three-case-studies/22794",
+      "roles": [
+        "Software Engineer",
+        "AI Consultant",
+        "VP Supervisor"
+      ]
     }
   ]
 }

@@ -678,6 +678,23 @@ body.matrix-mode .stat-value {
     white-space: nowrap;
 }
 
+/* Publication rows (shares the talk-row list layout) */
+.pub-publisher {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-secondary);
+    margin-top: 0.2rem;
+}
+
+body.matrix-mode .pub-publisher {
+    color: #00ff41;
+}
+
+.pub-link {
+    display: inline-flex;
+    margin-top: 0.75rem;
+}
+
 .talk-desc {
     font-size: 0.88rem;
     color: var(--text-secondary);

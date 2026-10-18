@@ -15,6 +15,7 @@ A sleek, modern portfolio website built with vanilla HTML, CSS, and JavaScript. 
 | 📊 **Animated Skill Bars** | Visual proficiency indicators with smooth animations |
 | 🖼️ **Media Gallery** | Full-viewport viewer with thumbnails, keyboard/swipe navigation — plays project **videos** as well as stills |
 | ⭐ **Featured Projects & Awards** | `featured` flag highlights a card (accent glow + wide slot); `award` renders a gold award chip |
+| 📄 **Publications** | Optional `publications` array (title, publisher, authors, date, description, link) renders a 'Published Technical Papers' section and a PUBLICATIONS block on every CV export |
 | 💻 **Software Projects** | Optional GitHub repo section — compact cards with live-refreshing star badges (`githubUser`) |
 | 📦 **Grid folding** | Projects/repos show 9/6 cards with a "Show all" pill (suspended while a role filter is active); counts set by `VISIBLE_PROJECTS`/`VISIBLE_REPOS` in `app.js` |
 | 🧭 **Radial skills** | Skills render as compact radial-progress tiles (ring wraps the label) grouped by an optional `category` field; clicking a tile opens a detail modal with the description and role tags |

@@ -30,6 +30,7 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 | 6 | Backlog / future | ☐ |
 | 7 | CV export review — awards/projects/software drift + A4/ATS polish | ☑ Implemented & verified 2026-08-27 (⚑ highlights/phone remain) |
 | 8 | Design/UX deep dive + analytics → [DESIGN_UX_REVIEW.md](DESIGN_UX_REVIEW.md) | ☑ Implemented & verified 2026-08-28 (grid folding, compact mobile header, static meta, placeholders, footer, skill groups, focus styles, GoatCounter w/ events) |
+| 14 | **Published Technical Papers section** — new data-driven `publications` array (IBC Tech Papers 2026: 'Beyond SaaS: AI-Assisted RAD in Virtual Production', Sep 2026, linked); own section + nav button after Speaking & Training; exported to all four CV formats under a PUBLICATIONS heading (full URL in ATS, hyperlinked title in designed); paper-click analytics event | ☑ Done & verified 2026-10-18 |
 | 13 | **Gucci + Reef adverts added** (Feb/Mar 2026, feat. Georgina Rodríguez / Karim Benzema) — newest work leading the non-featured grid; 4 Gucci 4K takes web-encoded (444 MB → 22 MB, 3 oversized masters gitignored), Gucci added to clients, 13 thumbs + 4 auto-posters | ☑ Done & verified 2026-08-30 |
 | 12 | **3rd media drop wired** — Believe Me (2), Clayface (5), Rapture (7 + 2 videos) + new **Joy Awards — Riyadh** project (Oct 2025, 6 imgs + video). 3 videos web-encoded (132→4.9 MB, 53→1.1 MB, 143→15.8 MB); 2 oversized masters gitignored; 23 thumbs + 3 auto-posters generated | ☑ Done & verified 2026-08-30 |
 | 11 | **PDF CV export** — each CV button is now a `.docx / .pdf` split; PDFs built by vendored `pdfmake` (lazy-loaded, A4, real text, 2 pages, hyperlinked in the designed variant; ATS + designed both mirror the docx content incl. Awards & Open Source) | ☑ Done & verified 2026-08-28 |
@@ -203,6 +204,17 @@ Living plan and tracker for the portfolio site ([joeloe.co.uk](https://joeloe.co
 - [ ] ⚑ `contact.phone` still unset (renders on CV only, never the site).
 - [ ] Group the 24-skill comma list by role headings (e.g. Engineering / AI / VP) for scannability.
 - **Files:** `cv.js` (+ optionally `data.json` for highlights/phone)
+
+---
+
+## 🔒 Highlander release-day checklist (media staged locally, NDA until release)
+
+The project card is live with the NDA lock treatment; **all media stays on disk only** — the whole `Highlander/` folder is gitignored (330 MB: 17 photos + 4 BTS masters + 4 pre-encoded `-web.mp4` files, ready to go). **When the film is released / imagery is cleared:**
+
+1. In `.gitignore`, replace the `Highlander/` line with just the oversized master: `Highlander/HighlanderBTS (4).mp4` (140 MB — exceeds GitHub's push limit; also consider ignoring the other three masters, the site only uses `-web` files).
+2. In `data.json`, set the project's `images` to: `Highlander (1).jpg` … `Highlander (17).jpg` then `HighlanderBTS (1)-web.mp4` … `(4)-web.mp4` (pick a lead image first — none have been reviewed for content yet, **review each photo/clip against the NDA before publishing**).
+3. Optionally rename the project to drop “(NDA)” (the 🔒 card treatment keys off "NDA" in the name) and un-withhold the description's last sentence.
+4. Run `node tools/generate-media.mjs` (thumbs + video posters), reload, commit.
 
 ---
 

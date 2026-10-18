@@ -503,6 +503,7 @@ function renderContent() {
         ${renderSoftwareProjects()}
         ${renderSkills()}
         ${renderTalks()}
+        ${renderPublications()}
         ${renderExperience()}
         ${renderEducation()}
         ${renderInterests()}
@@ -514,6 +515,13 @@ function renderContent() {
     if (!main.dataset.trackingBound) {
         main.dataset.trackingBound = 'true';
         main.addEventListener('click', (e) => {
+            const pub = e.target.closest('.pub-link');
+            if (pub) {
+                const row = pub.closest('.pub-row');
+                const title = row ? row.querySelector('.talk-title') : null;
+                trackEvent('paper-click-' + eventSlug(title ? title.textContent : pub.href));
+                return;
+            }
             const a = e.target.closest('.software-card .project-link');
             if (!a) return;
             const card = a.closest('.software-card');
@@ -779,6 +787,38 @@ function renderTalks() {
                             ${media.length ? `<button type="button" class="project-link talk-photos" onclick="openModal(${idx})">Photos ↗</button>` : ''}
                         </div>`;
                     }).join('')}
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+// Render published technical papers (data-driven; section disappears when the
+// `publications` array is absent/empty, and its nav button auto-hides with it).
+function renderPublications() {
+    const pubs = portfolioData.publications || [];
+    if (pubs.length === 0) return '';
+    return `
+        <section id="publications">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Research</div>
+                    <h2 class="section-title">Published Technical Papers</h2>
+                </div>
+                <div class="talks-list">
+                    ${pubs.map((pub) => `
+                        <div class="talk-row pub-row filterable" data-roles='${esc(JSON.stringify(pub.roles || []))}'>
+                            <div class="talk-head">
+                                <h3 class="talk-title">${esc(pub.title)}</h3>
+                                ${pub.date ? `<span class="talk-date">${esc(pub.date)}</span>` : ''}
+                            </div>
+                            ${pub.publisher || pub.authors ? `
+                                <div class="pub-publisher">${esc([pub.publisher, pub.authors].filter(Boolean).join(' · '))}</div>
+                            ` : ''}
+                            ${pub.description ? `<p class="talk-desc">${esc(pub.description)}</p>` : ''}
+                            ${pub.link ? `<a href="${esc(pub.link)}" target="_blank" rel="noopener" class="project-link pub-link">Read the paper ↗</a>` : ''}
+                        </div>
+                    `).join('')}
                 </div>
             </div>
         </section>
